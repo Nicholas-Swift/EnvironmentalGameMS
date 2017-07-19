@@ -1,0 +1,404 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		EB0DA81C1F154DEF00069543 /* BirdMiniScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = EB0DA81B1F154DEF00069543 /* BirdMiniScene.sks */; };
+		EB15B7071F1436790087DC30 /* CGFloat+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB15B7061F1436790087DC30 /* CGFloat+Extensions.swift */; };
+		EB190BDF1F142136005104F4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB190BDE1F142136005104F4 /* AppDelegate.swift */; };
+		EB190BE11F142136005104F4 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = EB190BE01F142136005104F4 /* GameScene.sks */; };
+		EB190BE31F142136005104F4 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = EB190BE21F142136005104F4 /* Actions.sks */; };
+		EB190BE51F142136005104F4 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB190BE41F142136005104F4 /* GameScene.swift */; };
+		EB190BE71F142136005104F4 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB190BE61F142136005104F4 /* GameViewController.swift */; };
+		EB190BEA1F142136005104F4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB190BE81F142136005104F4 /* Main.storyboard */; };
+		EB190BEC1F142136005104F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB190BEB1F142136005104F4 /* Assets.xcassets */; };
+		EB190BEF1F142136005104F4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB190BED1F142136005104F4 /* LaunchScreen.storyboard */; };
+		EB1C13A71F1D1F2400B521E6 /* DeforestationScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1C13A61F1D1F2400B521E6 /* DeforestationScene.swift */; };
+		EB1C13A91F1D1F4A00B521E6 /* DeforestationScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = EB1C13A81F1D1F4A00B521E6 /* DeforestationScene.sks */; };
+		EB526D0D1F17EEB6005279A2 /* MeltingIceScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB526D0C1F17EEB6005279A2 /* MeltingIceScene.swift */; };
+		EB526D0F1F17EFE8005279A2 /* IceObstacle.sks in Resources */ = {isa = PBXBuildFile; fileRef = EB526D0E1F17EFE8005279A2 /* IceObstacle.sks */; };
+		EB526D111F181220005279A2 /* IceMeltingScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB526D101F181220005279A2 /* IceMeltingScene.swift */; };
+		EB526D191F181C0D005279A2 /* IceMeltingScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = EB526D181F181C0D005279A2 /* IceMeltingScene.sks */; };
+		EB526D1B1F182F03005279A2 /* SpeedUp.sks in Resources */ = {isa = PBXBuildFile; fileRef = EB526D1A1F182F03005279A2 /* SpeedUp.sks */; };
+		EB526D1D1F182F81005279A2 /* ScoreScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = EB526D1C1F182F81005279A2 /* ScoreScene.sks */; };
+		EB6C26CC1F15777D00A407C8 /* Skyscraper.sks in Resources */ = {isa = PBXBuildFile; fileRef = EB6C26CB1F15777D00A407C8 /* Skyscraper.sks */; };
+		EB6C26D01F16878500A407C8 /* OverfishingScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6C26CF1F16878500A407C8 /* OverfishingScene.swift */; };
+		EB6C26D21F1687C000A407C8 /* OverfishingScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = EB6C26D11F1687C000A407C8 /* OverfishingScene.sks */; };
+		EB8070FF1F16BA8500166BE5 /* MeltingIceScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = EB8070FE1F16BA8500166BE5 /* MeltingIceScene.sks */; };
+		EB8E8BE01F192DC000F6168E /* MSButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8E8BDF1F192DC000F6168E /* MSButtonNode.swift */; };
+		EBA86C341F1E787A000006C2 /* AirPollution.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA86C331F1E787A000006C2 /* AirPollution.swift */; };
+		EBA86C361F1E7899000006C2 /* AirPollution.sks in Resources */ = {isa = PBXBuildFile; fileRef = EBA86C351F1E7899000006C2 /* AirPollution.sks */; };
+		EBA86C381F1EA8E3000006C2 /* SmokeEmitter.sks in Resources */ = {isa = PBXBuildFile; fileRef = EBA86C371F1EA8E3000006C2 /* SmokeEmitter.sks */; };
+		EBA86C3C1F1ED03F000006C2 /* smoke.png in Resources */ = {isa = PBXBuildFile; fileRef = EBA86C3A1F1ED03F000006C2 /* smoke.png */; };
+		EBD01BAD1F142D3A00410CF8 /* BirdMiniScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD01BAC1F142D3A00410CF8 /* BirdMiniScene.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		EB0DA81B1F154DEF00069543 /* BirdMiniScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BirdMiniScene.sks; sourceTree = "<group>"; };
+		EB15B7061F1436790087DC30 /* CGFloat+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGFloat+Extensions.swift"; sourceTree = "<group>"; };
+		EB190BDB1F142136005104F4 /* EnvironmentalGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EnvironmentalGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EB190BDE1F142136005104F4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		EB190BE01F142136005104F4 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
+		EB190BE21F142136005104F4 /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
+		EB190BE41F142136005104F4 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		EB190BE61F142136005104F4 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		EB190BE91F142136005104F4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		EB190BEB1F142136005104F4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		EB190BEE1F142136005104F4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		EB190BF01F142136005104F4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EB1C13A61F1D1F2400B521E6 /* DeforestationScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeforestationScene.swift; sourceTree = "<group>"; };
+		EB1C13A81F1D1F4A00B521E6 /* DeforestationScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = DeforestationScene.sks; sourceTree = "<group>"; };
+		EB526D0C1F17EEB6005279A2 /* MeltingIceScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeltingIceScene.swift; sourceTree = "<group>"; };
+		EB526D0E1F17EFE8005279A2 /* IceObstacle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = IceObstacle.sks; sourceTree = "<group>"; };
+		EB526D101F181220005279A2 /* IceMeltingScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IceMeltingScene.swift; sourceTree = "<group>"; };
+		EB526D181F181C0D005279A2 /* IceMeltingScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = IceMeltingScene.sks; sourceTree = "<group>"; };
+		EB526D1A1F182F03005279A2 /* SpeedUp.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SpeedUp.sks; sourceTree = "<group>"; };
+		EB526D1C1F182F81005279A2 /* ScoreScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ScoreScene.sks; sourceTree = "<group>"; };
+		EB6C26CB1F15777D00A407C8 /* Skyscraper.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Skyscraper.sks; sourceTree = "<group>"; };
+		EB6C26CF1F16878500A407C8 /* OverfishingScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverfishingScene.swift; sourceTree = "<group>"; };
+		EB6C26D11F1687C000A407C8 /* OverfishingScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = OverfishingScene.sks; path = ../OverfishingScene.sks; sourceTree = "<group>"; };
+		EB8070FE1F16BA8500166BE5 /* MeltingIceScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MeltingIceScene.sks; sourceTree = "<group>"; };
+		EB8E8BDF1F192DC000F6168E /* MSButtonNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MSButtonNode.swift; sourceTree = "<group>"; };
+		EBA86C331F1E787A000006C2 /* AirPollution.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AirPollution.swift; sourceTree = "<group>"; };
+		EBA86C351F1E7899000006C2 /* AirPollution.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = AirPollution.sks; sourceTree = "<group>"; };
+		EBA86C371F1EA8E3000006C2 /* SmokeEmitter.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SmokeEmitter.sks; sourceTree = "<group>"; };
+		EBA86C3A1F1ED03F000006C2 /* smoke.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smoke.png; sourceTree = "<group>"; };
+		EBD01BAC1F142D3A00410CF8 /* BirdMiniScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BirdMiniScene.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		EB190BD81F142135005104F4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		EB190BD21F142135005104F4 = {
+			isa = PBXGroup;
+			children = (
+				EB190BDD1F142136005104F4 /* EnvironmentalGame */,
+				EB190BDC1F142136005104F4 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		EB190BDC1F142136005104F4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EB190BDB1F142136005104F4 /* EnvironmentalGame.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EB190BDD1F142136005104F4 /* EnvironmentalGame */ = {
+			isa = PBXGroup;
+			children = (
+				EB190BDE1F142136005104F4 /* AppDelegate.swift */,
+				EB190BE21F142136005104F4 /* Actions.sks */,
+				EB190BE41F142136005104F4 /* GameScene.swift */,
+				EB190BE01F142136005104F4 /* GameScene.sks */,
+				EB8E8BDF1F192DC000F6168E /* MSButtonNode.swift */,
+				EBD01BAC1F142D3A00410CF8 /* BirdMiniScene.swift */,
+				EB0DA81B1F154DEF00069543 /* BirdMiniScene.sks */,
+				EB6C26CB1F15777D00A407C8 /* Skyscraper.sks */,
+				EB6C26CF1F16878500A407C8 /* OverfishingScene.swift */,
+				EB6C26D11F1687C000A407C8 /* OverfishingScene.sks */,
+				EB526D0C1F17EEB6005279A2 /* MeltingIceScene.swift */,
+				EB8070FE1F16BA8500166BE5 /* MeltingIceScene.sks */,
+				EB526D101F181220005279A2 /* IceMeltingScene.swift */,
+				EB526D181F181C0D005279A2 /* IceMeltingScene.sks */,
+				EB526D0E1F17EFE8005279A2 /* IceObstacle.sks */,
+				EB1C13A61F1D1F2400B521E6 /* DeforestationScene.swift */,
+				EB1C13A81F1D1F4A00B521E6 /* DeforestationScene.sks */,
+				EBA86C331F1E787A000006C2 /* AirPollution.swift */,
+				EBA86C351F1E7899000006C2 /* AirPollution.sks */,
+				EBA86C371F1EA8E3000006C2 /* SmokeEmitter.sks */,
+				EBA86C3A1F1ED03F000006C2 /* smoke.png */,
+				EB526D1A1F182F03005279A2 /* SpeedUp.sks */,
+				EB526D1C1F182F81005279A2 /* ScoreScene.sks */,
+				EB15B7061F1436790087DC30 /* CGFloat+Extensions.swift */,
+				EB190BE61F142136005104F4 /* GameViewController.swift */,
+				EB190BE81F142136005104F4 /* Main.storyboard */,
+				EB190BEB1F142136005104F4 /* Assets.xcassets */,
+				EB190BED1F142136005104F4 /* LaunchScreen.storyboard */,
+				EB190BF01F142136005104F4 /* Info.plist */,
+			);
+			path = EnvironmentalGame;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		EB190BDA1F142135005104F4 /* EnvironmentalGame */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EB190BF31F142136005104F4 /* Build configuration list for PBXNativeTarget "EnvironmentalGame" */;
+			buildPhases = (
+				EB190BD71F142135005104F4 /* Sources */,
+				EB190BD81F142135005104F4 /* Frameworks */,
+				EB190BD91F142135005104F4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = EnvironmentalGame;
+			productName = EnvironmentalGame;
+			productReference = EB190BDB1F142136005104F4 /* EnvironmentalGame.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EB190BD31F142135005104F4 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = "Havi Nguyen";
+				TargetAttributes = {
+					EB190BDA1F142135005104F4 = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = H9GB66QYJW;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = EB190BD61F142135005104F4 /* Build configuration list for PBXProject "EnvironmentalGame" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = EB190BD21F142135005104F4;
+			productRefGroup = EB190BDC1F142136005104F4 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EB190BDA1F142135005104F4 /* EnvironmentalGame */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		EB190BD91F142135005104F4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EB526D1B1F182F03005279A2 /* SpeedUp.sks in Resources */,
+				EBA86C3C1F1ED03F000006C2 /* smoke.png in Resources */,
+				EB526D0F1F17EFE8005279A2 /* IceObstacle.sks in Resources */,
+				EB8070FF1F16BA8500166BE5 /* MeltingIceScene.sks in Resources */,
+				EB0DA81C1F154DEF00069543 /* BirdMiniScene.sks in Resources */,
+				EB6C26CC1F15777D00A407C8 /* Skyscraper.sks in Resources */,
+				EBA86C361F1E7899000006C2 /* AirPollution.sks in Resources */,
+				EB526D191F181C0D005279A2 /* IceMeltingScene.sks in Resources */,
+				EB1C13A91F1D1F4A00B521E6 /* DeforestationScene.sks in Resources */,
+				EBA86C381F1EA8E3000006C2 /* SmokeEmitter.sks in Resources */,
+				EB526D1D1F182F81005279A2 /* ScoreScene.sks in Resources */,
+				EB190BEA1F142136005104F4 /* Main.storyboard in Resources */,
+				EB190BE11F142136005104F4 /* GameScene.sks in Resources */,
+				EB190BEC1F142136005104F4 /* Assets.xcassets in Resources */,
+				EB6C26D21F1687C000A407C8 /* OverfishingScene.sks in Resources */,
+				EB190BEF1F142136005104F4 /* LaunchScreen.storyboard in Resources */,
+				EB190BE31F142136005104F4 /* Actions.sks in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		EB190BD71F142135005104F4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EB190BE51F142136005104F4 /* GameScene.swift in Sources */,
+				EB6C26D01F16878500A407C8 /* OverfishingScene.swift in Sources */,
+				EB526D0D1F17EEB6005279A2 /* MeltingIceScene.swift in Sources */,
+				EB8E8BE01F192DC000F6168E /* MSButtonNode.swift in Sources */,
+				EB15B7071F1436790087DC30 /* CGFloat+Extensions.swift in Sources */,
+				EBA86C341F1E787A000006C2 /* AirPollution.swift in Sources */,
+				EB190BE71F142136005104F4 /* GameViewController.swift in Sources */,
+				EBD01BAD1F142D3A00410CF8 /* BirdMiniScene.swift in Sources */,
+				EB190BDF1F142136005104F4 /* AppDelegate.swift in Sources */,
+				EB1C13A71F1D1F2400B521E6 /* DeforestationScene.swift in Sources */,
+				EB526D111F181220005279A2 /* IceMeltingScene.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		EB190BE81F142136005104F4 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EB190BE91F142136005104F4 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		EB190BED1F142136005104F4 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EB190BEE1F142136005104F4 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		EB190BF11F142136005104F4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		EB190BF21F142136005104F4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		EB190BF41F142136005104F4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = H9GB66QYJW;
+				INFOPLIST_FILE = EnvironmentalGame/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Havi-Nguyen.EnvironmentalGame";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		EB190BF51F142136005104F4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = H9GB66QYJW;
+				INFOPLIST_FILE = EnvironmentalGame/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Havi-Nguyen.EnvironmentalGame";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		EB190BD61F142135005104F4 /* Build configuration list for PBXProject "EnvironmentalGame" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EB190BF11F142136005104F4 /* Debug */,
+				EB190BF21F142136005104F4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EB190BF31F142136005104F4 /* Build configuration list for PBXNativeTarget "EnvironmentalGame" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EB190BF41F142136005104F4 /* Debug */,
+				EB190BF51F142136005104F4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = EB190BD31F142135005104F4 /* Project object */;
+}
