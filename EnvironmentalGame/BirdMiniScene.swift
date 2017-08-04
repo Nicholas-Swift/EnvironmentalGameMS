@@ -8,22 +8,41 @@
 
 import SpriteKit
 
-/* enum BirdMiniSceneState {
-    case active, gameOver
+/*enum BirdMiniSceneState {
+    case active, notActive
 } */
 class BirdMiniScene: SKScene, SKPhysicsContactDelegate {
     //Top will be electrical wirings
     
     var bird: SKSpriteNode!
+    var birdState: Bool = true
     var sinceTouch : CFTimeInterval = 0
-    let fixedDelta: CFTimeInterval = 1.0 / 60.0 /* 60 FPS */
+    var fixedDelta: CFTimeInterval = 1.0 / 60.0 /* 60 FPS */
     let scrollSpeed: CGFloat = 100
     var scrollLayer: SKNode!
     var obstacleSource: SKNode!
     var obstacleLayer: SKNode!
     var spawnTimer: CFTimeInterval = 0
+    var timeBar: SKSpriteNode!
+    var birdMiniMainLabel: SKLabelNode!
+    var birdMiniLabel: SKLabelNode!
+    var time: CGFloat = 1.0 {
+        didSet {
+            //Limits Time Bar
+            if time > 1.0 {
+                time = 1.0
+            }
+            // Scale time bar
+            timeBar.xScale = time
+        }
+    }
+    var countChecker: Int = UserDefaults.standard.integer(forKey: "Countchecker")
+    
     //Game management
-    // var gameState: BirdMiniSceneState = .active
+    //var gameState: BirdMiniSceneState = .active
+    
+    let birdFlap = SKAction(named: "BirdFlap")!
+    let birdHit = SKAction(named: "BirdHit")!
     
     override func didMove(to view: SKView) {
         // Setup your scene here
@@ -33,23 +52,33 @@ class BirdMiniScene: SKScene, SKPhysicsContactDelegate {
         obstacleSource = self.childNode(withName: "obstacle")
         /* Set reference to obstacle layer node */
         obstacleLayer = self.childNode(withName: "obstacleLayer")
+        timeBar = childNode(withName: "timeBar") as! SKSpriteNode
+        birdMiniMainLabel = self.childNode(withName: "birdMiniMainLabel") as! SKLabelNode
+        birdMiniLabel = self.childNode(withName: "birdMiniLabel") as! SKLabelNode
         /* Set physics contact delegate */
         physicsWorld.contactDelegate = self
+        bird.run(birdFlap)
+        if countChecker < 6 {
+        bird.physicsBody?.affectedByGravity = false
+        bird.physicsBody?.isDynamic = false
+        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         // Called when a touch begins
+        birdMiniMainLabel.isHidden = true
+        birdMiniLabel.isHidden = true
         
-        // Disable touch if game no longer active
-        /* if gameState != .active {
-            print("fml")
-            return } */
+        if birdState == false {return}
+        
+        bird.physicsBody?.affectedByGravity = true
+        bird.physicsBody? .isDynamic = true
         
         /* Reset velocity, helps improve response against cumulative falling velocity */
         bird.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
         
         // Apply vertical impulse
-        bird.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 300))
+        bird.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 100))
         
         // Apply subtle rotation
         bird.physicsBody?.applyAngularImpulse(1)
@@ -60,6 +89,65 @@ class BirdMiniScene: SKScene, SKPhysicsContactDelegate {
     
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
+        
+        if birdState == false {return}
+        
+        if countChecker <= 3{
+            time -= 0.0017
+        }
+        else if countChecker <= 6 && countChecker > 3 {
+            time -= 0.0022
+            fixedDelta = 1.0 / 80.0
+        }
+        else if countChecker <= 9 && countChecker > 6 {
+            time -= 0.003
+            fixedDelta = 1.0 / 82.0
+        }
+        else if countChecker <= 12 && countChecker > 9 {
+            time -= 0.004
+            fixedDelta = 1.0 / 85.0
+        }
+        else if countChecker <= 15 && countChecker > 12 {
+            time -= 0.006
+            fixedDelta = 1.0 / 87.0
+        }
+        else if countChecker <= 18 && countChecker > 15 {
+            time -= 0.0065
+            fixedDelta = 1.0 / 90.0
+        }
+        else if countChecker <= 21 && countChecker > 18 {
+            time -= 0.007
+            fixedDelta = 1.0 / 92.0
+        }
+        else if countChecker <= 24 && countChecker > 21 {
+            time -= 0.0075
+            fixedDelta = 1.0 / 93.0
+        }
+        else if countChecker <= 27 && countChecker > 24 {
+            time -= 0.008
+            fixedDelta = 1.0 / 95.0
+        }
+        else if countChecker <= 30 && countChecker > 27 {
+            time -= 0.0085
+            fixedDelta = 1.0 / 97.0
+        }
+        else if countChecker <= 33 && countChecker > 27 {
+            time -= 0.009
+            fixedDelta = 1.0 / 99.0
+        }
+        else if countChecker <= 36 && countChecker > 33 {
+            time -= 0.0093
+            fixedDelta = 1.0 / 100.0
+        }
+        else if countChecker <= 39 && countChecker > 36{
+            time -= 0.0095
+            fixedDelta = 1.0 / 101.0
+        }
+        //Player ran out of time
+        if time < 0 {
+            // print(time)
+            completeGame()
+        }
         
         /* Skip game update if game no longer active */
         //if gameState != .active { return }
@@ -92,6 +180,7 @@ class BirdMiniScene: SKScene, SKPhysicsContactDelegate {
         updateObstacles()
         
         spawnTimer += fixedDelta
+        
     }
     func scrollWorld() {
         // Scroll World
@@ -136,14 +225,14 @@ class BirdMiniScene: SKScene, SKPhysicsContactDelegate {
         }
         
         /* Time to add a new obstacle? */
-        if spawnTimer >= 1.5 {
+        if spawnTimer >= 1.0 {
             
             /* Create a new obstacle by copying the source obstacle */
             let newObstacle = obstacleSource.copy() as! SKNode
             obstacleLayer.addChild(newObstacle)
             
             /* Generate new obstacle position, start just outside screen and with a random y value */
-            let randomPosition = CGPoint(x: 600, y: CGFloat.random(min: 75, max: 160))
+            let randomPosition = CGPoint(x: 380, y: CGFloat.random(min: 55, max: 195))
             
             /* Convert new node position back to obstacle layer space */
             newObstacle.position = self.convert(randomPosition, to: obstacleLayer)
@@ -154,6 +243,8 @@ class BirdMiniScene: SKScene, SKPhysicsContactDelegate {
     }
     func didBegin(_ contact: SKPhysicsContact) {
         /* Hero touches anything, game over */
+        
+        let duration = 2.0
         
         /* Get references to bodies involved in collision */
         let contactA = contact.bodyA
@@ -177,24 +268,65 @@ class BirdMiniScene: SKScene, SKPhysicsContactDelegate {
         else {
         print("dead")
             
+        bird.run(birdHit)
+        
+        birdState = false
+        //gameState = .notActive
+            
+        bird.physicsBody?.isDynamic = false
+            
         /* Stop any new angular velocity being applied */
         bird.physicsBody?.allowsRotation = false
         
         /* Reset angular velocity */
         bird.physicsBody?.angularVelocity = 0
         
-        /* Stop hero flapping animation */
-        bird.removeAllActions()
-        
-        /* Create our hero death action */
-        let birdDeath = SKAction.run({
-            
-            /* Put bird face down in the dirt */
-            self.bird.zRotation = CGFloat(-90).degreesToRadians()
-        })
-        
-        /* Run action */
-        bird.run(birdDeath)
+        //failedGame()
+        DispatchQueue.main.asyncAfter(deadline: .now() + duration){
+            self.failedGame()
+            }
         }
     }
+    func completeGame(){
+        UserDefaults.standard.set(UserDefaults().integer(forKey: "Currentscore") + 50, forKey: "Currentscore")
+        UserDefaults.standard.synchronize()
+        print(UserDefaults().integer(forKey: "Currentscore"))
+        loadScoreScreen()
+    }
+    func failedGame(){
+        UserDefaults.standard.set(UserDefaults().integer(forKey: "Currentscore") - 50, forKey: "Currentscore")
+        UserDefaults.standard.synchronize()
+        print(UserDefaults().integer(forKey: "Currentscore"))
+        UserDefaults.standard.set(UserDefaults().integer(forKey: "Numberoflives") - 1, forKey: "Numberoflives")
+        UserDefaults.standard.synchronize()
+        print(UserDefaults().integer(forKey: "Numberoflives"))
+        loadScoreScreen()
+        
+    }
+    func loadScoreScreen(){
+        
+        /* 1) Grab reference to our SpriteKit view */
+        guard let skView = self.view as SKView! else {
+            print("Could not get Skview")
+            return
+        }
+        
+        /* 2) Load Game scene */
+        guard let scene = SKScene(fileNamed:"ScoreScene") else {
+            print("Could not make GameScene")
+            return
+        }
+        
+        /* 3) Ensure correct aspect mode */
+        scene.scaleMode = .aspectFill
+        
+        /* Show debug */
+        skView.showsPhysics = true
+        skView.showsDrawCount = true
+        skView.showsFPS = true
+        
+        /* 4) Start game scene */
+        skView.presentScene(scene)
+    }
+    
 }
