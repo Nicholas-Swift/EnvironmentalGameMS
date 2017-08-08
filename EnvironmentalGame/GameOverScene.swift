@@ -8,35 +8,82 @@
 
 import Foundation
 import SpriteKit
+import AVFoundation
 
 class GameOverScene: SKScene{
     
+    var audioPlayer = AVAudioPlayer()
     var scoreGameOverLabel: SKLabelNode!
     var highScoreGameOverLabel: SKLabelNode!
     var earthFact: SKSpriteNode!
     var menuButton: MSButtonNode!
     var saveEarthButton: MSButtonNode!
     var playAgainButton: MSButtonNode!
+    var creditsButton: MSButtonNode!
     var currentScoreGameOver: Int = 0
     var highScoreGameOver: Int = 0
     var randomNumberScene: Int = 0
     let randomNumber = arc4random_uniform(100)
+    var randomNumberFirst: Int {
+        get {
+            if let storedRandomNumberFirst = UserDefaults.standard.object(forKey: "Randomnumberfirst") as? Int {
+                return storedRandomNumberFirst
+            }
+            return 0
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: "Randomnumberfirst")
+            UserDefaults.standard.synchronize()
+        }
+    }
+    
+    var randomNumberSecond: Int {
+        get {
+            if let storedRandomNumberSecond = UserDefaults.standard.object(forKey: "Randomnumbersecond") as? Int {
+                return storedRandomNumberSecond
+            }
+            return 0
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: "Randomnumbersecond")
+            UserDefaults.standard.synchronize()
+        }
+    }
     
     override func didMove(to view: SKView) {
+        
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOf: URL.init(fileURLWithPath: Bundle.main.path(forResource: "Marchofthespoons", ofType: "mp3")!))
+            audioPlayer.prepareToPlay()
+        }
+        catch{
+            print("Error in loading Start Scene Background music")
+        }
+        
+        audioPlayer.play()
+        
         earthFact = self.childNode(withName: "earthFact") as! SKSpriteNode
         scoreGameOverLabel = childNode(withName: "scoreGameOverLabel") as! SKLabelNode
         highScoreGameOverLabel = childNode(withName: "highScoreGameOverLabel") as! SKLabelNode
         menuButton = childNode(withName: "menuButton") as! MSButtonNode
         menuButton.selectedHandler = {
             self.loadMainMenu()
+            self.audioPlayer.stop()
         }
         playAgainButton = childNode(withName: "playAgainButton") as! MSButtonNode
         playAgainButton.selectedHandler = {
             self.generateRandomNumberForScene()
+            self.audioPlayer.stop()
         }
         saveEarthButton = childNode(withName: "saveEarthButton") as! MSButtonNode
         saveEarthButton.selectedHandler = {
             self.loadSaveEarth()
+            self.audioPlayer.stop()
+        }
+        creditsButton = childNode(withName: "creditsButton") as! MSButtonNode
+        creditsButton.selectedHandler = {
+            self.loadCredits()
+            self.audioPlayer.stop()
         }
         currentScoreGameOver = UserDefaults.standard.integer(forKey: "Currentscore")
         highScoreGameOver = UserDefaults.standard.integer(forKey: "Highscore")
@@ -123,153 +170,173 @@ class GameOverScene: SKScene{
         /* 4) Start game scene */
         skView.presentScene(scene)
     }
-    func generateRandomNumberForScene(){
-        print("Random \(randomNumber)")
+    public func generateRandomScene() {
+        let randomNumber = arc4random_uniform(100)
         if randomNumber <= 20{
-            randomNumberScene = 1
+            randomNumberSecond = 1
+            UserDefaults.standard.set(randomNumberSecond, forKey: "Randomnumbersecond")
+            UserDefaults.standard.synchronize()
             loadRandomScene()
         }
         else if randomNumber > 20 && randomNumber <= 40 {
-            randomNumberScene = 2
+            randomNumberSecond = 2
+            UserDefaults.standard.set(randomNumberSecond, forKey: "Randomnumbersecond")
+            UserDefaults.standard.synchronize()
             loadRandomScene()
         }
         else if randomNumber > 40 && randomNumber <= 60 {
-            randomNumberScene = 3
+            randomNumberSecond = 3
+            UserDefaults.standard.set(randomNumberSecond, forKey: "Randomnumbersecond")
+            UserDefaults.standard.synchronize()
             loadRandomScene()
         }
         else if randomNumber > 60 && randomNumber <= 80{
-            randomNumberScene = 4
+            randomNumberSecond = 4
+            UserDefaults.standard.set(randomNumberSecond, forKey: "Randomnumbersecond")
+            UserDefaults.standard.synchronize()
             loadRandomScene()
         }
         else if randomNumber > 80 && randomNumber <= 100{
-            randomNumberScene = 5
+            randomNumberSecond = 5
+            UserDefaults.standard.set(randomNumberSecond, forKey: "Randomnumbersecond")
+            UserDefaults.standard.synchronize()
             loadRandomScene()
         }
+        //print(randomNumberSecond)
+        print("GameOverScene \(UserDefaults().integer(forKey: "Randomnumbersecond")) random 2nd #")
     }
-    func loadRandomScene(){
-        
-        print("RandomNumber is \(randomNumberScene)")
-        if randomNumberScene == 1 {
-            /* 1) Grab reference to our SpriteKit view */
-            guard let skView = self.view as SKView! else {
-                print("Could not get Skview")
-                return
+    public func loadRandomScene(){
+        if randomNumberSecond != randomNumberFirst{
+            if randomNumberSecond == 1 {
+                /* 1) Grab reference to our SpriteKit view */
+                guard let skView = self.view as SKView! else {
+                    print("Could not get BirdMiniSkview")
+                    return
+                }
+                
+                /* 2) Load Game scene */
+                guard let scene = SKScene(fileNamed:"BirdMiniScene") else {
+                    print("Could not make BirdMiniScene")
+                    return
+                }
+                
+                /* 3) Ensure correct aspect mode */
+                scene.scaleMode = .aspectFill
+                
+                /* Show debug */
+                skView.showsPhysics = true
+                skView.showsDrawCount = true
+                skView.showsFPS = true
+                
+                /* 4) Start game scene */
+                skView.presentScene(scene)
             }
-            
-            /* 2) Load Game scene */
-            guard let scene = SKScene(fileNamed:"BirdMiniScene") else {
-                print("Could not make GameScene, check the name is spelled correctly")
-                return
+            else if randomNumberSecond == 2 {
+                /* 1) Grab reference to our SpriteKit view */
+                guard let skView = self.view as SKView! else {
+                    print("Could not get OverfishingSkview")
+                    return
+                }
+                
+                /* 2) Load Game scene */
+                guard let scene = SKScene(fileNamed:"OverfishingScene") else {
+                    print("Could not make OverfishingScene")
+                    return
+                }
+                
+                /* 3) Ensure correct aspect mode */
+                scene.scaleMode = .aspectFill
+                
+                /* Show debug */
+                skView.showsPhysics = true
+                skView.showsDrawCount = true
+                skView.showsFPS = true
+                
+                /* 4) Start game scene */
+                skView.presentScene(scene)
             }
-            
-            /* 3) Ensure correct aspect mode */
-            scene.scaleMode = .aspectFill
-            
-            /* Show debug */
-            skView.showsPhysics = true
-            skView.showsDrawCount = true
-            skView.showsFPS = true
-            
-            /* 4) Start game scene */
-            skView.presentScene(scene)
+            else if randomNumberSecond == 3{
+                /* 1) Grab reference to our SpriteKit view */
+                guard let skView = self.view as SKView! else {
+                    print("Could not get IceMeltingSkview")
+                    return
+                }
+                
+                /* 2) Load Game scene */
+                guard let scene = SKScene(fileNamed:"IceMeltingScene") else {
+                    print("Could not make IceMeltingScene")
+                    return
+                }
+                
+                /* 3) Ensure correct aspect mode */
+                scene.scaleMode = .aspectFill
+                
+                /* Show debug */
+                skView.showsPhysics = true
+                skView.showsDrawCount = true
+                skView.showsFPS = true
+                
+                /* 4) Start game scene */
+                skView.presentScene(scene)
+            }
+            else if randomNumberSecond == 4{
+                /* 1) Grab reference to our SpriteKit view */
+                guard let skView = self.view as SKView! else {
+                    print("Could not get DeforestationSkview")
+                    return
+                }
+                
+                /* 2) Load Game scene */
+                guard let scene = SKScene(fileNamed:"DeforestationScene") else {
+                    print("Could not make DeforestationScene")
+                    return
+                }
+                
+                /* 3) Ensure correct aspect mode */
+                scene.scaleMode = .aspectFill
+                
+                /* Show debug */
+                skView.showsPhysics = true
+                skView.showsDrawCount = true
+                skView.showsFPS = true
+                
+                /* 4) Start game scene */
+                skView.presentScene(scene)
+            }
+            else if randomNumberSecond == 5{
+                /* 1) Grab reference to our SpriteKit view */
+                guard let skView = self.view as SKView! else {
+                    print("Could not get AirPollutionSkview")
+                    return
+                }
+                
+                /* 2) Load Game scene */
+                guard let scene = SKScene(fileNamed:"AirPollution") else {
+                    print("Could not make AirPollutionScene")
+                    return
+                }
+                
+                /* 3) Ensure correct aspect mode */
+                scene.scaleMode = .aspectFill
+                
+                /* Show debug */
+                skView.showsPhysics = true
+                skView.showsDrawCount = true
+                skView.showsFPS = true
+                
+                /* 4) Start game scene */
+                skView.presentScene(scene)
+            }
         }
-        else if randomNumberScene == 2 {
-            /* 1) Grab reference to our SpriteKit view */
-            guard let skView = self.view as SKView! else {
-                print("Could not get Skview")
-                return
-            }
-            
-            /* 2) Load Game scene */
-            guard let scene = SKScene(fileNamed:"OverfishingScene") else {
-                print("Could not make GameScene, check the name is spelled correctly")
-                return
-            }
-            
-            /* 3) Ensure correct aspect mode */
-            scene.scaleMode = .aspectFill
-            
-            /* Show debug */
-            skView.showsPhysics = true
-            skView.showsDrawCount = true
-            skView.showsFPS = true
-            
-            /* 4) Start game scene */
-            skView.presentScene(scene)
+        else{
+            generateRandomScene()
         }
-        else if randomNumberScene == 3{
-            /* 1) Grab reference to our SpriteKit view */
-            guard let skView = self.view as SKView! else {
-                print("Could not get Skview")
-                return
-            }
-            
-            /* 2) Load Game scene */
-            guard let scene = SKScene(fileNamed:"IceMeltingScene") else {
-                print("Could not make GameScene, check the name is spelled correctly")
-                return
-            }
-            
-            /* 3) Ensure correct aspect mode */
-            scene.scaleMode = .aspectFill
-            
-            /* Show debug */
-            skView.showsPhysics = true
-            skView.showsDrawCount = true
-            skView.showsFPS = true
-            
-            /* 4) Start game scene */
-            skView.presentScene(scene)
-        }
-        else if randomNumberScene == 4{
-            /* 1) Grab reference to our SpriteKit view */
-            guard let skView = self.view as SKView! else {
-                print("Could not get Skview")
-                return
-            }
-            
-            /* 2) Load Game scene */
-            guard let scene = SKScene(fileNamed:"DeforestationScene") else {
-                print("Could not make GameScene, check the name is spelled correctly")
-                return
-            }
-            
-            /* 3) Ensure correct aspect mode */
-            scene.scaleMode = .aspectFill
-            
-            /* Show debug */
-            skView.showsPhysics = true
-            skView.showsDrawCount = true
-            skView.showsFPS = true
-            
-            /* 4) Start game scene */
-            skView.presentScene(scene)
-        }
-        else if randomNumberScene == 5{
-            /* 1) Grab reference to our SpriteKit view */
-            guard let skView = self.view as SKView! else {
-                print("Could not get Skview")
-                return
-            }
-            
-            /* 2) Load Game scene */
-            guard let scene = SKScene(fileNamed:"AirPollution") else {
-                print("Could not make GameScene, check the name is spelled correctly")
-                return
-            }
-            
-            /* 3) Ensure correct aspect mode */
-            scene.scaleMode = .aspectFill
-            
-            /* Show debug */
-            skView.showsPhysics = true
-            skView.showsDrawCount = true
-            skView.showsFPS = true
-            
-            /* 4) Start game scene */
-            skView.presentScene(scene)
-        }
+        randomNumberFirst = randomNumberSecond
+        UserDefaults.standard.set(randomNumberSecond, forKey: "Randomnumberfirst")
+        UserDefaults.standard.synchronize()
+        print("GameOverScene \(randomNumberFirst) random 1st #")
     }
+    
     func loadSaveEarth(){
         
         /* 1) Grab reference to our SpriteKit view */
@@ -294,5 +361,8 @@ class GameOverScene: SKScene{
         
         /* 4) Start game scene */
         skView.presentScene(scene)
+    }
+    func loadCredits(){
+        
     }
 }

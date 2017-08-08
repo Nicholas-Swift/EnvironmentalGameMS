@@ -6,12 +6,12 @@
 //  Copyright © 2017 Havi Nguyen. All rights reserved.
 //
 
-import Foundation
-
 import SpriteKit
+import AVFoundation
 
 class AirPollution: SKScene{
     
+    var audioPlayer = AVAudioPlayer()
     var factory1: SKSpriteNode!
     var factory2: SKSpriteNode!
     var factory3: SKSpriteNode!
@@ -44,14 +44,27 @@ class AirPollution: SKScene{
         }
     }
     var countChecker: Int = UserDefaults.standard.integer(forKey: "Countchecker")
-    override func sceneDidLoad() {
+    /*override func sceneDidLoad() {
         super.sceneDidLoad()
         
         print("Scene loaded")
-    }
+    }*/
+    
+    let smokeStop = SKAction(named: "SmokeStop")!
     
     override func didMove(to view: SKView) {
         /* Setup your scene here */
+        print("Airpollution \(countChecker) count checker")
+        
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOf: URL.init(fileURLWithPath: Bundle.main.path(forResource: "Hustle", ofType: "mp3")!))
+            audioPlayer.prepareToPlay()
+        }
+        catch{
+            print("Error in loading Start Scene Background music")
+        }
+        
+        audioPlayer.play()
         factory1 = childNode(withName: "factory1") as! SKSpriteNode
         factory2 = childNode(withName: "factory2") as! SKSpriteNode
         factory3 = childNode(withName: "factory3") as! SKSpriteNode
@@ -215,37 +228,45 @@ class AirPollution: SKScene{
         airLabel.isHidden = true
         for touch in touches{
             touchLocation = touch.location(in: self)
-            if factory1.contains(touchLocation){
+            if factory1.contains(touchLocation) && !factory1.isHidden {
                 smoke1.isHidden = true
                 print("fml")
+                factory1.run(smokeStop)
             }
             else if factory2.contains(touchLocation){
                 smoke2.isHidden = true
                 print("fml2")
+                factory2.run(smokeStop)
             }
             else if factory3.contains(touchLocation){
                 smoke3.isHidden = true
                 print("fml3")
+                factory3.run(smokeStop)
             }
             else if factory4.contains(touchLocation){
                 smoke4.isHidden = true
                 print("fml4")
+                factory4.run(smokeStop)
             }
             else if factory5.contains(touchLocation){
                 smoke5.isHidden = true
                 print("fml5")
+                factory5.run(smokeStop)
             }
             else if factory6.contains(touchLocation){
                 smoke6.isHidden = true
                 print("fml6")
+                factory6.run(smokeStop)
             }
             else if factory7.contains(touchLocation){
                 smoke7.isHidden = true
                 print("fml7")
+                factory7.run(smokeStop)
             }
             else if factory8.contains(touchLocation){
                 smoke8.isHidden = true
                 print("fml8")
+                factory8.run(smokeStop)
             }
         }
     }
@@ -319,23 +340,30 @@ class AirPollution: SKScene{
                 completeGame()
             }
             else{
-            failedGame()
+                let wait = SKAction.wait(forDuration: 0.5)
+                let failedAirGame = SKAction.run({
+                    self.failedGame()
+                })
+                let failedSequence = SKAction.sequence([wait, failedAirGame])
+                self.run(failedSequence)
             }
         }
     }
     func completeGame(){
+        audioPlayer.stop()
         UserDefaults.standard.set(UserDefaults().integer(forKey: "Currentscore") + 50, forKey: "Currentscore")
         UserDefaults.standard.synchronize()
-        print(UserDefaults().integer(forKey: "Currentscore"))
+        print("AirPollution \(UserDefaults().integer(forKey: "Currentscore")) current score")
         loadScoreScreen()
     }
     func failedGame(){
+        audioPlayer.stop()
         UserDefaults.standard.set(UserDefaults().integer(forKey: "Currentscore") - 50, forKey: "Currentscore")
         UserDefaults.standard.synchronize()
-        print(UserDefaults().integer(forKey: "Currentscore"))
+        print("AirPollution \(UserDefaults().integer(forKey: "Currentscore")) current score")
         UserDefaults.standard.set(UserDefaults().integer(forKey: "Numberoflives") - 1, forKey: "Numberoflives")
         UserDefaults.standard.synchronize()
-        print(UserDefaults().integer(forKey: "Numberoflives"))
+        print("AirPollution \(UserDefaults().integer(forKey: "Numberoflives")) number of lives")
         loadScoreScreen()
     
     }
@@ -344,13 +372,13 @@ class AirPollution: SKScene{
         
         /* 1) Grab reference to our SpriteKit view */
         guard let skView = self.view as SKView! else {
-            print("Could not get Skview")
+            print("Could not get ScoreSkview")
             return
         }
         
         /* 2) Load Game scene */
         guard let scene = SKScene(fileNamed:"ScoreScene") else {
-            print("Could not make GameScene")
+            print("Could not make ScoreScene")
             return
         }
         

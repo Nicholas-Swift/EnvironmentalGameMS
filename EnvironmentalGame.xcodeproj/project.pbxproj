@@ -23,15 +23,26 @@
 		EB1988651F21275800B8E34B /* ScoreScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1988641F21275800B8E34B /* ScoreScene.swift */; };
 		EB1C13A71F1D1F2400B521E6 /* DeforestationScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1C13A61F1D1F2400B521E6 /* DeforestationScene.swift */; };
 		EB1C13A91F1D1F4A00B521E6 /* DeforestationScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = EB1C13A81F1D1F4A00B521E6 /* DeforestationScene.sks */; };
+		EB1CC5CC1F368BF20093848C /* Large Bubble-SoundBible.com-1084083477.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EB1CC5CB1F368BF20093848C /* Large Bubble-SoundBible.com-1084083477.mp3 */; };
 		EB1EE8601F30FBEA0005BB03 /* EarthFire.sks in Resources */ = {isa = PBXBuildFile; fileRef = EB1EE85F1F30FBEA0005BB03 /* EarthFire.sks */; };
+		EB2405941F36524700EDF2C3 /* sfx_swipe.caf in Resources */ = {isa = PBXBuildFile; fileRef = EB2405931F36524700EDF2C3 /* sfx_swipe.caf */; };
+		EB2405961F36539A00EDF2C3 /* sfx_sounds_impact8.wav in Resources */ = {isa = PBXBuildFile; fileRef = EB2405951F36539A00EDF2C3 /* sfx_sounds_impact8.wav */; };
 		EB526D0F1F17EFE8005279A2 /* IceObstacle.sks in Resources */ = {isa = PBXBuildFile; fileRef = EB526D0E1F17EFE8005279A2 /* IceObstacle.sks */; };
 		EB526D111F181220005279A2 /* IceMeltingScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB526D101F181220005279A2 /* IceMeltingScene.swift */; };
 		EB526D191F181C0D005279A2 /* IceMeltingScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = EB526D181F181C0D005279A2 /* IceMeltingScene.sks */; };
 		EB526D1B1F182F03005279A2 /* SaveEarth.sks in Resources */ = {isa = PBXBuildFile; fileRef = EB526D1A1F182F03005279A2 /* SaveEarth.sks */; };
+		EB644DC61F3777BA00AED941 /* Jump_01.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EB644DC51F3777BA00AED941 /* Jump_01.mp3 */; };
+		EB644DCA1F37804A00AED941 /* Decapitation Head Fall Off-SoundBible.com-1529852007.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EB644DC91F37804A00AED941 /* Decapitation Head Fall Off-SoundBible.com-1529852007.mp3 */; };
+		EB644DCC1F3788B200AED941 /* Pickup_00.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EB644DCB1F3788B200AED941 /* Pickup_00.mp3 */; };
+		EB644DCE1F37B6FE00AED941 /* Small Fireball-SoundBible.com-1381880822.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EB644DCD1F37B6FE00AED941 /* Small Fireball-SoundBible.com-1381880822.mp3 */; };
+		EB644DD01F38DF1E00AED941 /* happy.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EB644DCF1F38DF1E00AED941 /* happy.mp3 */; };
+		EB644DD21F38F1D200AED941 /* Blop-Mark_DiAngelo-79054334.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EB644DD11F38F1D200AED941 /* Blop-Mark_DiAngelo-79054334.mp3 */; };
 		EB6C26CC1F15777D00A407C8 /* Skyscraper.sks in Resources */ = {isa = PBXBuildFile; fileRef = EB6C26CB1F15777D00A407C8 /* Skyscraper.sks */; };
 		EB6C26D01F16878500A407C8 /* OverfishingScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6C26CF1F16878500A407C8 /* OverfishingScene.swift */; };
 		EB6C26D21F1687C000A407C8 /* OverfishingScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = EB6C26D11F1687C000A407C8 /* OverfishingScene.sks */; };
+		EB7CED621F391A4C00A99416 /* Marchofthespoons.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EB7CED611F391A4C00A99416 /* Marchofthespoons.mp3 */; };
 		EB8E8BE01F192DC000F6168E /* MSButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8E8BDF1F192DC000F6168E /* MSButtonNode.swift */; };
+		EB9EC2991F392BD900B4B9AC /* Hustle.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EB9EC2981F392BD900B4B9AC /* Hustle.mp3 */; };
 		EBA86C341F1E787A000006C2 /* AirPollution.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA86C331F1E787A000006C2 /* AirPollution.swift */; };
 		EBA86C361F1E7899000006C2 /* AirPollution.sks in Resources */ = {isa = PBXBuildFile; fileRef = EBA86C351F1E7899000006C2 /* AirPollution.sks */; };
 		EBA86C381F1EA8E3000006C2 /* SmokeEmitter.sks in Resources */ = {isa = PBXBuildFile; fileRef = EBA86C371F1EA8E3000006C2 /* SmokeEmitter.sks */; };
@@ -58,15 +69,26 @@
 		EB1988641F21275800B8E34B /* ScoreScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreScene.swift; sourceTree = "<group>"; };
 		EB1C13A61F1D1F2400B521E6 /* DeforestationScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeforestationScene.swift; sourceTree = "<group>"; };
 		EB1C13A81F1D1F4A00B521E6 /* DeforestationScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = DeforestationScene.sks; sourceTree = "<group>"; };
+		EB1CC5CB1F368BF20093848C /* Large Bubble-SoundBible.com-1084083477.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Large Bubble-SoundBible.com-1084083477.mp3"; sourceTree = "<group>"; };
 		EB1EE85F1F30FBEA0005BB03 /* EarthFire.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = EarthFire.sks; sourceTree = "<group>"; };
+		EB2405931F36524700EDF2C3 /* sfx_swipe.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = sfx_swipe.caf; sourceTree = "<group>"; };
+		EB2405951F36539A00EDF2C3 /* sfx_sounds_impact8.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sfx_sounds_impact8.wav; sourceTree = "<group>"; };
 		EB526D0E1F17EFE8005279A2 /* IceObstacle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = IceObstacle.sks; sourceTree = "<group>"; };
 		EB526D101F181220005279A2 /* IceMeltingScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IceMeltingScene.swift; sourceTree = "<group>"; };
 		EB526D181F181C0D005279A2 /* IceMeltingScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = IceMeltingScene.sks; sourceTree = "<group>"; };
 		EB526D1A1F182F03005279A2 /* SaveEarth.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SaveEarth.sks; sourceTree = "<group>"; };
+		EB644DC51F3777BA00AED941 /* Jump_01.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Jump_01.mp3; sourceTree = "<group>"; };
+		EB644DC91F37804A00AED941 /* Decapitation Head Fall Off-SoundBible.com-1529852007.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Decapitation Head Fall Off-SoundBible.com-1529852007.mp3"; sourceTree = "<group>"; };
+		EB644DCB1F3788B200AED941 /* Pickup_00.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Pickup_00.mp3; sourceTree = "<group>"; };
+		EB644DCD1F37B6FE00AED941 /* Small Fireball-SoundBible.com-1381880822.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Small Fireball-SoundBible.com-1381880822.mp3"; sourceTree = "<group>"; };
+		EB644DCF1F38DF1E00AED941 /* happy.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = happy.mp3; sourceTree = "<group>"; };
+		EB644DD11F38F1D200AED941 /* Blop-Mark_DiAngelo-79054334.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Blop-Mark_DiAngelo-79054334.mp3"; sourceTree = "<group>"; };
 		EB6C26CB1F15777D00A407C8 /* Skyscraper.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Skyscraper.sks; sourceTree = "<group>"; };
 		EB6C26CF1F16878500A407C8 /* OverfishingScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverfishingScene.swift; sourceTree = "<group>"; };
 		EB6C26D11F1687C000A407C8 /* OverfishingScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = OverfishingScene.sks; path = ../OverfishingScene.sks; sourceTree = "<group>"; };
+		EB7CED611F391A4C00A99416 /* Marchofthespoons.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Marchofthespoons.mp3; sourceTree = "<group>"; };
 		EB8E8BDF1F192DC000F6168E /* MSButtonNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MSButtonNode.swift; sourceTree = "<group>"; };
+		EB9EC2981F392BD900B4B9AC /* Hustle.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Hustle.mp3; sourceTree = "<group>"; };
 		EBA86C331F1E787A000006C2 /* AirPollution.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AirPollution.swift; sourceTree = "<group>"; };
 		EBA86C351F1E7899000006C2 /* AirPollution.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = AirPollution.sks; sourceTree = "<group>"; };
 		EBA86C371F1EA8E3000006C2 /* SmokeEmitter.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SmokeEmitter.sks; sourceTree = "<group>"; };
@@ -133,10 +155,29 @@
 				EB190BE61F142136005104F4 /* GameViewController.swift */,
 				EB190BE81F142136005104F4 /* Main.storyboard */,
 				EB190BEB1F142136005104F4 /* Assets.xcassets */,
+				EB2405921F36524700EDF2C3 /* SFX */,
 				EB190BED1F142136005104F4 /* LaunchScreen.storyboard */,
 				EB190BF01F142136005104F4 /* Info.plist */,
 			);
 			path = EnvironmentalGame;
+			sourceTree = "<group>";
+		};
+		EB2405921F36524700EDF2C3 /* SFX */ = {
+			isa = PBXGroup;
+			children = (
+				EB9EC2981F392BD900B4B9AC /* Hustle.mp3 */,
+				EB7CED611F391A4C00A99416 /* Marchofthespoons.mp3 */,
+				EB644DD11F38F1D200AED941 /* Blop-Mark_DiAngelo-79054334.mp3 */,
+				EB644DCF1F38DF1E00AED941 /* happy.mp3 */,
+				EB644DCD1F37B6FE00AED941 /* Small Fireball-SoundBible.com-1381880822.mp3 */,
+				EB644DCB1F3788B200AED941 /* Pickup_00.mp3 */,
+				EB644DC91F37804A00AED941 /* Decapitation Head Fall Off-SoundBible.com-1529852007.mp3 */,
+				EB644DC51F3777BA00AED941 /* Jump_01.mp3 */,
+				EB1CC5CB1F368BF20093848C /* Large Bubble-SoundBible.com-1084083477.mp3 */,
+				EB2405951F36539A00EDF2C3 /* sfx_sounds_impact8.wav */,
+				EB2405931F36524700EDF2C3 /* sfx_swipe.caf */,
+			);
+			path = SFX;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -202,20 +243,31 @@
 				EB1988631F21272900B8E34B /* ScoreScene.sks in Resources */,
 				EB526D1B1F182F03005279A2 /* SaveEarth.sks in Resources */,
 				EB526D0F1F17EFE8005279A2 /* IceObstacle.sks in Resources */,
+				EB644DD01F38DF1E00AED941 /* happy.mp3 in Resources */,
+				EB7CED621F391A4C00A99416 /* Marchofthespoons.mp3 in Resources */,
+				EB644DD21F38F1D200AED941 /* Blop-Mark_DiAngelo-79054334.mp3 in Resources */,
+				EB644DCE1F37B6FE00AED941 /* Small Fireball-SoundBible.com-1381880822.mp3 in Resources */,
 				EB0DA81C1F154DEF00069543 /* BirdMiniScene.sks in Resources */,
+				EB644DCC1F3788B200AED941 /* Pickup_00.mp3 in Resources */,
 				EB0E483A1F21673300792C14 /* GameOverScene.sks in Resources */,
+				EB2405961F36539A00EDF2C3 /* sfx_sounds_impact8.wav in Resources */,
 				EB6C26CC1F15777D00A407C8 /* Skyscraper.sks in Resources */,
 				EBA86C361F1E7899000006C2 /* AirPollution.sks in Resources */,
 				EB526D191F181C0D005279A2 /* IceMeltingScene.sks in Resources */,
 				EB1C13A91F1D1F4A00B521E6 /* DeforestationScene.sks in Resources */,
 				EBA86C381F1EA8E3000006C2 /* SmokeEmitter.sks in Resources */,
 				EB190BEA1F142136005104F4 /* Main.storyboard in Resources */,
+				EB9EC2991F392BD900B4B9AC /* Hustle.mp3 in Resources */,
+				EB644DCA1F37804A00AED941 /* Decapitation Head Fall Off-SoundBible.com-1529852007.mp3 in Resources */,
 				EB190BE11F142136005104F4 /* StartScene.sks in Resources */,
 				EB190BEC1F142136005104F4 /* Assets.xcassets in Resources */,
+				EB2405941F36524700EDF2C3 /* sfx_swipe.caf in Resources */,
 				EB6C26D21F1687C000A407C8 /* OverfishingScene.sks in Resources */,
+				EB644DC61F3777BA00AED941 /* Jump_01.mp3 in Resources */,
 				EB190BEF1F142136005104F4 /* LaunchScreen.storyboard in Resources */,
 				EB1EE8601F30FBEA0005BB03 /* EarthFire.sks in Resources */,
 				EB190BE31F142136005104F4 /* Actions.sks in Resources */,
+				EB1CC5CC1F368BF20093848C /* Large Bubble-SoundBible.com-1084083477.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

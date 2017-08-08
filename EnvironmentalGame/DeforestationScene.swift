@@ -7,9 +7,11 @@
 //
 
 import SpriteKit
+import AVFoundation
 
 class DeforestationScene: SKScene, SKPhysicsContactDelegate {
     
+    var audioPlayer = AVAudioPlayer()
     var tree: SKSpriteNode!
     var spawnTimer: CFTimeInterval = 0
     var obstacleLayer: SKNode!
@@ -23,6 +25,8 @@ class DeforestationScene: SKScene, SKPhysicsContactDelegate {
     var human5: SKSpriteNode!
     var human6: SKSpriteNode!
     var human7: SKSpriteNode!
+    var human8: SKSpriteNode!
+    var human9: SKSpriteNode!
     var touchLocation = CGPoint.zero
     var timeBar: SKSpriteNode!
     var time: CGFloat = 1.0 {
@@ -35,12 +39,23 @@ class DeforestationScene: SKScene, SKPhysicsContactDelegate {
             timeBar.xScale = time
         }
     }
+    var treeState: Bool = true
     var countChecker: Int = UserDefaults.standard.integer(forKey: "Countchecker")
     let swing = SKAction(named: "Swing")!
     let swingFlip = SKAction(named: "SwingFlip")!
+    let treeCut = SKAction(named: "TreeCut")!
     
    
     override func didMove(to view: SKView) {
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOf: URL.init(fileURLWithPath: Bundle.main.path(forResource: "Hustle", ofType: "mp3")!))
+            audioPlayer.prepareToPlay()
+        }
+        catch{
+            print("Error in loading Start Scene Background music")
+        }
+        audioPlayer.play()
+        
         tree = childNode(withName: "tree") as! SKSpriteNode
         human = childNode(withName: "human") as! SKSpriteNode
         human2 = childNode(withName: "human2") as! SKSpriteNode
@@ -49,6 +64,8 @@ class DeforestationScene: SKScene, SKPhysicsContactDelegate {
         human5 = childNode(withName: "human5") as! SKSpriteNode
         human6 = childNode(withName: "human6") as! SKSpriteNode
         human7 = childNode(withName: "human7") as! SKSpriteNode
+        human8 = childNode(withName: "human8") as! SKSpriteNode
+        human9 = childNode(withName: "human9") as! SKSpriteNode
         forestMainLabel = self.childNode(withName: "forestMainLabel") as! SKLabelNode
         forestLabel = self.childNode(withName: "forestLabel") as! SKLabelNode
         obstacleLayer = childNode(withName: "obstacleLayer")
@@ -59,10 +76,18 @@ class DeforestationScene: SKScene, SKPhysicsContactDelegate {
         human2.run(swing)
         human3.run(swing)
         human7.run(swing)
+        human8.run(swing)
         human4.run(swingFlip)
         human5.run(swingFlip)
         human6.run(swingFlip)
+        human9.run(swingFlip)
+        
+        human8.physicsBody?.isDynamic = false
+        human8.isHidden = true
+        human9.physicsBody?.isDynamic = false
+        human9.isHidden = true
         print("Deforestation Scene loaded, didMove")
+        print("Deforestation \(countChecker) count checker")
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -71,35 +96,58 @@ class DeforestationScene: SKScene, SKPhysicsContactDelegate {
         forestLabel.isHidden = true
     }
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if treeState == false { return }
         for touch in touches {
             touchLocation = touch.location(in: self)
             if human.contains(touchLocation) {
-                human.position.x = touchLocation.x - 30
+                print(human.position.x)
+                if human.position.x <  -(self.size.width / 2) + 10 {
+                    human.position.x = -(self.size.width / 2) + 10
+                }
+                human.position.x = touchLocation.x - 20
                 
             }
             else if human2.contains(touchLocation) {
-                human2.position.x = touchLocation.x - 30
-                
+                if human2.position.x < -(self.size.width / 2) + 10 {
+                    human2.position.x = -(self.size.width / 2) + 10
+                }
+                human2.position.x = touchLocation.x - 20
             }
             else if human3.contains(touchLocation) {
-                human3.position.x = touchLocation.x - 30
-                
+                if human3.position.x < -(self.size.width / 2) + 10 {
+                    human3.position.x = -(self.size.width / 2 ) + 10
+                }
+                human3.position.x = touchLocation.x - 20
             }
             else if human4.contains(touchLocation) {
-                human4.position.x = touchLocation.x + 30
+                if human4.position.x > (self.size.width / 2) - 10 {
+                    human4.position.x = (self.size.width / 2) - 10
+                }
+                human4.position.x = touchLocation.x + 20
             }
             else if human5.contains(touchLocation) {
-                human5.position.x = touchLocation.x + 30
+                if human5.position.x > (self.size.width / 2) - 10{
+                    human5.position.x = (self.size.width / 2) - 10
+                }
+                human5.position.x = touchLocation.x + 20
             }
             else if human6.contains(touchLocation) {
-                human6.position.x = touchLocation.x + 30
+                if human6.position.x > (self.size.width / 2) - 10{
+                    human6.position.x = (self.size.width / 2) - 10
+                }
+                human6.position.x = touchLocation.x + 20
             }
             else if human7.contains(touchLocation) {
-                human7.position.x = touchLocation.x - 30
+                if human7.position.x < -(self.size.width / 2) + 10{
+                    human7.position.x = -(self.size.width) + 10
+                }
+                human7.position.x = touchLocation.x - 20
             }
         }
     }
     override func update(_ currentTime: TimeInterval) {
+        if treeState == false { return }
+        
         if countChecker <= 3{
             time -= 0.0017
             human.physicsBody?.velocity = CGVector(dx: 45, dy: 0)
@@ -129,6 +177,13 @@ class DeforestationScene: SKScene, SKPhysicsContactDelegate {
             human5.physicsBody?.velocity = CGVector(dx: -65, dy: 0)
             human6.physicsBody?.velocity = CGVector(dx: -75, dy: 0)
             human7.physicsBody?.velocity = CGVector(dx: 47, dy: 0)
+            
+            human8.physicsBody?.isDynamic = true
+            human8.isHidden = false
+            human8.physicsBody?.velocity = CGVector(dx: 90, dy: 0)
+            human9.physicsBody?.isDynamic = true
+            human9.isHidden = false
+            human9.physicsBody?.velocity = CGVector(dx: -90, dy: 0)
         }
         else if countChecker <= 12 && countChecker > 9 {
             time -= 0.004
@@ -139,6 +194,13 @@ class DeforestationScene: SKScene, SKPhysicsContactDelegate {
             human5.physicsBody?.velocity = CGVector(dx: -55, dy: 0)
             human6.physicsBody?.velocity = CGVector(dx: -85, dy: 0)
             human7.physicsBody?.velocity = CGVector(dx: 75, dy: 0)
+            
+            human8.physicsBody?.isDynamic = true
+            human8.isHidden = false
+            human8.physicsBody?.velocity = CGVector(dx: 100, dy: 0)
+            human9.physicsBody?.isDynamic = true
+            human9.isHidden = false
+            human9.physicsBody?.velocity = CGVector(dx: -100, dy: 0)
         }
         else if countChecker <= 15 && countChecker > 12 {
             time -= 0.006
@@ -149,6 +211,13 @@ class DeforestationScene: SKScene, SKPhysicsContactDelegate {
             human5.physicsBody?.velocity = CGVector(dx: -75, dy: 0)
             human6.physicsBody?.velocity = CGVector(dx: -95, dy: 0)
             human7.physicsBody?.velocity = CGVector(dx: 85, dy: 0)
+            
+            human8.physicsBody?.isDynamic = true
+            human8.isHidden = false
+            human8.physicsBody?.velocity = CGVector(dx: 90, dy: 0)
+            human9.physicsBody?.isDynamic = true
+            human9.isHidden = false
+            human9.physicsBody?.velocity = CGVector(dx: -90, dy: 0)
         }
         else if countChecker <= 18 && countChecker > 15 {
             time -= 0.0065
@@ -159,6 +228,13 @@ class DeforestationScene: SKScene, SKPhysicsContactDelegate {
             human5.physicsBody?.velocity = CGVector(dx: -95, dy: 0)
             human6.physicsBody?.velocity = CGVector(dx: -95, dy: 0)
             human7.physicsBody?.velocity = CGVector(dx: 85, dy: 0)
+            
+            human8.physicsBody?.isDynamic = true
+            human8.isHidden = false
+            human8.physicsBody?.velocity = CGVector(dx: 90, dy: 0)
+            human9.physicsBody?.isDynamic = true
+            human9.isHidden = false
+            human9.physicsBody?.velocity = CGVector(dx: -90, dy: 0)
         }
         else if countChecker <= 21 && countChecker > 18 {
             time -= 0.007
@@ -249,38 +325,66 @@ class DeforestationScene: SKScene, SKPhysicsContactDelegate {
         let nodeA = contactA.node!
         let nodeB = contactB.node!
         
-        /* Did our hero pass through the 'goal'? */
         if nodeA.name == "tree" || nodeB.name == "tree" {
             print("Deforestation, dead")
-            failedGame()
+            treeState = false
+            
+            human.removeAllActions()
+            human2.removeAllActions()
+            human3.removeAllActions()
+            human4.removeAllActions()
+            human5.removeAllActions()
+            human6.removeAllActions()
+            human7.removeAllActions()
+            human8.removeAllActions()
+            human9.removeAllActions()
+            
+            human.physicsBody?.isDynamic = false
+            human2.physicsBody?.isDynamic = false
+            human3.physicsBody?.isDynamic = false
+            human4.physicsBody?.isDynamic = false
+            human5.physicsBody?.isDynamic = false
+            human6.physicsBody?.isDynamic = false
+            human7.physicsBody?.isDynamic = false
+            human8.physicsBody?.isDynamic = false
+            human9.physicsBody?.isDynamic = false
+            
+            let treeFailedGame = SKAction.run({
+                self.failedGame()
+            })
+            let treeWait = SKAction.wait(forDuration: 0.7)
+            let treeDeathSequence = SKAction.sequence([treeCut, treeWait, treeFailedGame])
+            audioPlayer.stop()
+            tree.run(treeDeathSequence)
         }
     }
     func completeGame(){
+        audioPlayer.stop()
         UserDefaults.standard.set(UserDefaults().integer(forKey: "Currentscore") + 50, forKey: "Currentscore")
         UserDefaults.standard.synchronize()
-        print(UserDefaults().integer(forKey: "Currentscore"))
+        print("Deforestation \(UserDefaults().integer(forKey: "Currentscore")) current score")
         loadScoreScreen()
     }
     func failedGame(){
         UserDefaults.standard.set(UserDefaults().integer(forKey: "Currentscore") - 50, forKey: "Currentscore")
         UserDefaults.standard.synchronize()
-        print(UserDefaults().integer(forKey: "Currentscore"))
+        print("Deforestation \(UserDefaults().integer(forKey: "Currentscore")) current score")
         UserDefaults.standard.set(UserDefaults().integer(forKey: "Numberoflives") - 1, forKey: "Numberoflives")
         UserDefaults.standard.synchronize()
-        print(UserDefaults().integer(forKey: "Numberoflives"))
+        print("Deforestation \(UserDefaults().integer(forKey: "Numberoflives")) number of lives")
         loadScoreScreen()
         
     }
     func loadScoreScreen(){
         /* 1) Grab reference to our SpriteKit view */
         guard let skView = self.view as SKView! else {
-            print("Could not get Skview")
+            print("Could not get ScoreSkview")
             return
         }
         
         /* 2) Load Game scene */
         guard let scene = SKScene(fileNamed:"ScoreScene") else {
-            print("Could not make GameScene")
+            print("Could not make ScoreScene")
             return
         }
         

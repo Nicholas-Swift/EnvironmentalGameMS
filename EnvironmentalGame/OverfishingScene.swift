@@ -7,6 +7,7 @@
 //
 
 import SpriteKit
+import AVFoundation
 
 /*enum OverfishingSceneState {
     case active, notActive
@@ -14,6 +15,7 @@ import SpriteKit
 
 class OverfishingScene: SKScene, SKPhysicsContactDelegate {
     
+    var audioPlayer = AVAudioPlayer()
     var fish: SKSpriteNode!
     var fishState: Bool = true
     var fishPosition = CGPoint.zero
@@ -32,20 +34,30 @@ class OverfishingScene: SKScene, SKPhysicsContactDelegate {
             timeBar.xScale = time
         }
     }
-    var countChecker: Int = 0
+    var countChecker: Int = UserDefaults.standard.integer(forKey: "Countchecker")
     
     let fishSwim = SKAction(named: "FishSwim")!
     let fishDead = SKAction(named: "FishDeadAction")!
-    let duration = 2.0
+    let netMove = SKAction(named: "NetMove")!
     
     //Game management
     //var gameState: OverfishingSceneState = .active
     
     override func didMove(to view: SKView) {
+        
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOf: URL.init(fileURLWithPath: Bundle.main.path(forResource: "Hustle", ofType: "mp3")!))
+            audioPlayer.prepareToPlay()
+        }
+        catch{
+            print("Error in loading Start Scene Background music")
+        }
+        
+        audioPlayer.play()
+        
         /* Setup your scene here */
         fish = self.childNode(withName: "fish") as! SKSpriteNode
         net = self.childNode(withName: "net") as! SKSpriteNode
-        fish.run(fishSwim)
         
         overfishingMainLabel = self.childNode(withName: "overfishingMainLabel") as! SKLabelNode
         overfishingLabel = self.childNode(withName: "overfishingLabel") as! SKLabelNode
@@ -54,7 +66,11 @@ class OverfishingScene: SKScene, SKPhysicsContactDelegate {
         physicsWorld.contactDelegate = self
         
         timeBar = childNode(withName: "timeBar") as! SKSpriteNode
-        countChecker = UserDefaults.standard.integer(forKey: "Countchecker")
+        print("Overfishing \(countChecker) countchecker")
+        
+        let holdDown = UILongPressGestureRecognizer(target: self, action: #selector(stopFish))
+        holdDown.minimumPressDuration = 0.2
+        view.addGestureRecognizer(holdDown)
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -62,7 +78,14 @@ class OverfishingScene: SKScene, SKPhysicsContactDelegate {
         overfishingMainLabel.isHidden = true
         overfishingLabel.isHidden = true
         if fishState == false {return}
-        fish.physicsBody?.velocity = CGVector(dx: 55, dy: 0)
+        fish.physicsBody?.velocity = CGVector(dx: 80, dy: 0)
+        fish.run(fishSwim)
+    }
+    func stopFish(){
+        fish.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
+    }
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        fish.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
     }
     
     override func update(_ currentTime: TimeInterval) {
@@ -126,7 +149,7 @@ class OverfishingScene: SKScene, SKPhysicsContactDelegate {
             completeGame()
         }
         fishPosition = fish.position
-        if fishPosition.x > 333 {
+        if fishPosition.x > 315 {
             completeGame()
         }
         netPosition = net.position
@@ -138,25 +161,34 @@ class OverfishingScene: SKScene, SKPhysicsContactDelegate {
     
     // Called whenever collision take place
     func didBegin(_ contact: SKPhysicsContact) {
-        fish.run(fishDead)
+        fish.physicsBody?.isDynamic = false
+        let netTemp : SKPhysicsBody = (net.physicsBody)!
+        net!.physicsBody = nil
+        net.position.x = fishPosition.x
+        net.physicsBody? = netTemp
         fishState = false
-        DispatchQueue.main.asyncAfter(deadline: .now() + duration){
+        print("Fish has died")
+        let fishFailedGame = SKAction.run({
             self.failedGame()
-        }
+        })
+        audioPlayer.stop()
+        let fishDeadSequence = SKAction.sequence([fishDead, fishFailedGame])
+        fish.run(fishDeadSequence)
     }
     func completeGame(){
+        audioPlayer.stop()
         UserDefaults.standard.set(UserDefaults().integer(forKey: "Currentscore") + 50, forKey: "Currentscore")
         UserDefaults.standard.synchronize()
-        print(UserDefaults().integer(forKey: "Currentscore"))
+        print("Overfishing \(UserDefaults().integer(forKey: "Currentscore")) current score")
         loadScoreScreen()
     }
     func failedGame(){
         UserDefaults.standard.set(UserDefaults().integer(forKey: "Currentscore") - 50, forKey: "Currentscore")
         UserDefaults.standard.synchronize()
-        print(UserDefaults().integer(forKey: "Currentscore"))
+        print("Overfishing \(UserDefaults().integer(forKey: "Currentscore")) current score")
         UserDefaults.standard.set(UserDefaults().integer(forKey: "Numberoflives") - 1, forKey: "Numberoflives")
         UserDefaults.standard.synchronize()
-        print("Overfishing \( UserDefaults().integer(forKey: "Numberoflives"))")
+        print("Overfishing \( UserDefaults().integer(forKey: "Numberoflives")) number of lives")
         loadScoreScreen()
         
     }
@@ -164,13 +196,13 @@ class OverfishingScene: SKScene, SKPhysicsContactDelegate {
         
         /* 1) Grab reference to our SpriteKit view */
         guard let skView = self.view as SKView! else {
-            print("Could not get Skview")
+            print("Could not get ScoreSkview from Cverfishing")
             return
         }
         
         /* 2) Load Game scene */
         guard let scene = SKScene(fileNamed:"ScoreScene") else {
-            print("Could not make GameScene")
+            print("Could not make ScoreScene from Cverfishing")
             return
         }
         

@@ -18,11 +18,9 @@ class ScoreScene: SKScene {
     var fire2: SKEmitterNode!
     var fire3: SKEmitterNode!
     var currentScoreLabel: SKLabelNode!
-    //var currentLivesLabel: SKLabelNode!
     var currentScoreText: SKLabelNode!
-    //var currentLivesText: SKLabelNode!
     var speedUpText: SKLabelNode!
-    var animateSpeedUp = SKAction.sequence([SKAction.fadeIn(withDuration: 0.3), SKAction.fadeOut(withDuration: 0.3)])
+    var animateSpeedUp = SKAction.sequence([SKAction.fadeIn(withDuration: 0.3), SKAction.fadeOut(withDuration: 0.3),SKAction.fadeIn(withDuration: 0.3), SKAction.fadeOut(withDuration: 0.3), SKAction.fadeIn(withDuration: 0.3), SKAction.fadeOut(withDuration: 0.3)])
     var countChecker: Int = UserDefaults.standard.integer(forKey: "Countchecker")
     var livesForEarth: Int = UserDefaults.standard.integer(forKey: "Numberoflives")
     var randomNumberFirst: Int {
@@ -50,9 +48,13 @@ class ScoreScene: SKScene {
             UserDefaults.standard.synchronize()
         }
     }
+    let shortWait = SKAction.wait(forDuration: 0.5)
+    let longWait = SKAction.wait(forDuration: 1.0)
+    let earthFire = SKAction(named: "EarthFire")!
+    
+    
+    
     override func didMove(to view: SKView) {
-        let firstDuration = 0.7
-        let duration = 2.0
         earth1 = childNode(withName: "earth1") as! SKSpriteNode
         earth2 = childNode(withName: "earth2") as! SKSpriteNode
         earth3 = childNode(withName: "earth3") as! SKSpriteNode
@@ -70,54 +72,69 @@ class ScoreScene: SKScene {
         }
         currentScoreLabel = childNode(withName: "currentScoreLabel") as! SKLabelNode
         currentScoreText = childNode(withName: "currentScoreText") as! SKLabelNode
-        currentScoreLabel.text = String(UserDefaults.standard.integer(forKey: "Currentscore"))
         speedUpText = childNode(withName: "speedUpText") as! SKLabelNode
         speedUpText.isHidden = true
         UserDefaults.standard.set(UserDefaults.standard.integer(forKey: "Countchecker") + 1, forKey: "Countchecker")
         UserDefaults.standard.synchronize()
+        print("ScoreScene \(UserDefaults.standard.integer(forKey: "Countchecker")) count checker")
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + firstDuration){
+        let updateScore = SKAction.run ({
+            self.currentScoreLabel.text = String(UserDefaults.standard.integer(forKey: "Currentscore"))
+        })
+        let lightEarthOnFire = SKAction.run ({
             if self.livesForEarth == 2 {
                 self.fire1.isHidden = false
+                self.run(self.earthFire)
                 
             }
             if self.livesForEarth == 1{
                 self.fire2.isHidden = false
+                self.run(self.earthFire)
                 
             }
             if self.livesForEarth == 0 {
                 self.fire3.isHidden = false
-                
-                DispatchQueue.main.asyncAfter(deadline: .now() + duration){
+                let loadOver = SKAction.run ({
                     self.loadGameOver()
-                }
+                    self.run(self.earthFire)
+                })
+            let loadOverSequence = SKAction.sequence([self.longWait, loadOver])
+                self.run(loadOverSequence)
             }
-            
-        }
-        if livesForEarth == 0 {return}
+        })
+        let nextAction = SKAction.run({
+            self.nextActionAfterWait()
+        })
         
-        if countChecker % 3 == 0 {
-            DispatchQueue.main.asyncAfter(deadline: .now() + duration) {
+        let scoreSequence = SKAction.sequence([shortWait, updateScore, lightEarthOnFire, longWait, nextAction])
+        self.run(scoreSequence)
+    }
+    
+    func nextActionAfterWait(){
+        let generateNewScene = SKAction.run({
+            self.generateRandomScene()
+        })
+        if (countChecker % 3 == 0) && (countChecker >= 3){
+                print("Speed Up will load")
                 self.currentScoreText.isHidden = true
                 self.currentScoreLabel.isHidden = true
                 self.earth1.isHidden = true
                 self.earth2.isHidden = true
                 self.earth3.isHidden = true
-                //self.currentLivesText.isHidden = true
-                //self.currentLivesLabel.isHidden = true
                 self.speedUpText.isHidden = false
-                self.speedUpText.run(SKAction.repeatForever(self.animateSpeedUp))
-                DispatchQueue.main.asyncAfter(deadline: .now() + duration) {
+                let hideSpeedUpText = SKAction.run ({
+                    self.speedUpText.isHidden = true
                     self.speedUpText.removeAllActions()
-                    self.generateRandomScene()
-                }
-            }
+                })
+                let speedUpSequence = SKAction.sequence([animateSpeedUp, hideSpeedUpText, generateNewScene])
+                self.run(speedUpSequence)
+    
         }
-        else{
-            DispatchQueue.main.asyncAfter(deadline: .now() + duration){
-                self.generateRandomScene()
-            }
+        else {
+            let generateSequence = SKAction.sequence([longWait, generateNewScene])
+            self.run(generateSequence)
         }
+        
         
     }
     func hideFire(){
@@ -128,13 +145,13 @@ class ScoreScene: SKScene {
     func loadGameOver(){
         /* 1) Grab reference to our SpriteKit view */
         guard let skView = self.view as SKView! else {
-            print("Could not get Skview")
+            print("Could not get GameOverSkview")
             return
         }
         
         /* 2) Load Game scene */
         guard let scene = SKScene(fileNamed:"GameOverScene") else {
-            print("Could not make GameScene")
+            print("Could not make GameOverScene")
             return
         }
         
@@ -183,7 +200,7 @@ class ScoreScene: SKScene {
             loadRandomScene()
         }
         //print(randomNumberSecond)
-        //print(UserDefaults().integer(forKey: "Randomnumbersecond"))
+        print(UserDefaults().integer(forKey: "Randomnumbersecond"))
     }
     public func loadRandomScene(){
         if randomNumberSecond != randomNumberFirst{

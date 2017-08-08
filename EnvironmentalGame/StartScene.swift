@@ -8,12 +8,13 @@
 
 import SpriteKit
 import Foundation
+import AVFoundation
+
 class StartScene: SKScene {
     
+    var audioPlayer = AVAudioPlayer()
     var playButton: MSButtonNode!
-    // var countChecker : Int = 0 // needs to be in userdefault
-    // var randomNumberFirst: Int = 0
-    // var randomNumberSecond: Int = 0
+    var saveEarthButton: MSButtonNode!
     var highScore: Int {
         get {
             if let storedHighScore = UserDefaults.standard.object(forKey: "Highscore") as? Int {
@@ -89,17 +90,79 @@ class StartScene: SKScene {
             UserDefaults.standard.synchronize()
         }
     }
+    var openAppOnce: Int {
+        get {
+            if let storedopenAppOnce = UserDefaults.standard.object(forKey: "OpenOnce") as? Int {
+                return storedopenAppOnce
+            }
+            return 0
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: "OpenOnce")
+            UserDefaults.standard.synchronize()
+        }
+    }
+    var happyEarth: SKSpriteNode!
+    let animateHappyEarth = SKAction(named: "AnimateHappyEarth")!
+    let wait = SKAction.wait(forDuration: 0.7)
+    let fadeOut = SKAction.fadeOut(withDuration: 0.5)
+    
     override func didMove(to view: SKView) {
+        
+        UserDefaults.standard.set(1, forKey: "OpenOnce")
+        UserDefaults.standard.synchronize()
+        
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOf: URL.init(fileURLWithPath: Bundle.main.path(forResource: "Marchofthespoons", ofType: "mp3")!))
+            audioPlayer.prepareToPlay()
+        }
+        catch{
+            print("Error in loading Start Scene Background music")
+        }
+        
+        UserDefaults.standard.set(0, forKey: "Currentscore")
+        UserDefaults.standard.synchronize()
+        UserDefaults.standard.set(3, forKey: "Numberoflives")
+        UserDefaults.standard.synchronize()
+        UserDefaults.standard.set(0, forKey: "Countchecker")
+        UserDefaults.standard.synchronize()
+        
+        print("StartScene \(UserDefaults.standard.integer(forKey: "Currentscore")) current score")
+        print("StartScene \(UserDefaults.standard.integer(forKey: "Numberoflives")) number of lives")
+        print("StartScene \(UserDefaults.standard.integer(forKey: "Countchecker")) count checker")
+        
         playButton = childNode(withName: "playButton") as! MSButtonNode
         playButton.selectedHandler = {
             self.generateRandomScene()
-            UserDefaults.standard.set(0, forKey: "Currentscore")
+            self.audioPlayer.stop()
+        }
+        
+        saveEarthButton = childNode(withName: "saveEarthButton") as! MSButtonNode
+        saveEarthButton.selectedHandler = {
+            self.loadSaveEarth()
+            self.audioPlayer.stop()
+        }
+        
+        playButton.isHidden = true
+        saveEarthButton.isHidden = true
+      
+        let lastSectionAnimation = SKAction.run ({
+            self.happyEarth.texture = SKTexture(imageNamed: "BruisedEarth")
+        })
+        let revealStartScene = SKAction.run ({
+            self.playButton.isHidden = false
+            self.saveEarthButton.isHidden = false
+            
+        })
+        let audioPlay = SKAction.run ({
+            self.playBackgroundMusic()
+        })
+        if UserDefaults.standard.integer(forKey: "OpenOnce") == 1 {
+            let animationEarthSequence = SKAction.sequence([wait, animateHappyEarth, lastSectionAnimation, wait, fadeOut, revealStartScene, audioPlay])
+            happyEarth = childNode(withName: "happyEarth") as! SKSpriteNode
+            happyEarth.run(animationEarthSequence)
+            UserDefaults.standard.set(2, forKey: "OpenOnce")
             UserDefaults.standard.synchronize()
-            UserDefaults.standard.set(3, forKey: "Numberoflives")
-            UserDefaults.standard.synchronize()
-            UserDefaults.standard.set(0, forKey: "Countchecker")
-            UserDefaults.standard.synchronize()
-            //print(UserDefaults.standard.integer(forKey: "Countchecker"))
         }
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -142,20 +205,20 @@ class StartScene: SKScene {
         loadRandomScene()
         }
         //print(randomNumberSecond)
-        //print(UserDefaults().integer(forKey: "Randomnumbersecond"))
+        print("StartScene \(UserDefaults().integer(forKey: "Randomnumbersecond")) random 2nd #")
     }
     public func loadRandomScene(){
         if randomNumberSecond != randomNumberFirst{
             if randomNumberSecond == 1 {
                 /* 1) Grab reference to our SpriteKit view */
                 guard let skView = self.view as SKView! else {
-                    print("Could not get Skview")
+                    print("Could not get BirdMiniSkview")
                     return
                 }
                 
                 /* 2) Load Game scene */
                 guard let scene = SKScene(fileNamed:"BirdMiniScene") else {
-                    print("Could not make GameScene, check the name is spelled correctly")
+                    print("Could not make BirdMiniScene")
                     return
                 }
                 
@@ -173,13 +236,13 @@ class StartScene: SKScene {
             else if randomNumberSecond == 2 {
                 /* 1) Grab reference to our SpriteKit view */
                 guard let skView = self.view as SKView! else {
-                    print("Could not get Skview")
+                    print("Could not get OverfishingSkview")
                     return
                 }
                 
                 /* 2) Load Game scene */
                 guard let scene = SKScene(fileNamed:"OverfishingScene") else {
-                    print("Could not make GameScene, check the name is spelled correctly")
+                    print("Could not make OverfishingScene")
                     return
                 }
                 
@@ -197,13 +260,13 @@ class StartScene: SKScene {
             else if randomNumberSecond == 3{
                 /* 1) Grab reference to our SpriteKit view */
                 guard let skView = self.view as SKView! else {
-                    print("Could not get Skview")
+                    print("Could not get IceMeltingSkview")
                     return
                 }
                 
                 /* 2) Load Game scene */
                 guard let scene = SKScene(fileNamed:"IceMeltingScene") else {
-                    print("Could not make GameScene, check the name is spelled correctly")
+                    print("Could not make IceMeltingScene")
                     return
                 }
                 
@@ -221,13 +284,13 @@ class StartScene: SKScene {
             else if randomNumberSecond == 4{
                 /* 1) Grab reference to our SpriteKit view */
                 guard let skView = self.view as SKView! else {
-                    print("Could not get Skview")
+                    print("Could not get DeforestationSkview")
                     return
                 }
                 
                 /* 2) Load Game scene */
                 guard let scene = SKScene(fileNamed:"DeforestationScene") else {
-                    print("Could not make GameScene, check the name is spelled correctly")
+                    print("Could not make DeforestationScene")
                     return
                 }
                 
@@ -245,13 +308,13 @@ class StartScene: SKScene {
             else if randomNumberSecond == 5{
                 /* 1) Grab reference to our SpriteKit view */
                 guard let skView = self.view as SKView! else {
-                    print("Could not get Skview")
+                    print("Could not get AirPollutionSkview")
                     return
                 }
                 
                 /* 2) Load Game scene */
                 guard let scene = SKScene(fileNamed:"AirPollution") else {
-                    print("Could not make GameScene, check the name is spelled correctly")
+                    print("Could not make AirPollutionScene")
                     return
                 }
                 
@@ -273,5 +336,37 @@ class StartScene: SKScene {
         randomNumberFirst = randomNumberSecond
         UserDefaults.standard.set(randomNumberSecond, forKey: "Randomnumberfirst")
         UserDefaults.standard.synchronize()
+        print("StartScene \(randomNumberFirst) random 1st #")
     }
+    
+    func loadSaveEarth(){
+        
+        /* 1) Grab reference to our SpriteKit view */
+        guard let skView = self.view as SKView! else {
+            print("Could not get Skview")
+            return
+        }
+        
+        /* 2) Load Game scene */
+        guard let scene = SKScene(fileNamed:"SaveEarth") else {
+            print("Could not make GameScene, check the name is spelled correctly")
+            return
+        }
+        
+        /* 3) Ensure correct aspect mode */
+        scene.scaleMode = .aspectFill
+        
+        /* Show debug */
+        skView.showsPhysics = true
+        skView.showsDrawCount = true
+        skView.showsFPS = true
+        
+        /* 4) Start game scene */
+        skView.presentScene(scene)
+    }
+    
+    func playBackgroundMusic(){
+        audioPlayer.play()
+    }
+    
 }

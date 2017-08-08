@@ -8,10 +8,12 @@
 
 
 import SpriteKit
+import AVFoundation
 
 class IceMeltingScene: SKScene, SKPhysicsContactDelegate {
     //Top will be electrical wirings
     
+    var audioPlayer = AVAudioPlayer()
     var polarBear: SKSpriteNode!
     let fixedDelta: CFTimeInterval = 1.0 / 60.0 /* 60 FPS */
     let scrollSpeed: CGFloat = 200
@@ -20,6 +22,10 @@ class IceMeltingScene: SKScene, SKPhysicsContactDelegate {
     var obstacleLayer: SKNode!
     var spawnTimer: CFTimeInterval = 0
     var polarBearPosition = CGPoint.zero
+    /* var firstObstaclePosition = CGPoint.zero
+    var secondObstaclePosition = CGPoint.zero
+    var newSecondObstaclePosition = CGPoint.zero
+    var randomPosition = CGPoint.zero */
     var timeBar: SKSpriteNode!
     var iceMainLabel: SKLabelNode!
     var iceLabel: SKLabelNode!
@@ -37,13 +43,26 @@ class IceMeltingScene: SKScene, SKPhysicsContactDelegate {
     var polarState : Bool = true
     let polarBearJump = SKAction(named: "PolarBearJump")!
     let polarBearDead = SKAction(named: "PolarBearDead")!
+    let polarJumpSound = SKAction(named: "PolarJumpSound")!
     
     override func didMove(to view: SKView) {
+        
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOf: URL.init(fileURLWithPath: Bundle.main.path(forResource: "Hustle", ofType: "mp3")!))
+            audioPlayer.prepareToPlay()
+        }
+        catch{
+            print("Error in loading Start Scene Background music")
+        }
+        
+        audioPlayer.play()
+        
         // Setup your scene here
         polarBear = self.childNode(withName: "polarBear") as! SKSpriteNode
         scrollLayer = self.childNode(withName: "scrollLayer")
         /* Set reference to obstacle Source node */
         obstacleSource = self.childNode(withName: "obstacle")
+        // firstObstaclePosition = obstacleSource.position
         /* Set reference to obstacle layer node */
         obstacleLayer = self.childNode(withName: "obstacleLayer")
         /* Set physics contact delegate */
@@ -51,20 +70,24 @@ class IceMeltingScene: SKScene, SKPhysicsContactDelegate {
         timeBar = childNode(withName: "timeBar") as! SKSpriteNode
         iceMainLabel = self.childNode(withName: "iceMainLabel") as! SKLabelNode
         iceLabel = self.childNode(withName: "iceLabel") as! SKLabelNode
+        print("Overfishing \(UserDefaults().integer(forKey: "Currentscore")) current score")
         polarBear.run(polarBearJump)
+        print("IceMelting \(countChecker) count checker")
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         // Called when a touch begins
+        if polarState == false {return}
         iceMainLabel.isHidden = true
         iceLabel.isHidden = true
         
         // Reset velocity, helps improve response against cumulative falling velocity
-        polarBear.physicsBody?.velocity = CGVector(dx: 0, dy: 125)
+        polarBear.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
         
         polarBearPosition = polarBear.position
         if polarBearPosition.y <= 127{
             polarBear.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 550))
+            polarBear.run(polarJumpSound)
             //print(polarBearPosition)
             //print(polarBear.position.x)
         }
@@ -89,45 +112,16 @@ class IceMeltingScene: SKScene, SKPhysicsContactDelegate {
         
         spawnTimer += fixedDelta
         
-        if countChecker <= 3{
-            time -= 0.0017
+        time -= 0.0017
+        
+        if countChecker >= 6 && countChecker < 9 {
+            time -= 0.001
         }
-        else if countChecker <= 6 && countChecker > 3 {
-            time -= 0.0022
+        
+        if countChecker >= 9 {
+            time -= 0.0005
         }
-        else if countChecker <= 9 && countChecker > 6 {
-            time -= 0.003
-        }
-        else if countChecker <= 12 && countChecker > 9 {
-            time -= 0.004
-        }
-        else if countChecker <= 15 && countChecker > 12 {
-            time -= 0.006
-        }
-        else if countChecker <= 18 && countChecker > 15 {
-            time -= 0.0065
-        }
-        else if countChecker <= 21 && countChecker > 18 {
-            time -= 0.007
-        }
-        else if countChecker <= 24 && countChecker > 21 {
-            time -= 0.0075
-        }
-        else if countChecker <= 27 && countChecker > 24 {
-            time -= 0.008
-        }
-        else if countChecker <= 30 && countChecker > 27 {
-            time -= 0.0085
-        }
-        else if countChecker <= 33 && countChecker > 27 {
-            time -= 0.009
-        }
-        else if countChecker <= 36 && countChecker > 33 {
-            time -= 0.0093
-        }
-        else if countChecker <= 39 && countChecker > 36{
-            time -= 0.0095
-        }
+        
         //Player ran out of time
         if time < 0 {
             completeGame()
@@ -177,29 +171,77 @@ class IceMeltingScene: SKScene, SKPhysicsContactDelegate {
             }
             
         }
-        
-        /* Time to add a new obstacle? */
-        if spawnTimer >= 1.5 {
+       /* if countChecker > 6 {
+            
+            if spawnTimer >= 1.0 {
+                
+                /* Create a new obstacle by copying the source obstacle */
+                let newObstacle = obstacleSource.copy() as! SKNode
+                obstacleLayer.addChild(newObstacle)
+                
+                let randomPosition = CGPoint(x:310 , y: 25)
+                
+                /* Convert new node position back to obstacle layer space */
+                newObstacle.position = self.convert(randomPosition, to: obstacleLayer)
+            }
+        }
+        else {*/
+            /* Time to add a new obstacle? */
+            if spawnTimer >= 1.5 {
             
             /* Create a new obstacle by copying the source obstacle */
             let newObstacle = obstacleSource.copy() as! SKNode
             obstacleLayer.addChild(newObstacle)
             
-            
-            /* Generate new obstacle position, start just outside screen and with a random y value */
-            let randomPosition = CGPoint(x:CGFloat.random(min: 75, max: 560) , y: 25)
+            let randomPosition = CGPoint(x: 310 , y: 25)
             
             /* Convert new node position back to obstacle layer space */
             newObstacle.position = self.convert(randomPosition, to: obstacleLayer)
             
             // Reset spawn timer
             spawnTimer = 0
+            
+           /* generateRandomPosition()
+            
+            if (secondObstaclePosition != firstObstaclePosition) && (Float(secondObstaclePosition.x) > Float(firstObstaclePosition.x + 310) || Float(secondObstaclePosition.x) < Float(firstObstaclePosition.x - 310)) {
+                
+                print("first position \(firstObstaclePosition)")
+                /* Convert new node position back to obstacle layer space */
+                newObstacle.position = self.convert(randomPosition, to: obstacleLayer)
+                
+                firstObstaclePosition = secondObstaclePosition
+                
+            }
+            else {
+                //let randomNumber = arc4random_uniform(100)
+                //if randomNumber <= 50 {
+                    newSecondObstaclePosition = CGPoint(x: firstObstaclePosition.x + 310, y:firstObstaclePosition.y)
+                    newObstacle.position = self.convert(newSecondObstaclePosition, to: obstacleLayer)
+               // }
+                /*if randomNumber > 50 {
+                    newSecondObstaclePosition = CGPoint(x: firstObstaclePosition.x - 310, y:firstObstaclePosition.y)
+                    newObstacle.position = self.convert(newSecondObstaclePosition, to: obstacleLayer)
+                }*/
+                firstObstaclePosition = secondObstaclePosition
+            }
+            // Reset spawn timer
+            spawnTimer = 0 */
+            //}
         }
+        
     }
+    
+    /* func generateRandomPosition(){
+        
+        /* Generate new obstacle position, start just outside screen and with a random y value */
+        randomPosition = CGPoint(x:CGFloat.random(min: 110, max: 560) , y: 25)
+        secondObstaclePosition = randomPosition
+        print("second position \(secondObstaclePosition)")
+        
+    } */
     
     func didBegin(_ contact: SKPhysicsContact) {
         /* Get references to bodies involved in collision */
-        let duration = 1.5
         let contactA = contact.bodyA
         let contactB = contact.bodyB
         
@@ -207,32 +249,42 @@ class IceMeltingScene: SKScene, SKPhysicsContactDelegate {
         let nodeA = contactA.node!
         let nodeB = contactB.node!
         
-        /* Did our hero pass through the 'goal'? */
-        if nodeA.name == "obstacle" || nodeB.name == "obstacle" {
-            print("Dead")
+        
+        if nodeA.name == "deathObstacle" || nodeB.name == "deathObstacle" {
+            print("Polar Bear is Dead")
+            polarBear.removeAllActions()
             polarState = false
-            polarBear.position.x = obstacleSource.position.x
+            
+            let polarTemp : SKPhysicsBody = (polarBear.physicsBody)!
+            polarBear!.physicsBody = nil
+            polarBear.position.x = polarBearPosition.x + 110
             polarBear.position.y = 95
             polarBear.texture = SKTexture(imageNamed: "PolarBearDead@1x")
-            polarBear.run(polarBearDead)
-             DispatchQueue.main.asyncAfter(deadline: .now() + duration) {
+            
+            let polarFailedGame = SKAction.run({
                 self.failedGame()
-            }
+            })
+            audioPlayer.stop()
+            let polarDeadSequence = SKAction.sequence([polarBearDead, polarFailedGame])
+            polarBear.run(polarDeadSequence)
+            polarBear.physicsBody? = polarTemp
+            print(polarBear.position)
         }
     }
     func completeGame(){
+        audioPlayer.stop()
         UserDefaults.standard.set(UserDefaults().integer(forKey: "Currentscore") + 50, forKey: "Currentscore")
         UserDefaults.standard.synchronize()
-        print(UserDefaults().integer(forKey: "Currentscore"))
+        print("IceMelting \(UserDefaults().integer(forKey: "Currentscore")) current score")
         loadScoreScreen()
     }
     func failedGame(){
         UserDefaults.standard.set(UserDefaults().integer(forKey: "Currentscore") - 50, forKey: "Currentscore")
         UserDefaults.standard.synchronize()
-        print(UserDefaults().integer(forKey: "Currentscore"))
+        print("IceMelting \(UserDefaults().integer(forKey: "Currentscore")) current score")
         UserDefaults.standard.set(UserDefaults().integer(forKey: "Numberoflives") - 1, forKey: "Numberoflives")
         UserDefaults.standard.synchronize()
-        print(UserDefaults().integer(forKey: "Numberoflives"))
+        print("IceMelting \(UserDefaults().integer(forKey: "Numberoflives")) number of lives" )
         loadScoreScreen()
         
     }
@@ -240,13 +292,13 @@ class IceMeltingScene: SKScene, SKPhysicsContactDelegate {
         
         /* 1) Grab reference to our SpriteKit view */
         guard let skView = self.view as SKView! else {
-            print("Could not get Skview")
+            print("Could not get ScoreSkview")
             return
         }
         
         /* 2) Load Game scene */
         guard let scene = SKScene(fileNamed:"ScoreScene") else {
-            print("Could not make GameScene")
+            print("Could not make ScoreScene")
             return
         }
         
