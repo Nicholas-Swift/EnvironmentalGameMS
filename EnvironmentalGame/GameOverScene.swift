@@ -67,12 +67,13 @@ class GameOverScene: SKScene{
         highScoreGameOverLabel = childNode(withName: "highScoreGameOverLabel") as! SKLabelNode
         menuButton = childNode(withName: "menuButton") as! MSButtonNode
         menuButton.selectedHandler = {
+            print(" Open Once game over scene \(UserDefaults.standard.integer(forKey: "OpenOnce")) ")
             self.loadMainMenu()
             self.audioPlayer.stop()
         }
         playAgainButton = childNode(withName: "playAgainButton") as! MSButtonNode
         playAgainButton.selectedHandler = {
-            self.generateRandomNumberForScene()
+            self.generateRandomScene()
             self.audioPlayer.stop()
         }
         saveEarthButton = childNode(withName: "saveEarthButton") as! MSButtonNode
@@ -163,9 +164,9 @@ class GameOverScene: SKScene{
         scene.scaleMode = .aspectFill
         
         /* Show debug */
-        skView.showsPhysics = true
-        skView.showsDrawCount = true
-        skView.showsFPS = true
+        skView.showsPhysics = false
+        skView.showsDrawCount = false
+        skView.showsFPS = false
         
         /* 4) Start game scene */
         skView.presentScene(scene)
@@ -196,8 +197,14 @@ class GameOverScene: SKScene{
             UserDefaults.standard.synchronize()
             loadRandomScene()
         }
-        else if randomNumber > 80 && randomNumber <= 100{
+        else if randomNumber > 80 && randomNumber <= 90{
             randomNumberSecond = 5
+            UserDefaults.standard.set(randomNumberSecond, forKey: "Randomnumbersecond")
+            UserDefaults.standard.synchronize()
+            loadRandomScene()
+        }
+        else if randomNumber > 90 && randomNumber <= 100{
+            randomNumberSecond = 6
             UserDefaults.standard.set(randomNumberSecond, forKey: "Randomnumbersecond")
             UserDefaults.standard.synchronize()
             loadRandomScene()
@@ -224,9 +231,9 @@ class GameOverScene: SKScene{
                 scene.scaleMode = .aspectFill
                 
                 /* Show debug */
-                skView.showsPhysics = true
-                skView.showsDrawCount = true
-                skView.showsFPS = true
+                skView.showsPhysics = false
+                skView.showsDrawCount = false
+                skView.showsFPS = false
                 
                 /* 4) Start game scene */
                 skView.presentScene(scene)
@@ -248,9 +255,9 @@ class GameOverScene: SKScene{
                 scene.scaleMode = .aspectFill
                 
                 /* Show debug */
-                skView.showsPhysics = true
-                skView.showsDrawCount = true
-                skView.showsFPS = true
+                skView.showsPhysics = false
+                skView.showsDrawCount = false
+                skView.showsFPS = false
                 
                 /* 4) Start game scene */
                 skView.presentScene(scene)
@@ -272,9 +279,9 @@ class GameOverScene: SKScene{
                 scene.scaleMode = .aspectFill
                 
                 /* Show debug */
-                skView.showsPhysics = true
-                skView.showsDrawCount = true
-                skView.showsFPS = true
+                skView.showsPhysics = false
+                skView.showsDrawCount = false
+                skView.showsFPS = false
                 
                 /* 4) Start game scene */
                 skView.presentScene(scene)
@@ -296,9 +303,9 @@ class GameOverScene: SKScene{
                 scene.scaleMode = .aspectFill
                 
                 /* Show debug */
-                skView.showsPhysics = true
-                skView.showsDrawCount = true
-                skView.showsFPS = true
+                skView.showsPhysics = false
+                skView.showsDrawCount = false
+                skView.showsFPS = false
                 
                 /* 4) Start game scene */
                 skView.presentScene(scene)
@@ -320,9 +327,33 @@ class GameOverScene: SKScene{
                 scene.scaleMode = .aspectFill
                 
                 /* Show debug */
-                skView.showsPhysics = true
-                skView.showsDrawCount = true
-                skView.showsFPS = true
+                skView.showsPhysics = false
+                skView.showsDrawCount = false
+                skView.showsFPS = false
+                
+                /* 4) Start game scene */
+                skView.presentScene(scene)
+            }
+            else if randomNumberSecond == 6{
+                /* 1) Grab reference to our SpriteKit view */
+                guard let skView = self.view as SKView! else {
+                    print("Could not get OzoneSkview")
+                    return
+                }
+                
+                /* 2) Load Game scene */
+                guard let scene = SKScene(fileNamed:"OzoneScene") else {
+                    print("Could not make OzoneScene")
+                    return
+                }
+                
+                /* 3) Ensure correct aspect mode */
+                scene.scaleMode = .aspectFill
+                
+                /* Show debug */
+                skView.showsPhysics = false
+                skView.showsDrawCount = false
+                skView.showsFPS = false
                 
                 /* 4) Start game scene */
                 skView.presentScene(scene)
@@ -355,14 +386,35 @@ class GameOverScene: SKScene{
         scene.scaleMode = .aspectFill
         
         /* Show debug */
-        skView.showsPhysics = true
-        skView.showsDrawCount = true
-        skView.showsFPS = true
+        skView.showsPhysics = false
+        skView.showsDrawCount = false
+        skView.showsFPS = false
         
         /* 4) Start game scene */
         skView.presentScene(scene)
     }
     func loadCredits(){
+        /* 1) Grab reference to our SpriteKit view */
+        guard let skView = self.view as SKView! else {
+            print("Could not get Skview")
+            return
+        }
         
+        /* 2) Load Game scene */
+        guard let scene = SKScene(fileNamed:"Credits") else {
+            print("Could not make GameScene, check the name is spelled correctly")
+            return
+        }
+        
+        /* 3) Ensure correct aspect mode */
+        scene.scaleMode = .aspectFill
+        
+        /* Show debug */
+        skView.showsPhysics = false
+        skView.showsDrawCount = false
+        skView.showsFPS = false
+        
+        /* 4) Start game scene */
+        skView.presentScene(scene)
     }
 }

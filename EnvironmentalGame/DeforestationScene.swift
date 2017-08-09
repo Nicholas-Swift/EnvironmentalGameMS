@@ -392,9 +392,9 @@ class DeforestationScene: SKScene, SKPhysicsContactDelegate {
         scene.scaleMode = .aspectFill
         
         /* Show debug */
-        skView.showsPhysics = true
-        skView.showsDrawCount = true
-        skView.showsFPS = true
+        skView.showsPhysics = false
+        skView.showsDrawCount = false
+        skView.showsFPS = false
         
         /* 4) Start game scene */
         skView.presentScene(scene)

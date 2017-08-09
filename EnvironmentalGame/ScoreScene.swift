@@ -77,10 +77,11 @@ class ScoreScene: SKScene {
         UserDefaults.standard.set(UserDefaults.standard.integer(forKey: "Countchecker") + 1, forKey: "Countchecker")
         UserDefaults.standard.synchronize()
         print("ScoreScene \(UserDefaults.standard.integer(forKey: "Countchecker")) count checker")
+        currentScoreLabel.text = String(UserDefaults.standard.integer(forKey: "Currentscore"))
         
-        let updateScore = SKAction.run ({
+        /*let updateScore = SKAction.run ({
             self.currentScoreLabel.text = String(UserDefaults.standard.integer(forKey: "Currentscore"))
-        })
+        }) */
         let lightEarthOnFire = SKAction.run ({
             if self.livesForEarth == 2 {
                 self.fire1.isHidden = false
@@ -95,8 +96,8 @@ class ScoreScene: SKScene {
             if self.livesForEarth == 0 {
                 self.fire3.isHidden = false
                 let loadOver = SKAction.run ({
-                    self.loadGameOver()
                     self.run(self.earthFire)
+                    self.loadGameOver()
                 })
             let loadOverSequence = SKAction.sequence([self.longWait, loadOver])
                 self.run(loadOverSequence)
@@ -106,7 +107,7 @@ class ScoreScene: SKScene {
             self.nextActionAfterWait()
         })
         
-        let scoreSequence = SKAction.sequence([shortWait, updateScore, lightEarthOnFire, longWait, nextAction])
+        let scoreSequence = SKAction.sequence([shortWait, lightEarthOnFire, longWait, nextAction])
         self.run(scoreSequence)
     }
     
@@ -159,9 +160,9 @@ class ScoreScene: SKScene {
         scene.scaleMode = .aspectFill
         
         /* Show debug */
-        skView.showsPhysics = true
-        skView.showsDrawCount = true
-        skView.showsFPS = true
+        skView.showsPhysics = false
+        skView.showsDrawCount = false
+        skView.showsFPS = false
         
         /* 4) Start game scene */
         skView.presentScene(scene)
@@ -193,8 +194,14 @@ class ScoreScene: SKScene {
             UserDefaults.standard.synchronize()
             loadRandomScene()
         }
-        else if randomNumber > 80 && randomNumber <= 100{
+        else if randomNumber > 80 && randomNumber <= 90{
             randomNumberSecond = 5
+            UserDefaults.standard.set(randomNumberSecond, forKey: "Randomnumbersecond")
+            UserDefaults.standard.synchronize()
+            loadRandomScene()
+        }
+        else if randomNumber > 90 && randomNumber <= 100 {
+            randomNumberSecond = 6
             UserDefaults.standard.set(randomNumberSecond, forKey: "Randomnumbersecond")
             UserDefaults.standard.synchronize()
             loadRandomScene()
@@ -221,9 +228,9 @@ class ScoreScene: SKScene {
                 scene.scaleMode = .aspectFill
                 
                 /* Show debug */
-                skView.showsPhysics = true
-                skView.showsDrawCount = true
-                skView.showsFPS = true
+                skView.showsPhysics = false
+                skView.showsDrawCount = false
+                skView.showsFPS = false
                 
                 /* 4) Start game scene */
                 skView.presentScene(scene)
@@ -245,9 +252,9 @@ class ScoreScene: SKScene {
                 scene.scaleMode = .aspectFill
                 
                 /* Show debug */
-                skView.showsPhysics = true
-                skView.showsDrawCount = true
-                skView.showsFPS = true
+                skView.showsPhysics = false
+                skView.showsDrawCount = false
+                skView.showsFPS = false
                 
                 /* 4) Start game scene */
                 skView.presentScene(scene)
@@ -269,9 +276,9 @@ class ScoreScene: SKScene {
                 scene.scaleMode = .aspectFill
                 
                 /* Show debug */
-                skView.showsPhysics = true
-                skView.showsDrawCount = true
-                skView.showsFPS = true
+                skView.showsPhysics = false
+                skView.showsDrawCount = false
+                skView.showsFPS = false
                 
                 /* 4) Start game scene */
                 skView.presentScene(scene)
@@ -293,9 +300,9 @@ class ScoreScene: SKScene {
                 scene.scaleMode = .aspectFill
                 
                 /* Show debug */
-                skView.showsPhysics = true
-                skView.showsDrawCount = true
-                skView.showsFPS = true
+                skView.showsPhysics = false
+                skView.showsDrawCount = false
+                skView.showsFPS = false
                 
                 /* 4) Start game scene */
                 skView.presentScene(scene)
@@ -309,7 +316,7 @@ class ScoreScene: SKScene {
                 
                 /* 2) Load Game scene */
                 guard let scene = SKScene(fileNamed:"AirPollution") else {
-                    print("Could not make GameScene, check the name is spelled correctly")
+                    print("Could not make AirPollution")
                     return
                 }
                 
@@ -317,9 +324,33 @@ class ScoreScene: SKScene {
                 scene.scaleMode = .aspectFill
                 
                 /* Show debug */
-                skView.showsPhysics = true
-                skView.showsDrawCount = true
-                skView.showsFPS = true
+                skView.showsPhysics = false
+                skView.showsDrawCount = false
+                skView.showsFPS = false
+                
+                /* 4) Start game scene */
+                skView.presentScene(scene)
+            }
+            else if randomNumberSecond == 6{
+                /* 1) Grab reference to our SpriteKit view */
+                guard let skView = self.view as SKView! else {
+                    print("Could not get Skview")
+                    return
+                }
+                
+                /* 2) Load Game scene */
+                guard let scene = SKScene(fileNamed:"OzoneScene") else {
+                    print("Could not make OzoneScene")
+                    return
+                }
+                
+                /* 3) Ensure correct aspect mode */
+                scene.scaleMode = .aspectFill
+                
+                /* Show debug */
+                skView.showsPhysics = false
+                skView.showsDrawCount = false
+                skView.showsFPS = false
                 
                 /* 4) Start game scene */
                 skView.presentScene(scene)

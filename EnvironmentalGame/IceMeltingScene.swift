@@ -257,7 +257,7 @@ class IceMeltingScene: SKScene, SKPhysicsContactDelegate {
             
             let polarTemp : SKPhysicsBody = (polarBear.physicsBody)!
             polarBear!.physicsBody = nil
-            polarBear.position.x = polarBearPosition.x + 110
+            polarBear.position.x = polarBearPosition.x + 115
             polarBear.position.y = 95
             polarBear.texture = SKTexture(imageNamed: "PolarBearDead@1x")
             
@@ -306,9 +306,9 @@ class IceMeltingScene: SKScene, SKPhysicsContactDelegate {
         scene.scaleMode = .aspectFill
         
         /* Show debug */
-        skView.showsPhysics = true
-        skView.showsDrawCount = true
-        skView.showsFPS = true
+        skView.showsPhysics = false
+        skView.showsDrawCount = false
+        skView.showsFPS = false
         
         /* 4) Start game scene */
         skView.presentScene(scene)

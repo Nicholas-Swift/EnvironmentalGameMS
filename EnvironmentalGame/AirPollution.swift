@@ -17,17 +17,11 @@ class AirPollution: SKScene{
     var factory3: SKSpriteNode!
     var factory4: SKSpriteNode!
     var factory5: SKSpriteNode!
-    var factory6: SKSpriteNode!
-    var factory7: SKSpriteNode!
-    var factory8: SKSpriteNode!
     var smoke1: SKEmitterNode!
     var smoke2: SKEmitterNode!
     var smoke3: SKEmitterNode!
     var smoke4: SKEmitterNode!
     var smoke5: SKEmitterNode!
-    var smoke6: SKEmitterNode!
-    var smoke7: SKEmitterNode!
-    var smoke8: SKEmitterNode!
     var airMainLabel: SKLabelNode!
     var airLabel: SKLabelNode!
     var touchLocation = CGPoint.zero
@@ -61,7 +55,7 @@ class AirPollution: SKScene{
             audioPlayer.prepareToPlay()
         }
         catch{
-            print("Error in loading Start Scene Background music")
+            print("Error in loading Air Pollution Scene Background music")
         }
         
         audioPlayer.play()
@@ -70,155 +64,70 @@ class AirPollution: SKScene{
         factory3 = childNode(withName: "factory3") as! SKSpriteNode
         factory4 = childNode(withName: "factory4") as! SKSpriteNode
         factory5 = childNode(withName: "factory5") as! SKSpriteNode
-        factory6 = childNode(withName: "factory6") as! SKSpriteNode
-        factory7 = childNode(withName: "factory7") as! SKSpriteNode
-        factory8 = childNode(withName: "factory8") as! SKSpriteNode
         smoke1 = factory1.childNode(withName: "smoke1") as! SKEmitterNode
         smoke2 = factory2.childNode(withName: "smoke2") as! SKEmitterNode
         smoke3 = factory3.childNode(withName: "smoke3") as! SKEmitterNode
         smoke4 = factory4.childNode(withName: "smoke4") as! SKEmitterNode
         smoke5 = factory5.childNode(withName: "smoke5") as! SKEmitterNode
-        smoke6 = factory6.childNode(withName: "smoke6") as! SKEmitterNode
-        smoke7 = factory7.childNode(withName: "smoke7") as! SKEmitterNode
-        smoke8 = factory8.childNode(withName: "smoke8") as! SKEmitterNode
         timeBar = childNode(withName: "timeBar") as! SKSpriteNode
         airMainLabel = self.childNode(withName: "airMainLabel") as! SKLabelNode
         airLabel = self.childNode(withName: "airLabel") as! SKLabelNode
-        if countChecker <= 6{
-        generateRandomFactoryEasy()
-        }
-        else {
-        generateRandomFactoryHard()
-        }
+        generateRandomFactory()
+       
     }
-    func generateRandomFactoryEasy(){
+    func generateRandomFactory(){
         
         if randomNumber <= 10{
-            factory2.isHidden = true
-            factory3.isHidden = true
-            factory4.isHidden = true
+           factory4.isHidden = true
+            smoke4.isHidden = true
             factory5.isHidden = true
-            factory7.isHidden = true
-            factory8.isHidden = true
+            smoke5.isHidden = true
         }
         else if randomNumber <= 20 && randomNumber > 10 {
-            factory1.isHidden = true
-            factory3.isHidden = true
-            factory4.isHidden = true
-            factory6.isHidden = true
-            factory7.isHidden = true
-            factory8.isHidden = true
+            factory2.isHidden = true
+            smoke2.isHidden = true
+            factory5.isHidden = true
+            smoke5.isHidden = true
         }
         else if randomNumber <= 30 && randomNumber > 20 {
-            factory3.isHidden = true
-            factory4.isHidden = true
-            factory6.isHidden = true
-            factory7.isHidden = true
-            factory8.isHidden = true
-        }
-        else if randomNumber <= 40 && randomNumber > 30 {
             factory2.isHidden = true
+            smoke2.isHidden = true
             factory4.isHidden = true
-            factory5.isHidden = true
-            factory7.isHidden = true
-            factory8.isHidden = true
-        }
-        else if randomNumber <= 50 && randomNumber > 40 {
-            factory1.isHidden = true
-            factory4.isHidden = true
-            factory5.isHidden = true
-            factory7.isHidden = true
-            factory8.isHidden = true
-        }
-        else if randomNumber <= 60 && randomNumber > 50 {
-            factory1.isHidden = true
-            factory4.isHidden = true
-            factory6.isHidden = true
-            factory7.isHidden = true
-            factory8.isHidden = true
-        }
-        else if randomNumber <= 70 && randomNumber > 60 {
-            factory1.isHidden = true
-            factory5.isHidden = true
-            factory6.isHidden = true
-            factory7.isHidden = true
-            factory8.isHidden = true
-        }
-        else if randomNumber <= 80 && randomNumber > 70 {
-            factory2.isHidden = true
-            factory3.isHidden = true
-            factory6.isHidden = true
-            factory7.isHidden = true
-            factory8.isHidden = true
-        }
-        else if randomNumber <= 90 && randomNumber > 80 {
-            factory2.isHidden = true
-            factory3.isHidden = true
-            factory5.isHidden = true
-            factory7.isHidden = true
-            factory8.isHidden = true
-        }
-        else if randomNumber <= 100 && randomNumber > 90 {
-            factory1.isHidden = true
-            factory2.isHidden = true
-            factory5.isHidden = true
-            factory7.isHidden = true
-            factory8.isHidden = true
-        }
-        
-    }
-    func generateRandomFactoryHard(){
-        
-        if randomNumber <= 10{
-            factory3.isHidden = true
-            factory7.isHidden = true
-            factory8.isHidden = true
-        }
-        else if randomNumber <= 20 && randomNumber > 10 {
-            factory3.isHidden = true
-            factory4.isHidden = true
-            factory7.isHidden = true
-            factory8.isHidden = true
-        }
-        else if randomNumber <= 30 && randomNumber > 20 {
-            factory1.isHidden = true
-            factory5.isHidden = true
-            factory7.isHidden = true
-            factory8.isHidden = true
+            smoke4.isHidden = true
         }
         else if randomNumber <= 40 && randomNumber > 30 {
             factory1.isHidden = true
-            factory6.isHidden = true
-            factory7.isHidden = true
-            factory8.isHidden = true
+            smoke1.isHidden = true
+            factory3.isHidden = true
+            smoke3.isHidden = true
+            
         }
         else if randomNumber <= 50 && randomNumber > 40 {
-            factory2.isHidden = true
             factory3.isHidden = true
+            smoke3.isHidden = true
             factory5.isHidden = true
-            factory8.isHidden = true
+            smoke5.isHidden = true
         }
         else if randomNumber <= 60 && randomNumber > 50 {
-            factory2.isHidden = true
+            factory1.isHidden = true
+            smoke1.isHidden = true
             factory4.isHidden = true
-            factory5.isHidden = true
-            factory6.isHidden = true
+            smoke4.isHidden = true
+            
         }
         else if randomNumber <= 70 && randomNumber > 60 {
-            factory1.isHidden = true
-            factory3.isHidden = true
-            factory5.isHidden = true
+            factory4.isHidden = true
+            smoke4.isHidden = true
         }
         else if randomNumber <= 80 && randomNumber > 70 {
             factory5.isHidden = true
-            factory6.isHidden = true
-            factory7.isHidden = true
+            smoke5.isHidden = true
         }
         else if randomNumber <= 90 && randomNumber > 80 {
+            factory2.isHidden = true
+            smoke2.isHidden = true
         }
         else if randomNumber <= 100 && randomNumber > 90 {
-            factory3.isHidden = true
-            factory4.isHidden = true
         }
         
     }
@@ -228,45 +137,30 @@ class AirPollution: SKScene{
         airLabel.isHidden = true
         for touch in touches{
             touchLocation = touch.location(in: self)
-            if factory1.contains(touchLocation) && !factory1.isHidden {
+            if factory1.contains(touchLocation) && smoke1.isHidden == false {
                 smoke1.isHidden = true
                 print("fml")
                 factory1.run(smokeStop)
             }
-            else if factory2.contains(touchLocation){
+            else if factory2.contains(touchLocation) && smoke2.isHidden == false{
                 smoke2.isHidden = true
                 print("fml2")
                 factory2.run(smokeStop)
             }
-            else if factory3.contains(touchLocation){
+            else if factory3.contains(touchLocation) && smoke3.isHidden == false{
                 smoke3.isHidden = true
                 print("fml3")
                 factory3.run(smokeStop)
             }
-            else if factory4.contains(touchLocation){
+            else if factory4.contains(touchLocation) && smoke4.isHidden == false{
                 smoke4.isHidden = true
                 print("fml4")
                 factory4.run(smokeStop)
             }
-            else if factory5.contains(touchLocation){
+            else if factory5.contains(touchLocation) && smoke5.isHidden == false{
                 smoke5.isHidden = true
                 print("fml5")
                 factory5.run(smokeStop)
-            }
-            else if factory6.contains(touchLocation){
-                smoke6.isHidden = true
-                print("fml6")
-                factory6.run(smokeStop)
-            }
-            else if factory7.contains(touchLocation){
-                smoke7.isHidden = true
-                print("fml7")
-                factory7.run(smokeStop)
-            }
-            else if factory8.contains(touchLocation){
-                smoke8.isHidden = true
-                print("fml8")
-                factory8.run(smokeStop)
             }
         }
     }
@@ -274,22 +168,22 @@ class AirPollution: SKScene{
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches{
             touchLocation = touch.location(in: self)
-            
+            if !(factory1.contains(touchLocation)) {
                 smoke1.isHidden = false
-            
+            }
+            if !(factory2.contains(touchLocation)) {
                 smoke2.isHidden = false
-            
+            }
+            if !(factory3.contains(touchLocation)) {
                 smoke3.isHidden = false
-            
+            }
+            if !(factory4.contains(touchLocation)) {
                 smoke4.isHidden = false
-            
+            }
+            if !(factory5.contains(touchLocation)) {
                 smoke5.isHidden = false
+            }
             
-                smoke6.isHidden = false
-            
-                smoke7.isHidden = false
-            
-                smoke8.isHidden = false
         }
     }
     
@@ -336,7 +230,7 @@ class AirPollution: SKScene{
         }
         //Player ran out of time
         if time < 0 {
-            if smoke1.isHidden == true || smoke2.isHidden == true || smoke3.isHidden == true || smoke4.isHidden == true || smoke5.isHidden == true || smoke6.isHidden == true || smoke7.isHidden == true || smoke8.isHidden == true {
+            if smoke1.isHidden == true && smoke2.isHidden == true && smoke3.isHidden == true && smoke4.isHidden == true && smoke5.isHidden == true {
                 completeGame()
             }
             else{
@@ -386,9 +280,9 @@ class AirPollution: SKScene{
         scene.scaleMode = .aspectFill
         
         /* Show debug */
-        skView.showsPhysics = true
-        skView.showsDrawCount = true
-        skView.showsFPS = true
+        skView.showsPhysics = false
+        skView.showsDrawCount = false
+        skView.showsFPS = false
         
         /* 4) Start game scene */
         skView.presentScene(scene)
