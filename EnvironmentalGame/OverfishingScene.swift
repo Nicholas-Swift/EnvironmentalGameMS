@@ -207,7 +207,7 @@ class OverfishingScene: SKScene, SKPhysicsContactDelegate {
         }
         
         /* 3) Ensure correct aspect mode */
-        scene.scaleMode = .aspectFill
+        scene.scaleMode = .aspectFit
         
         /* Show debug */
         skView.showsPhysics = false
