@@ -94,12 +94,7 @@ class ScoreScene: SKScene {
                 self.fire1.isHidden = false
                 self.fire2.isHidden = false
                 self.fire3.isHidden = false
-                let loadOver = SKAction.run ({
-                    self.run(self.earthFire)
-                    self.loadGameOver()
-                })
-            let loadOverSequence = SKAction.sequence([self.longWait, loadOver])
-                self.run(loadOverSequence)
+                self.run(self.earthFire)
             }
         })
         let nextAction = SKAction.run({
@@ -109,10 +104,23 @@ class ScoreScene: SKScene {
         let scoreLoseSequence = SKAction.sequence([shortWait, lightEarthOnFire, loseSound, updateScore, longWait, nextAction])
         let scoreWinSequence = SKAction.sequence([shortWait, winSound, updateScore, longWait, nextAction])
         
+        let loadOver = SKAction.run ({
+            self.loadGameOver()
+        })
+        let loadOverSequence = SKAction.sequence([shortWait, lightEarthOnFire, loseSound, updateScore, longWait, loadOver])
+
         if winOrLose == false{
+            if livesForEarth == 0 {
+                UserDefaults.standard.set(UserDefaults().integer(forKey: "Currentscore") - 70, forKey: "Currentscore")
+                UserDefaults.standard.synchronize()
+                self.run(loadOverSequence)
+            }
+            else {
             UserDefaults.standard.set(UserDefaults().integer(forKey: "Currentscore") - 70, forKey: "Currentscore")
             UserDefaults.standard.synchronize()
             self.run(scoreLoseSequence)
+                
+            }
         }
         else if winOrLose == true {
             UserDefaults.standard.set(UserDefaults().integer(forKey: "Currentscore") + 120, forKey: "Currentscore")

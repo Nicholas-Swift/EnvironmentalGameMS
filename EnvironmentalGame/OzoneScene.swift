@@ -240,7 +240,7 @@ class OzoneScene: SKScene{
         if cfc1.isHidden == true && cfc2.isHidden == true && cfc3.isHidden == true && cfc4.isHidden == true && cfc5.isHidden == true && cfc6.isHidden == true && cfc7.isHidden == true && cfc8.isHidden == true && cfc9.isHidden == true && cfc10.isHidden == true {
             completeGame()
         }
-        if time <= 0.8 {
+        if time <= 0.7 {
             ozoneMainLabel.isHidden = true
             ozoneLabel.isHidden = true
         }

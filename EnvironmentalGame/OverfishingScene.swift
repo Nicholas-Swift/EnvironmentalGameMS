@@ -72,7 +72,7 @@ class OverfishingScene: SKScene, SKPhysicsContactDelegate {
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         /* Called when a touch begins */
-        fish.physicsBody?.velocity = CGVector(dx: 65, dy: 0)
+        fish.physicsBody?.velocity = CGVector(dx: 75, dy: 0)
         let holdDown = UILongPressGestureRecognizer(target: self, action: #selector(stopFish))
         holdDown.minimumPressDuration = 0.2
         view?.addGestureRecognizer(holdDown)
