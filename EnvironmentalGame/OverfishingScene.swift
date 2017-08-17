@@ -68,24 +68,27 @@ class OverfishingScene: SKScene, SKPhysicsContactDelegate {
         timeBar = childNode(withName: "timeBar") as! SKSpriteNode
         print("Overfishing \(countChecker) countchecker")
         
-        let holdDown = UILongPressGestureRecognizer(target: self, action: #selector(stopFish))
-        holdDown.minimumPressDuration = 0.2
-        view.addGestureRecognizer(holdDown)
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         /* Called when a touch begins */
-        overfishingMainLabel.isHidden = true
-        overfishingLabel.isHidden = true
-        if fishState == false {return}
-        fish.physicsBody?.velocity = CGVector(dx: 85, dy: 0)
-        fish.run(fishSwim)
+        fish.physicsBody?.velocity = CGVector(dx: 65, dy: 0)
+        let holdDown = UILongPressGestureRecognizer(target: self, action: #selector(stopFish))
+        holdDown.minimumPressDuration = 0.2
+        view?.addGestureRecognizer(holdDown)
+        for touch in touches {
+            if touch.force >= 0.5 {
+                fish.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
+            }
+        }
     }
     func stopFish(){
         fish.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
     }
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if fishState == false {return}
         fish.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
+        fish.run(fishSwim)
     }
     
     override func update(_ currentTime: TimeInterval) {
@@ -93,57 +96,35 @@ class OverfishingScene: SKScene, SKPhysicsContactDelegate {
         if fishState == false { return }
 
         if countChecker <= 3{
-            time -= 0.0017
-            net.physicsBody?.velocity = CGVector(dx: 57, dy: 0)
+            time -= 0.001
+            net.physicsBody?.velocity = CGVector(dx: 45, dy: 0)
         }
         else if countChecker <= 6 && countChecker > 3 {
-            time -= 0.0022
-            net.physicsBody?.velocity = CGVector(dx: 60, dy: 0)
+            time -= 0.0014
+            net.physicsBody?.velocity = CGVector(dx: 50, dy: 0)
         }
         else if countChecker <= 9 && countChecker > 6 {
-            time -= 0.003
-            net.physicsBody?.velocity = CGVector(dx: 65, dy: 0)
+            time -= 0.0017
+            net.physicsBody?.velocity = CGVector(dx: 60, dy: 0)
         }
         else if countChecker <= 12 && countChecker > 9 {
-            time -= 0.004
+            time -= 0.0022
             net.physicsBody?.velocity = CGVector(dx: 70, dy: 0)
         }
         else if countChecker <= 15 && countChecker > 12 {
-            time -= 0.006
-            net.physicsBody?.velocity = CGVector(dx: 75, dy: 0)
+            time -= 0.003
+            net.physicsBody?.velocity = CGVector(dx: 80, dy:0)
         }
-        else if countChecker <= 18 && countChecker > 15 {
-            time -= 0.0065
-            net.physicsBody?.velocity = CGVector(dx: 80, dy: 0)
-        }
-        else if countChecker <= 21 && countChecker > 18 {
-            time -= 0.007
-            net.physicsBody?.velocity = CGVector(dx: 85, dy: 0)
-        }
-        else if countChecker <= 24 && countChecker > 21 {
-            time -= 0.0075
-            net.physicsBody?.velocity = CGVector(dx: 90, dy: 0)
-        }
-        else if countChecker <= 27 && countChecker > 24 {
-            time -= 0.008
-            net.physicsBody?.velocity = CGVector(dx: 95, dy: 0)
-        }
-        else if countChecker <= 30 && countChecker > 27 {
-            time -= 0.0085
+        else {
+            time -= 0.003
             net.physicsBody?.velocity = CGVector(dx: 100, dy: 0)
         }
-        else if countChecker <= 33 && countChecker > 27 {
-            time -= 0.009
-            net.physicsBody?.velocity = CGVector(dx: 105, dy: 0)
+        
+        if time <= 0.9 {
+            overfishingMainLabel.isHidden = true
+            overfishingLabel.isHidden = true
         }
-        else if countChecker <= 36 && countChecker > 33 {
-            time -= 0.0093
-            net.physicsBody?.velocity = CGVector(dx: 110, dy: 0)
-        }
-        else if countChecker <= 39 && countChecker > 36{
-            time -= 0.0095
-            net.physicsBody?.velocity = CGVector(dx: 115, dy: 0)
-        }
+        
         //Player ran out of time
         if time < 0 {
             completeGame()
@@ -177,15 +158,16 @@ class OverfishingScene: SKScene, SKPhysicsContactDelegate {
     }
     func completeGame(){
         audioPlayer.stop()
-        UserDefaults.standard.set(UserDefaults().integer(forKey: "Currentscore") + 50, forKey: "Currentscore")
+        UserDefaults.standard.set(true, forKey: "Winorlose")
         UserDefaults.standard.synchronize()
-        print("Overfishing \(UserDefaults().integer(forKey: "Currentscore")) current score")
+        print("BirdMiniScene \(UserDefaults().bool(forKey: "Winorlose")) ")
         loadScoreScreen()
     }
     func failedGame(){
-        UserDefaults.standard.set(UserDefaults().integer(forKey: "Currentscore") - 50, forKey: "Currentscore")
+        audioPlayer.stop()
+        UserDefaults.standard.set(false, forKey: "Winorlose")
         UserDefaults.standard.synchronize()
-        print("Overfishing \(UserDefaults().integer(forKey: "Currentscore")) current score")
+        print("BirdMiniScene \(UserDefaults().bool(forKey: "Winorlose")) ")
         UserDefaults.standard.set(UserDefaults().integer(forKey: "Numberoflives") - 1, forKey: "Numberoflives")
         UserDefaults.standard.synchronize()
         print("Overfishing \( UserDefaults().integer(forKey: "Numberoflives")) number of lives")
@@ -217,4 +199,5 @@ class OverfishingScene: SKScene, SKPhysicsContactDelegate {
         /* 4) Start game scene */
         skView.presentScene(scene)
     }
+    
 }

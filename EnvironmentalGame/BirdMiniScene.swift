@@ -81,8 +81,6 @@ class BirdMiniScene: SKScene, SKPhysicsContactDelegate {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         // Called when a touch begins
-        birdMiniMainLabel.isHidden = true
-        birdMiniLabel.isHidden = true
         
         if birdState == false {return}
         
@@ -94,7 +92,7 @@ class BirdMiniScene: SKScene, SKPhysicsContactDelegate {
         bird.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
         
         // Apply vertical impulse
-        bird.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 25))
+        bird.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 30))
         
         // Apply subtle rotation
         bird.physicsBody?.applyAngularImpulse(1)
@@ -108,10 +106,12 @@ class BirdMiniScene: SKScene, SKPhysicsContactDelegate {
         
         if birdState == false {return}
         
-        time -= 0.0017
+        if countChecker < 6{
+            time -= 0.001
+        }
         
         if countChecker >= 6 && countChecker < 9 {
-            time -= 0.001
+            time -= 0.0007
         }
         
         if countChecker >= 9 {
@@ -121,9 +121,9 @@ class BirdMiniScene: SKScene, SKPhysicsContactDelegate {
         if time <= 0.9 {
             bird.physicsBody?.affectedByGravity = true
             bird.physicsBody?.isDynamic = true
+            birdMiniMainLabel.isHidden = true
+            birdMiniLabel.isHidden = true
         }
-        
-    
         
         //Player ran out of time
         if time < 0 {
@@ -205,23 +205,22 @@ class BirdMiniScene: SKScene, SKPhysicsContactDelegate {
             }
             
         }
-        
         /* Time to add a new obstacle? */
-        if spawnTimer >= 1.7 {
-            
-            /* Create a new obstacle by copying the source obstacle */
-            let newObstacle = obstacleSource.copy() as! SKNode
-            obstacleLayer.addChild(newObstacle)
-            
-            /* Generate new obstacle position, start just outside screen and with a random y value */
-            let randomPosition = CGPoint(x: 450, y: CGFloat.random(min: 55, max: 175))
-            
-            /* Convert new node position back to obstacle layer space */
-            newObstacle.position = self.convert(randomPosition, to: obstacleLayer)
-            
-            // Reset spawn timer
-            spawnTimer = 0
-        }
+            if spawnTimer >= 1.7 {
+                
+                /* Create a new obstacle by copying the source obstacle */
+                let newObstacle = obstacleSource.copy() as! SKNode
+                obstacleLayer.addChild(newObstacle)
+                
+                /* Generate new obstacle position, start just outside screen and with a random y value */
+                let randomPosition = CGPoint(x: 450, y: CGFloat.random(min: 45, max: 160))
+                
+                /* Convert new node position back to obstacle layer space */
+                newObstacle.position = self.convert(randomPosition, to: obstacleLayer)
+                
+                // Reset spawn timer
+                spawnTimer = 0
+            }
     }
     func didBegin(_ contact: SKPhysicsContact) {
         
@@ -281,15 +280,16 @@ class BirdMiniScene: SKScene, SKPhysicsContactDelegate {
     }
     func completeGame(){
         audioPlayer.stop()
-        UserDefaults.standard.set(UserDefaults().integer(forKey: "Currentscore") + 50, forKey: "Currentscore")
+        UserDefaults.standard.set(true, forKey: "Winorlose")
         UserDefaults.standard.synchronize()
-        print("BirdMiniScene \(UserDefaults().integer(forKey: "Currentscore")) ")
+        print("BirdMiniScene \(UserDefaults().bool(forKey: "Winorlose")) ")
         loadScoreScreen()
     }
     func failedGame(){
-        UserDefaults.standard.set(UserDefaults().integer(forKey: "Currentscore") - 50, forKey: "Currentscore")
+        audioPlayer.stop()
+        UserDefaults.standard.set(false, forKey: "Winorlose")
         UserDefaults.standard.synchronize()
-        print("BirdMiniScene \(UserDefaults().integer(forKey: "Currentscore")) ")
+        print("BirdMiniScene \(UserDefaults().bool(forKey: "Winorlose")) ")
         UserDefaults.standard.set(UserDefaults().integer(forKey: "Numberoflives") - 1, forKey: "Numberoflives")
         UserDefaults.standard.synchronize()
         print("BirdMiniScene \(UserDefaults().integer(forKey: "Numberoflives")) ")

@@ -14,8 +14,8 @@ class Credits: SKScene {
     
     override func didMove(to view: SKView) {
         mainMenuButton = childNode(withName: "mainMenuButton") as! MSButtonNode
-        mainMenuButton.selectedHandler = {
-            self.loadMainMenu()
+        mainMenuButton.selectedHandler = { [ weak self] in
+            self?.loadMainMenu()
         }
     }
     

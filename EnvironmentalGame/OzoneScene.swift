@@ -150,8 +150,6 @@ class OzoneScene: SKScene{
         
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        ozoneMainLabel.isHidden = true
-        ozoneLabel.isHidden = true
         for touch in touches{
             touchLocation = touch.location(in: self)
             
@@ -242,6 +240,10 @@ class OzoneScene: SKScene{
         if cfc1.isHidden == true && cfc2.isHidden == true && cfc3.isHidden == true && cfc4.isHidden == true && cfc5.isHidden == true && cfc6.isHidden == true && cfc7.isHidden == true && cfc8.isHidden == true && cfc9.isHidden == true && cfc10.isHidden == true {
             completeGame()
         }
+        if time <= 0.8 {
+            ozoneMainLabel.isHidden = true
+            ozoneLabel.isHidden = true
+        }
         //Player ran out of time
         if time < 0 {
             let wait = SKAction.wait(forDuration: 1.0)
@@ -261,16 +263,16 @@ class OzoneScene: SKScene{
         
     func completeGame(){
         audioPlayer.stop()
-        UserDefaults.standard.set(UserDefaults().integer(forKey: "Currentscore") + 50, forKey: "Currentscore")
+        UserDefaults.standard.set(true, forKey: "Winorlose")
         UserDefaults.standard.synchronize()
-        print("AirPollution \(UserDefaults().integer(forKey: "Currentscore")) current score")
+        print("OzoneScene \(UserDefaults().bool(forKey: "Winorlose")) ")
         loadScoreScreen()
     }
         
     func failedGame(){
-        UserDefaults.standard.set(UserDefaults().integer(forKey: "Currentscore") - 50, forKey: "Currentscore")
+        UserDefaults.standard.set(false, forKey: "Winorlose")
         UserDefaults.standard.synchronize()
-        print("AirPollution \(UserDefaults().integer(forKey: "Currentscore")) current score")
+        print("BirdMiniScene \(UserDefaults().bool(forKey: "Winorlose")) ")
         UserDefaults.standard.set(UserDefaults().integer(forKey: "Numberoflives") - 1, forKey: "Numberoflives")
         UserDefaults.standard.synchronize()
         print("AirPollution \(UserDefaults().integer(forKey: "Numberoflives")) number of lives")

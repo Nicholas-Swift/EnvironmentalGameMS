@@ -78,15 +78,13 @@ class IceMeltingScene: SKScene, SKPhysicsContactDelegate {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         // Called when a touch begins
         if polarState == false {return}
-        iceMainLabel.isHidden = true
-        iceLabel.isHidden = true
         
         // Reset velocity, helps improve response against cumulative falling velocity
         polarBear.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
         
         polarBearPosition = polarBear.position
         if polarBearPosition.y <= 127{
-            polarBear.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 550))
+            polarBear.physicsBody?.applyImpulse(CGVector(dx: 5, dy: 550))
             polarBear.run(polarJumpSound)
             //print(polarBearPosition)
             //print(polarBear.position.x)
@@ -112,16 +110,21 @@ class IceMeltingScene: SKScene, SKPhysicsContactDelegate {
         
         spawnTimer += fixedDelta
         
-        time -= 0.0017
+        if countChecker < 6 {
+        time -= 0.001
+        }
         
         if countChecker >= 6 && countChecker < 9 {
-            time -= 0.001
+            time -= 0.0008
         }
         
         if countChecker >= 9 {
-            time -= 0.0005
+            time -= 0.0007
         }
-        
+        if time <= 0.9 {
+            iceMainLabel.isHidden = true
+            iceLabel.isHidden = true
+        }
         //Player ran out of time
         if time < 0 {
             completeGame()
@@ -163,7 +166,7 @@ class IceMeltingScene: SKScene, SKPhysicsContactDelegate {
             let obstaclePosition = obstacleLayer.convert(obstacle.position, to: self)
             
             /* Check if obstacle has left the scene */
-            if obstaclePosition.x <= -26 {
+            if obstaclePosition.x <= -50 {
                 // 26 is one half the width of an obstacle
                 
                 /* Remove obstacle node from obstacle layer */
@@ -185,7 +188,7 @@ class IceMeltingScene: SKScene, SKPhysicsContactDelegate {
                 newObstacle.position = self.convert(randomPosition, to: obstacleLayer)
             }
         }
-        else {*/
+        else {
             /* Time to add a new obstacle? */
             if spawnTimer >= 1.5 {
             
@@ -227,6 +230,72 @@ class IceMeltingScene: SKScene, SKPhysicsContactDelegate {
             // Reset spawn timer
             spawnTimer = 0 */
             //}
+        }*/
+        
+        if countChecker < 6 {
+            if spawnTimer >= 2.2{
+                
+                /* Create a new obstacle by copying the source obstacle */
+                let newObstacle = obstacleSource.copy() as! SKNode
+                obstacleLayer.addChild(newObstacle)
+                
+                let randomPosition = CGPoint(x: 310 , y: 25)
+                
+                /* Convert new node position back to obstacle layer space */
+                newObstacle.position = self.convert(randomPosition, to: obstacleLayer)
+                
+                // Reset spawn timer
+                spawnTimer = 0
+            }
+        }
+        else if countChecker >= 6 && countChecker < 9{
+            if spawnTimer >= 1.8 {
+                
+                /* Create a new obstacle by copying the source obstacle */
+                let newObstacle = obstacleSource.copy() as! SKNode
+                obstacleLayer.addChild(newObstacle)
+                
+                let randomPosition = CGPoint(x: 310 , y: 25)
+                
+                /* Convert new node position back to obstacle layer space */
+                newObstacle.position = self.convert(randomPosition, to: obstacleLayer)
+                
+                // Reset spawn timer
+                spawnTimer = 0
+            }
+        }
+        else if countChecker >= 9 && countChecker < 12 {
+            if spawnTimer >= 1.5 {
+                
+                /* Create a new obstacle by copying the source obstacle */
+                let newObstacle = obstacleSource.copy() as! SKNode
+                obstacleLayer.addChild(newObstacle)
+                
+                let randomPosition = CGPoint(x: 310 , y: 25)
+                
+                /* Convert new node position back to obstacle layer space */
+                newObstacle.position = self.convert(randomPosition, to: obstacleLayer)
+                
+                // Reset spawn timer
+                spawnTimer = 0
+            }
+        }
+        else {
+            if spawnTimer == 1.2 {
+                
+                /* Create a new obstacle by copying the source obstacle */
+                let newObstacle = obstacleSource.copy() as! SKNode
+                obstacleLayer.addChild(newObstacle)
+                
+                let randomPosition = CGPoint(x: 310 , y: 25)
+                
+                /* Convert new node position back to obstacle layer space */
+                newObstacle.position = self.convert(randomPosition, to: obstacleLayer)
+                
+                // Reset spawn timer
+                spawnTimer = 0
+            }
+            
         }
         
     }
@@ -268,20 +337,20 @@ class IceMeltingScene: SKScene, SKPhysicsContactDelegate {
             let polarDeadSequence = SKAction.sequence([polarBearDead, polarFailedGame])
             polarBear.run(polarDeadSequence)
             polarBear.physicsBody? = polarTemp
-            print(polarBear.position)
+            //print(polarBear.position)
         }
     }
     func completeGame(){
         audioPlayer.stop()
-        UserDefaults.standard.set(UserDefaults().integer(forKey: "Currentscore") + 50, forKey: "Currentscore")
+        UserDefaults.standard.set(true, forKey: "Winorlose")
         UserDefaults.standard.synchronize()
-        print("IceMelting \(UserDefaults().integer(forKey: "Currentscore")) current score")
+        print("BirdMiniScene \(UserDefaults().bool(forKey: "Winorlose")) ")
         loadScoreScreen()
     }
     func failedGame(){
-        UserDefaults.standard.set(UserDefaults().integer(forKey: "Currentscore") - 50, forKey: "Currentscore")
+        UserDefaults.standard.set(false, forKey: "Winorlose")
         UserDefaults.standard.synchronize()
-        print("IceMelting \(UserDefaults().integer(forKey: "Currentscore")) current score")
+        print("BirdMiniScene \(UserDefaults().bool(forKey: "Winorlose")) ")
         UserDefaults.standard.set(UserDefaults().integer(forKey: "Numberoflives") - 1, forKey: "Numberoflives")
         UserDefaults.standard.synchronize()
         print("IceMelting \(UserDefaults().integer(forKey: "Numberoflives")) number of lives" )

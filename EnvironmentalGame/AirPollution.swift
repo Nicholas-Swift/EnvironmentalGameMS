@@ -24,6 +24,7 @@ class AirPollution: SKScene{
     var smoke5: SKEmitterNode!
     var airMainLabel: SKLabelNode!
     var airLabel: SKLabelNode!
+    var airLabel2: SKLabelNode!
     var touchLocation = CGPoint.zero
     var timeBar: SKSpriteNode!
     let randomNumber = arc4random_uniform(100)
@@ -72,6 +73,7 @@ class AirPollution: SKScene{
         timeBar = childNode(withName: "timeBar") as! SKSpriteNode
         airMainLabel = self.childNode(withName: "airMainLabel") as! SKLabelNode
         airLabel = self.childNode(withName: "airLabel") as! SKLabelNode
+        airLabel2 = self.childNode(withName: "airLabel2") as! SKLabelNode
         generateRandomFactory()
        
     }
@@ -133,8 +135,6 @@ class AirPollution: SKScene{
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         /* Called when a touch begins */
-        airMainLabel.isHidden = true
-        airLabel.isHidden = true
         for touch in touches{
             touchLocation = touch.location(in: self)
             if factory1.contains(touchLocation) && smoke1.isHidden == false {
@@ -166,28 +166,40 @@ class AirPollution: SKScene{
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+            let wait = SKAction.wait(forDuration: 0.5)
+            let failedAirGame = SKAction.run({
+                self.failedGame()
+            })
+            let failedSequence = SKAction.sequence([wait, failedAirGame])
+        
         for touch in touches{
             touchLocation = touch.location(in: self)
             if !(factory1.contains(touchLocation)) {
                 smoke1.isHidden = false
+                self.run(failedSequence)
             }
             if !(factory2.contains(touchLocation)) {
                 smoke2.isHidden = false
+                self.run(failedSequence)
             }
             if !(factory3.contains(touchLocation)) {
                 smoke3.isHidden = false
+                self.run(failedSequence)
             }
             if !(factory4.contains(touchLocation)) {
                 smoke4.isHidden = false
+                self.run(failedSequence)
             }
             if !(factory5.contains(touchLocation)) {
                 smoke5.isHidden = false
+                self.run(failedSequence)
             }
             
         }
     }
     
     override func update(_ currentTime: TimeInterval) {
+        
         /* Called before each frame is rendered */
         if countChecker <= 3{
             time -= 0.0017
@@ -228,33 +240,34 @@ class AirPollution: SKScene{
         else if countChecker <= 39 && countChecker > 36{
             time -= 0.0095
         }
+        if time <= 0.8 {
+            airMainLabel.isHidden = true
+            airLabel.isHidden = true
+            airLabel2.isHidden = true
+        }
+        
         //Player ran out of time
         if time < 0 {
             if smoke1.isHidden == true && smoke2.isHidden == true && smoke3.isHidden == true && smoke4.isHidden == true && smoke5.isHidden == true {
                 completeGame()
             }
-            else{
-                let wait = SKAction.wait(forDuration: 0.5)
-                let failedAirGame = SKAction.run({
-                    self.failedGame()
-                })
-                let failedSequence = SKAction.sequence([wait, failedAirGame])
-                self.run(failedSequence)
+            else {
+                failedGame()
             }
         }
     }
     func completeGame(){
         audioPlayer.stop()
-        UserDefaults.standard.set(UserDefaults().integer(forKey: "Currentscore") + 50, forKey: "Currentscore")
+        UserDefaults.standard.set(true, forKey: "Winorlose")
         UserDefaults.standard.synchronize()
-        print("AirPollution \(UserDefaults().integer(forKey: "Currentscore")) current score")
+        print("AirPollutionScene \(UserDefaults().bool(forKey: "Winorlose")) ")
         loadScoreScreen()
     }
     func failedGame(){
         audioPlayer.stop()
-        UserDefaults.standard.set(UserDefaults().integer(forKey: "Currentscore") - 50, forKey: "Currentscore")
+        UserDefaults.standard.set(false, forKey: "Winorlose")
         UserDefaults.standard.synchronize()
-        print("AirPollution \(UserDefaults().integer(forKey: "Currentscore")) current score")
+        print("BirdMiniScene \(UserDefaults().bool(forKey: "Winorlose")) ")
         UserDefaults.standard.set(UserDefaults().integer(forKey: "Numberoflives") - 1, forKey: "Numberoflives")
         UserDefaults.standard.synchronize()
         print("AirPollution \(UserDefaults().integer(forKey: "Numberoflives")) number of lives")

@@ -16,6 +16,7 @@ class StartScene: SKScene {
     var title: SKLabelNode!
     var playButton: MSButtonNode!
     var saveEarthButton: MSButtonNode!
+    static var openAppOnce: Bool = true
     var highScore: Int {
         get {
             if let storedHighScore = UserDefaults.standard.object(forKey: "Highscore") as? Int {
@@ -91,29 +92,27 @@ class StartScene: SKScene {
             UserDefaults.standard.synchronize()
         }
     }
-    var openAppOnce: Int {
+    
+    var winOrLose: Bool {
         get {
-            if let storedopenAppOnce = UserDefaults.standard.object(forKey: "OpenOnce") as? Int {
-                return storedopenAppOnce
+            if let storedWinOrLose = UserDefaults.standard.object(forKey: "Winorlose") as? Bool {
+                return storedWinOrLose
             }
-            return 0
+            return false
         }
         set {
-            UserDefaults.standard.set(newValue, forKey: "OpenOnce")
+            UserDefaults.standard.set(newValue, forKey: "Winorlose")
             UserDefaults.standard.synchronize()
         }
     }
+    
     var happyEarth: SKSpriteNode!
     let animateHappyEarth = SKAction(named: "AnimateHappyEarth")!
     let wait = SKAction.wait(forDuration: 0.7)
     let fadeOut = SKAction.fadeOut(withDuration: 0.5)
     
     override func didMove(to view: SKView) {
-        
-        UserDefaults.standard.set(1, forKey: "OpenOnce")
-        UserDefaults.standard.synchronize()
-        print(" Open Once start scene \(UserDefaults.standard.integer(forKey: "OpenOnce")) ")
-        
+         
         do {
             audioPlayer = try AVAudioPlayer(contentsOf: URL.init(fileURLWithPath: Bundle.main.path(forResource: "Marchofthespoons", ofType: "mp3")!))
             audioPlayer.prepareToPlay()
@@ -134,15 +133,15 @@ class StartScene: SKScene {
         print("StartScene \(UserDefaults.standard.integer(forKey: "Countchecker")) count checker")
         
         playButton = childNode(withName: "playButton") as! MSButtonNode
-        playButton.selectedHandler = {
-            self.generateRandomScene()
-            self.audioPlayer.stop()
+        playButton.selectedHandler = { [weak self] in
+            self?.generateRandomScene()
+            self?.audioPlayer.stop()
         }
         
         saveEarthButton = childNode(withName: "saveEarthButton") as! MSButtonNode
-        saveEarthButton.selectedHandler = {
-            self.loadSaveEarth()
-            self.audioPlayer.stop()
+        saveEarthButton.selectedHandler = { [weak self] in
+            self?.loadSaveEarth()
+            self?.audioPlayer.stop()
         }
         
         playButton.isHidden = true
@@ -163,13 +162,20 @@ class StartScene: SKScene {
         let audioPlay = SKAction.run ({
             self.playBackgroundMusic()
         })
-        if UserDefaults.standard.integer(forKey: "OpenOnce") == 1 {
+        
+        happyEarth = childNode(withName: "happyEarth") as! SKSpriteNode
+        
+        if StartScene.openAppOnce == false {
+            self.playButton.isHidden = false
+            self.saveEarthButton.isHidden = false
+            self.title.isHidden = false
+            happyEarth.isHidden = true
+            audioPlayer.play()
+        }
+        if StartScene.openAppOnce == true {
             let animationEarthSequence = SKAction.sequence([wait, animateHappyEarth, lastSectionAnimation, wait, fadeOut, revealStartScene, audioPlay])
-            happyEarth = childNode(withName: "happyEarth") as! SKSpriteNode
             happyEarth.run(animationEarthSequence)
-            UserDefaults.standard.set(2, forKey: "OpenOnce")
-            UserDefaults.standard.synchronize()
-            print(" Open Once start scene \(UserDefaults.standard.integer(forKey: "OpenOnce")) ")
+            StartScene.openAppOnce = false
         }
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

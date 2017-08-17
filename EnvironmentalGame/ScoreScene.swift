@@ -48,10 +48,13 @@ class ScoreScene: SKScene {
             UserDefaults.standard.synchronize()
         }
     }
+    var winOrLose = UserDefaults.standard.bool(forKey: "Winorlose")
+    
     let shortWait = SKAction.wait(forDuration: 0.5)
     let longWait = SKAction.wait(forDuration: 1.0)
     let earthFire = SKAction(named: "EarthFire")!
-    
+    let winSound = SKAction(named: "WinSound")!
+    let loseSound = SKAction(named: "LoseSound")!
     
     
     override func didMove(to view: SKView) {
@@ -63,13 +66,6 @@ class ScoreScene: SKScene {
         fire3 = earth3.childNode(withName: "fire3") as! SKEmitterNode
         hideFire()
         
-        if livesForEarth == 1 {
-            fire1.isHidden = false
-        }
-        if livesForEarth == 0 {
-            fire1.isHidden = false
-            fire2.isHidden = false
-        }
         currentScoreLabel = childNode(withName: "currentScoreLabel") as! SKLabelNode
         currentScoreText = childNode(withName: "currentScoreText") as! SKLabelNode
         speedUpText = childNode(withName: "speedUpText") as! SKLabelNode
@@ -79,9 +75,9 @@ class ScoreScene: SKScene {
         print("ScoreScene \(UserDefaults.standard.integer(forKey: "Countchecker")) count checker")
         currentScoreLabel.text = String(UserDefaults.standard.integer(forKey: "Currentscore"))
         
-        /*let updateScore = SKAction.run ({
+        let updateScore = SKAction.run ({
             self.currentScoreLabel.text = String(UserDefaults.standard.integer(forKey: "Currentscore"))
-        }) */
+        })
         let lightEarthOnFire = SKAction.run ({
             if self.livesForEarth == 2 {
                 self.fire1.isHidden = false
@@ -89,11 +85,14 @@ class ScoreScene: SKScene {
                 
             }
             if self.livesForEarth == 1{
+                self.fire1.isHidden = false
                 self.fire2.isHidden = false
                 self.run(self.earthFire)
                 
             }
             if self.livesForEarth == 0 {
+                self.fire1.isHidden = false
+                self.fire2.isHidden = false
                 self.fire3.isHidden = false
                 let loadOver = SKAction.run ({
                     self.run(self.earthFire)
@@ -107,8 +106,26 @@ class ScoreScene: SKScene {
             self.nextActionAfterWait()
         })
         
-        let scoreSequence = SKAction.sequence([shortWait, lightEarthOnFire, longWait, nextAction])
-        self.run(scoreSequence)
+        let scoreLoseSequence = SKAction.sequence([shortWait, lightEarthOnFire, loseSound, updateScore, longWait, nextAction])
+        let scoreWinSequence = SKAction.sequence([shortWait, winSound, updateScore, longWait, nextAction])
+        
+        if winOrLose == false{
+            UserDefaults.standard.set(UserDefaults().integer(forKey: "Currentscore") - 70, forKey: "Currentscore")
+            UserDefaults.standard.synchronize()
+            self.run(scoreLoseSequence)
+        }
+        else if winOrLose == true {
+            UserDefaults.standard.set(UserDefaults().integer(forKey: "Currentscore") + 120, forKey: "Currentscore")
+            UserDefaults.standard.synchronize()
+            if livesForEarth == 2 {
+                fire1.isHidden = false
+            }
+            if livesForEarth == 1 {
+                fire1.isHidden = false
+                fire2.isHidden = false
+            }
+            self.run(scoreWinSequence)
+        }
     }
     
     func nextActionAfterWait(){

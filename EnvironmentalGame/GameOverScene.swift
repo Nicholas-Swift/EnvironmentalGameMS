@@ -66,25 +66,24 @@ class GameOverScene: SKScene{
         scoreGameOverLabel = childNode(withName: "scoreGameOverLabel") as! SKLabelNode
         highScoreGameOverLabel = childNode(withName: "highScoreGameOverLabel") as! SKLabelNode
         menuButton = childNode(withName: "menuButton") as! MSButtonNode
-        menuButton.selectedHandler = {
-            print(" Open Once game over scene \(UserDefaults.standard.integer(forKey: "OpenOnce")) ")
-            self.loadMainMenu()
-            self.audioPlayer.stop()
+        menuButton.selectedHandler = { [weak self] in
+            self?.loadMainMenu()
+            self?.audioPlayer.stop()
         }
         playAgainButton = childNode(withName: "playAgainButton") as! MSButtonNode
-        playAgainButton.selectedHandler = {
-            self.generateRandomScene()
-            self.audioPlayer.stop()
+        playAgainButton.selectedHandler = { [weak self] in
+            self?.generateRandomScene()
+            self?.audioPlayer.stop()
         }
         saveEarthButton = childNode(withName: "saveEarthButton") as! MSButtonNode
-        saveEarthButton.selectedHandler = {
-            self.loadSaveEarth()
-            self.audioPlayer.stop()
+        saveEarthButton.selectedHandler = { [weak self] in
+            self?.loadSaveEarth()
+            self?.audioPlayer.stop()
         }
         creditsButton = childNode(withName: "creditsButton") as! MSButtonNode
-        creditsButton.selectedHandler = {
-            self.loadCredits()
-            self.audioPlayer.stop()
+        creditsButton.selectedHandler = { [weak self] in
+            self?.loadCredits()
+            self?.audioPlayer.stop()
         }
         currentScoreGameOver = UserDefaults.standard.integer(forKey: "Currentscore")
         highScoreGameOver = UserDefaults.standard.integer(forKey: "Highscore")
@@ -171,6 +170,7 @@ class GameOverScene: SKScene{
         /* 4) Start game scene */
         skView.presentScene(scene)
     }
+    
     public func generateRandomScene() {
         let randomNumber = arc4random_uniform(100)
         if randomNumber <= 20{
@@ -212,6 +212,7 @@ class GameOverScene: SKScene{
         //print(randomNumberSecond)
         print("GameOverScene \(UserDefaults().integer(forKey: "Randomnumbersecond")) random 2nd #")
     }
+    
     public func loadRandomScene(){
         if randomNumberSecond != randomNumberFirst{
             if randomNumberSecond == 1 {

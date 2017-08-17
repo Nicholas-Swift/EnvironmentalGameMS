@@ -14,8 +14,8 @@ class SaveEarth: SKScene{
     
      override func didMove(to view: SKView) {
         menuButtonSaveEarth = self.childNode(withName: "menuButtonSaveEarth") as! MSButtonNode
-        menuButtonSaveEarth.selectedHandler = {
-            self.loadMainMenu()
+        menuButtonSaveEarth.selectedHandler = { [weak self] in
+            self?.loadMainMenu()
         }
     }
     

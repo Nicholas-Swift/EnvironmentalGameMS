@@ -92,15 +92,14 @@ class DeforestationScene: SKScene, SKPhysicsContactDelegate {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         /* Called when a touch begins */
-        forestMainLabel.isHidden = true
-        forestLabel.isHidden = true
+        
     }
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         if treeState == false { return }
         for touch in touches {
             touchLocation = touch.location(in: self)
             if human.contains(touchLocation) {
-                print(human.position.x)
+               // print(human.position.x)
                 if human.position.x <  -(self.size.width / 2) + 10 {
                     human.position.x = -(self.size.width / 2) + 10
                 }
@@ -143,6 +142,18 @@ class DeforestationScene: SKScene, SKPhysicsContactDelegate {
                 }
                 human7.position.x = touchLocation.x - 20
             }
+            else if human8.contains(touchLocation) {
+                if human8.position.x < -(self.size.width / 2) + 10 {
+                    human8.position.x = -(self.size.width / 2 ) + 10
+                }
+                human8.position.x = touchLocation.x - 20
+            }
+            else if human9.contains(touchLocation) {
+                if human9.position.x > (self.size.width / 2) - 10 {
+                    human9.position.x = (self.size.width / 2) - 10
+                }
+                human9.position.x = touchLocation.x + 20
+            }
         }
     }
     override func update(_ currentTime: TimeInterval) {
@@ -159,7 +170,7 @@ class DeforestationScene: SKScene, SKPhysicsContactDelegate {
             human7.physicsBody?.velocity = CGVector(dx: 35, dy: 0)
         }
         else if countChecker <= 6 && countChecker > 3 {
-            time -= 0.0022
+            time -= 0.002
             human.physicsBody?.velocity = CGVector(dx: 50, dy: 0)
             human2.physicsBody?.velocity = CGVector(dx: 50, dy: 0)
             human3.physicsBody?.velocity = CGVector(dx: 70, dy: 0)
@@ -169,7 +180,7 @@ class DeforestationScene: SKScene, SKPhysicsContactDelegate {
             human7.physicsBody?.velocity = CGVector(dx: 40, dy: 0)
         }
         else if countChecker <= 9 && countChecker > 6 {
-            time -= 0.003
+            time -= 0.0022
             human.physicsBody?.velocity = CGVector(dx: 65, dy: 0)
             human2.physicsBody?.velocity = CGVector(dx: 65, dy: 0)
             human3.physicsBody?.velocity = CGVector(dx: 75, dy: 0)
@@ -186,7 +197,7 @@ class DeforestationScene: SKScene, SKPhysicsContactDelegate {
             human9.physicsBody?.velocity = CGVector(dx: -90, dy: 0)
         }
         else if countChecker <= 12 && countChecker > 9 {
-            time -= 0.004
+            time -= 0.0024
             human.physicsBody?.velocity = CGVector(dx: 75, dy: 0)
             human2.physicsBody?.velocity = CGVector(dx: 75, dy: 0)
             human3.physicsBody?.velocity = CGVector(dx: 85, dy: 0)
@@ -203,7 +214,7 @@ class DeforestationScene: SKScene, SKPhysicsContactDelegate {
             human9.physicsBody?.velocity = CGVector(dx: -100, dy: 0)
         }
         else if countChecker <= 15 && countChecker > 12 {
-            time -= 0.006
+            time -= 0.0025
             human.physicsBody?.velocity = CGVector(dx: 85, dy: 0)
             human2.physicsBody?.velocity = CGVector(dx: 85, dy: 0)
             human3.physicsBody?.velocity = CGVector(dx: 95, dy: 0)
@@ -220,7 +231,7 @@ class DeforestationScene: SKScene, SKPhysicsContactDelegate {
             human9.physicsBody?.velocity = CGVector(dx: -90, dy: 0)
         }
         else if countChecker <= 18 && countChecker > 15 {
-            time -= 0.0065
+            time -= 0.0026
             human.physicsBody?.velocity = CGVector(dx: 95, dy: 0)
             human2.physicsBody?.velocity = CGVector(dx: 95, dy: 0)
             human3.physicsBody?.velocity = CGVector(dx: 100, dy: 0)
@@ -237,7 +248,7 @@ class DeforestationScene: SKScene, SKPhysicsContactDelegate {
             human9.physicsBody?.velocity = CGVector(dx: -90, dy: 0)
         }
         else if countChecker <= 21 && countChecker > 18 {
-            time -= 0.007
+            time -= 0.0027
             human.physicsBody?.velocity = CGVector(dx: 95, dy: 0)
             human2.physicsBody?.velocity = CGVector(dx: 95, dy: 0)
             human3.physicsBody?.velocity = CGVector(dx: 105, dy: 0)
@@ -245,9 +256,17 @@ class DeforestationScene: SKScene, SKPhysicsContactDelegate {
             human5.physicsBody?.velocity = CGVector(dx: -95, dy: 0)
             human6.physicsBody?.velocity = CGVector(dx: -105, dy: 0)
             human7.physicsBody?.velocity = CGVector(dx: 85, dy: 0)
+            
+            human8.physicsBody?.isDynamic = true
+            human8.isHidden = false
+            human8.physicsBody?.velocity = CGVector(dx: 90, dy: 0)
+            human9.physicsBody?.isDynamic = true
+            human9.isHidden = false
+            human9.physicsBody?.velocity = CGVector(dx: -90, dy: 0)
         }
+            
         else if countChecker <= 24 && countChecker > 21 {
-            time -= 0.0075
+            time -= 0.0028
             human.physicsBody?.velocity = CGVector(dx: 105, dy: 0)
             human2.physicsBody?.velocity = CGVector(dx: 105, dy: 0)
             human3.physicsBody?.velocity = CGVector(dx: 115, dy: 0)
@@ -257,7 +276,7 @@ class DeforestationScene: SKScene, SKPhysicsContactDelegate {
             human7.physicsBody?.velocity = CGVector(dx: 95, dy: 0)
         }
         else if countChecker <= 27 && countChecker > 24 {
-            time -= 0.008
+            time -= 0.0029
             human.physicsBody?.velocity = CGVector(dx: 100, dy: 0)
             human2.physicsBody?.velocity = CGVector(dx: 100, dy: 0)
             human3.physicsBody?.velocity = CGVector(dx: 120, dy: 0)
@@ -266,8 +285,8 @@ class DeforestationScene: SKScene, SKPhysicsContactDelegate {
             human6.physicsBody?.velocity = CGVector(dx: -120, dy: 0)
             human7.physicsBody?.velocity = CGVector(dx: 105, dy: 0)
         }
-        else if countChecker <= 30 && countChecker > 27 {
-            time -= 0.0085
+        else {
+            time -= 0.003
             human.physicsBody?.velocity = CGVector(dx: 105, dy: 0)
             human2.physicsBody?.velocity = CGVector(dx: 105, dy: 0)
             human3.physicsBody?.velocity = CGVector(dx: 125, dy: 0)
@@ -276,36 +295,11 @@ class DeforestationScene: SKScene, SKPhysicsContactDelegate {
             human6.physicsBody?.velocity = CGVector(dx: -125, dy: 0)
             human7.physicsBody?.velocity = CGVector(dx: 115, dy: 0)
         }
-        else if countChecker <= 33 && countChecker > 27 {
-            time -= 0.009
-            human.physicsBody?.velocity = CGVector(dx: 115, dy: 0)
-            human2.physicsBody?.velocity = CGVector(dx: 115, dy: 0)
-            human3.physicsBody?.velocity = CGVector(dx: 135, dy: 0)
-            human4.physicsBody?.velocity = CGVector(dx: -125, dy: 0)
-            human5.physicsBody?.velocity = CGVector(dx: -145, dy: 0)
-            human6.physicsBody?.velocity = CGVector(dx: -135, dy: 0)
-            human7.physicsBody?.velocity = CGVector(dx: 125, dy: 0)
+        if time <= 0.9 {
+            forestMainLabel.isHidden = true
+            forestLabel.isHidden = true
         }
-        else if countChecker <= 36 && countChecker > 33 {
-            time -= 0.0093
-            human.physicsBody?.velocity = CGVector(dx: 125, dy: 0)
-            human2.physicsBody?.velocity = CGVector(dx: 125, dy: 0)
-            human3.physicsBody?.velocity = CGVector(dx: 145, dy: 0)
-            human4.physicsBody?.velocity = CGVector(dx: -150, dy: 0)
-            human5.physicsBody?.velocity = CGVector(dx: -125, dy: 0)
-            human6.physicsBody?.velocity = CGVector(dx: -145, dy: 0)
-            human7.physicsBody?.velocity = CGVector(dx: 150, dy: 0)
-        }
-        else if countChecker <= 39 && countChecker > 36{
-            time -= 0.0095
-            human.physicsBody?.velocity = CGVector(dx: 135, dy: 0)
-            human2.physicsBody?.velocity = CGVector(dx: 135, dy: 0)
-            human3.physicsBody?.velocity = CGVector(dx: 155, dy: 0)
-            human4.physicsBody?.velocity = CGVector(dx: -145, dy: 0)
-            human5.physicsBody?.velocity = CGVector(dx: -155, dy: 0)
-            human6.physicsBody?.velocity = CGVector(dx: -175, dy: 0)
-            human7.physicsBody?.velocity = CGVector(dx: 145, dy: 0)
-        }
+        
         //Player ran out of time
         if time < 0 {
             // print(time)
@@ -360,15 +354,16 @@ class DeforestationScene: SKScene, SKPhysicsContactDelegate {
     }
     func completeGame(){
         audioPlayer.stop()
-        UserDefaults.standard.set(UserDefaults().integer(forKey: "Currentscore") + 50, forKey: "Currentscore")
+        UserDefaults.standard.set(true, forKey: "Winorlose")
         UserDefaults.standard.synchronize()
-        print("Deforestation \(UserDefaults().integer(forKey: "Currentscore")) current score")
+        print("BirdMiniScene \(UserDefaults().bool(forKey: "Winorlose")) ")
         loadScoreScreen()
     }
     func failedGame(){
-        UserDefaults.standard.set(UserDefaults().integer(forKey: "Currentscore") - 50, forKey: "Currentscore")
+        audioPlayer.stop()
+        UserDefaults.standard.set(false, forKey: "Winorlose")
         UserDefaults.standard.synchronize()
-        print("Deforestation \(UserDefaults().integer(forKey: "Currentscore")) current score")
+        print("BirdMiniScene \(UserDefaults().bool(forKey: "Winorlose")) ")
         UserDefaults.standard.set(UserDefaults().integer(forKey: "Numberoflives") - 1, forKey: "Numberoflives")
         UserDefaults.standard.synchronize()
         print("Deforestation \(UserDefaults().integer(forKey: "Numberoflives")) number of lives")
