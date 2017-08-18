@@ -11,16 +11,7 @@ import SpriteKit
 
 class ScoreScene: SKScene {
     
-    var earth1: SKSpriteNode!
-    var earth2: SKSpriteNode!
-    var earth3: SKSpriteNode!
-    var fire1: SKEmitterNode!
-    var fire2: SKEmitterNode!
-    var fire3: SKEmitterNode!
-    var currentScoreLabel: SKLabelNode!
-    var currentScoreText: SKLabelNode!
-    var speedUpText: SKLabelNode!
-    var animateSpeedUp = SKAction.sequence([SKAction.fadeIn(withDuration: 0.3), SKAction.fadeOut(withDuration: 0.3),SKAction.fadeIn(withDuration: 0.3), SKAction.fadeOut(withDuration: 0.3), SKAction.fadeIn(withDuration: 0.3), SKAction.fadeOut(withDuration: 0.3)])
+    // MARK: - Instance Vars
     var countChecker: Int = UserDefaults.standard.integer(forKey: "Countchecker")
     var livesForEarth: Int = UserDefaults.standard.integer(forKey: "Numberoflives")
     var randomNumberFirst: Int {
@@ -35,7 +26,6 @@ class ScoreScene: SKScene {
             UserDefaults.standard.synchronize()
         }
     }
-    
     var randomNumberSecond: Int {
         get {
             if let storedRandomNumberSecond = UserDefaults.standard.object(forKey: "Randomnumbersecond") as? Int {
@@ -50,13 +40,26 @@ class ScoreScene: SKScene {
     }
     var winOrLose = UserDefaults.standard.bool(forKey: "Winorlose")
     
+    // MARK: - SKNodes
+    var earth1: SKSpriteNode!
+    var earth2: SKSpriteNode!
+    var earth3: SKSpriteNode!
+    var fire1: SKEmitterNode!
+    var fire2: SKEmitterNode!
+    var fire3: SKEmitterNode!
+    var currentScoreLabel: SKLabelNode!
+    var currentScoreText: SKLabelNode!
+    var speedUpText: SKLabelNode!
+    
+    // MARK: - SKActions
+    var animateSpeedUp = SKAction.sequence([SKAction.fadeIn(withDuration: 0.3), SKAction.fadeOut(withDuration: 0.3),SKAction.fadeIn(withDuration: 0.3), SKAction.fadeOut(withDuration: 0.3), SKAction.fadeIn(withDuration: 0.3), SKAction.fadeOut(withDuration: 0.3)])
     let shortWait = SKAction.wait(forDuration: 0.5)
     let longWait = SKAction.wait(forDuration: 1.0)
     let earthFire = SKAction(named: "EarthFire")!
     let winSound = SKAction(named: "WinSound")!
     let loseSound = SKAction(named: "LoseSound")!
     
-    
+    // MARK: - Scene Lifecycle
     override func didMove(to view: SKView) {
         earth1 = childNode(withName: "earth1") as! SKSpriteNode
         earth2 = childNode(withName: "earth2") as! SKSpriteNode
@@ -109,20 +112,18 @@ class ScoreScene: SKScene {
         })
         let loadOverSequence = SKAction.sequence([shortWait, lightEarthOnFire, loseSound, updateScore, longWait, loadOver])
 
-        if winOrLose == false{
-            if livesForEarth == 0 {
+        if winOrLose == false {
+            if livesForEarth <= 0 {
                 UserDefaults.standard.set(UserDefaults().integer(forKey: "Currentscore") - 70, forKey: "Currentscore")
                 UserDefaults.standard.synchronize()
                 self.run(loadOverSequence)
             }
             else {
-            UserDefaults.standard.set(UserDefaults().integer(forKey: "Currentscore") - 70, forKey: "Currentscore")
-            UserDefaults.standard.synchronize()
-            self.run(scoreLoseSequence)
-                
+                UserDefaults.standard.set(UserDefaults().integer(forKey: "Currentscore") - 70, forKey: "Currentscore")
+                UserDefaults.standard.synchronize()
+                self.run(scoreLoseSequence)
             }
-        }
-        else if winOrLose == true {
+        } else {
             UserDefaults.standard.set(UserDefaults().integer(forKey: "Currentscore") + 120, forKey: "Currentscore")
             UserDefaults.standard.synchronize()
             if livesForEarth == 2 {
@@ -136,64 +137,17 @@ class ScoreScene: SKScene {
         }
     }
     
-    func nextActionAfterWait(){
-        let generateNewScene = SKAction.run({
-            self.generateRandomScene()
-        })
-        if (countChecker % 3 == 0) && (countChecker >= 3){
-                print("Speed Up will load")
-                self.currentScoreText.isHidden = true
-                self.currentScoreLabel.isHidden = true
-                self.earth1.isHidden = true
-                self.earth2.isHidden = true
-                self.earth3.isHidden = true
-                self.speedUpText.isHidden = false
-                let hideSpeedUpText = SKAction.run ({
-                    self.speedUpText.isHidden = true
-                    self.speedUpText.removeAllActions()
-                })
-                let speedUpSequence = SKAction.sequence([animateSpeedUp, hideSpeedUpText, generateNewScene])
-                self.run(speedUpSequence)
-    
-        }
-        else {
-            let generateSequence = SKAction.sequence([longWait, generateNewScene])
-            self.run(generateSequence)
-        }
-        
-        
-    }
-    func hideFire(){
-        fire1.isHidden = true
-        fire2.isHidden = true
-        fire3.isHidden = true
-    }
-    func loadGameOver(){
-        /* 1) Grab reference to our SpriteKit view */
-        guard let skView = self.view as SKView! else {
-            print("Could not get GameOverSkview")
-            return
-        }
-        
-        /* 2) Load Game scene */
-        guard let scene = SKScene(fileNamed:"GameOverScene") else {
-            print("Could not make GameOverScene")
-            return
-        }
-        
-        /* 3) Ensure correct aspect mode */
-        scene.scaleMode = .aspectFit
-        
-        /* Show debug */
-        skView.showsPhysics = false
-        skView.showsDrawCount = false
-        skView.showsFPS = false
-        
-        /* 4) Start game scene */
-        skView.presentScene(scene)
-    }
-    
      public func generateRandomScene() {
+//        // HAVI PLEASE WHYYYYYY
+//        
+//        randomNumberSecond = Int(arc4random_uniform(5 + 1))
+//        UserDefaults.standard.set(randomNumberSecond, forKey: "Randomnumbersecond")
+//        UserDefaults.standard.synchronize()
+//        loadRandomScene()
+//        
+//        // ^^ I think you only need the stuff above and that takes out all the other code you currently have...
+        
+        
         let randomNumber = arc4random_uniform(100)
         if randomNumber <= 20{
             randomNumberSecond = 1
@@ -234,6 +188,7 @@ class ScoreScene: SKScene {
         //print(randomNumberSecond)
         print(UserDefaults().integer(forKey: "Randomnumbersecond"))
     }
+    
     public func loadRandomScene(){
         if randomNumberSecond != randomNumberFirst{
             if randomNumberSecond == 1 {
@@ -395,4 +350,68 @@ class ScoreScene: SKScene {
     override func update(_ currentTime: TimeInterval) {
         /* Called before each frame is rendered */
     }
+}
+
+// MARK: - Private Methods
+extension ScoreScene {
+    
+    func nextActionAfterWait(){
+        let generateNewScene = SKAction.run({
+            self.generateRandomScene()
+        })
+        if (countChecker % 3 == 0) && (countChecker >= 3){
+            print("Speed Up will load")
+            self.currentScoreText.isHidden = true
+            self.currentScoreLabel.isHidden = true
+            self.earth1.isHidden = true
+            self.earth2.isHidden = true
+            self.earth3.isHidden = true
+            self.speedUpText.isHidden = false
+            let hideSpeedUpText = SKAction.run ({
+                self.speedUpText.isHidden = true
+                self.speedUpText.removeAllActions()
+            })
+            let speedUpSequence = SKAction.sequence([animateSpeedUp, hideSpeedUpText, generateNewScene])
+            self.run(speedUpSequence)
+            
+        }
+        else {
+            let generateSequence = SKAction.sequence([longWait, generateNewScene])
+            self.run(generateSequence)
+        }
+        
+        
+    }
+    
+    func hideFire(){
+        fire1.isHidden = true
+        fire2.isHidden = true
+        fire3.isHidden = true
+    }
+    
+    func loadGameOver(){
+        /* 1) Grab reference to our SpriteKit view */
+        guard let skView = self.view as SKView! else {
+            print("Could not get GameOverSkview")
+            return
+        }
+        
+        /* 2) Load Game scene */
+        guard let scene = SKScene(fileNamed:"GameOverScene") else {
+            print("Could not make GameOverScene")
+            return
+        }
+        
+        /* 3) Ensure correct aspect mode */
+        scene.scaleMode = .aspectFit
+        
+        /* Show debug */
+        skView.showsPhysics = false
+        skView.showsDrawCount = false
+        skView.showsFPS = false
+        
+        /* 4) Start game scene */
+        skView.presentScene(scene)
+    }
+    
 }
