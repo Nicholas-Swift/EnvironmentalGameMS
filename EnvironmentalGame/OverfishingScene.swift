@@ -160,14 +160,14 @@ class OverfishingScene: SKScene, SKPhysicsContactDelegate {
         audioPlayer.stop()
         UserDefaults.standard.set(true, forKey: "Winorlose")
         UserDefaults.standard.synchronize()
-        print("BirdMiniScene \(UserDefaults().bool(forKey: "Winorlose")) ")
+        print("OverfishingScene \(UserDefaults().bool(forKey: "Winorlose")) ")
         loadScoreScreen()
     }
     func failedGame(){
         audioPlayer.stop()
         UserDefaults.standard.set(false, forKey: "Winorlose")
         UserDefaults.standard.synchronize()
-        print("BirdMiniScene \(UserDefaults().bool(forKey: "Winorlose")) ")
+        print("OverfishingScene \(UserDefaults().bool(forKey: "Winorlose")) ")
         UserDefaults.standard.set(UserDefaults().integer(forKey: "Numberoflives") - 1, forKey: "Numberoflives")
         UserDefaults.standard.synchronize()
         print("Overfishing \( UserDefaults().integer(forKey: "Numberoflives")) number of lives")
@@ -176,27 +176,27 @@ class OverfishingScene: SKScene, SKPhysicsContactDelegate {
     }
     func loadScoreScreen(){
         
-        /* 1) Grab reference to our SpriteKit view */
+        // 1) Grab reference to our SpriteKit view
         guard let skView = self.view as SKView! else {
             print("Could not get ScoreSkview from Cverfishing")
             return
         }
         
-        /* 2) Load Game scene */
+        // 2) Load Game scene
         guard let scene = SKScene(fileNamed:"ScoreScene") else {
             print("Could not make ScoreScene from Cverfishing")
             return
         }
         
-        /* 3) Ensure correct aspect mode */
+        // 3) Ensure correct aspect mode
         scene.scaleMode = .aspectFit
         
-        /* Show debug */
+        // Show debug
         skView.showsPhysics = false
         skView.showsDrawCount = false
         skView.showsFPS = false
         
-        /* 4) Start game scene */
+        // 4) Start game scene 
         skView.presentScene(scene)
     }
     

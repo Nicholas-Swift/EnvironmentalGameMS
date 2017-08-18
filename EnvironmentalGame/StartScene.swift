@@ -229,147 +229,147 @@ class StartScene: SKScene {
     public func loadRandomScene(){
         if randomNumberSecond != randomNumberFirst{
             if randomNumberSecond == 1 {
-                /* 1) Grab reference to our SpriteKit view */
+                // 1) Grab reference to our SpriteKit view
                 guard let skView = self.view as SKView! else {
                     print("Could not get BirdMiniSkview")
                     return
                 }
                 
-                /* 2) Load Game scene */
+                // 2) Load Game scene
                 guard let scene = SKScene(fileNamed:"BirdMiniScene") else {
                     print("Could not make BirdMiniScene")
                     return
                 }
                 
-                /* 3) Ensure correct aspect mode */
+                // 3) Ensure correct aspect mode
                 scene.scaleMode = .aspectFit
                 
-                /* Show debug */
+                // debug
                 skView.showsPhysics = false
                 skView.showsDrawCount = false
                 skView.showsFPS = false
                 
-                /* 4) Start game scene */
+                // 4) Start game scene
                 skView.presentScene(scene)
             }
             else if randomNumberSecond == 2 {
-                /* 1) Grab reference to our SpriteKit view */
+                // 1) Grab reference to our SpriteKit view
                 guard let skView = self.view as SKView! else {
                     print("Could not get OverfishingSkview")
                     return
                 }
                 
-                /* 2) Load Game scene */
+                // 2) Load Game scene
                 guard let scene = SKScene(fileNamed:"OverfishingScene") else {
                     print("Could not make OverfishingScene")
                     return
                 }
                 
-                /* 3) Ensure correct aspect mode */
+                // 3) Ensure correct aspect mode
                 scene.scaleMode = .aspectFit
                 
-                /* Show debug */
+                // debug
                 skView.showsPhysics = false
                 skView.showsDrawCount = false
                 skView.showsFPS = false
                 
-                /* 4) Start game scene */
+                // 4) Start game scene
                 skView.presentScene(scene)
             }
             else if randomNumberSecond == 3{
-                /* 1) Grab reference to our SpriteKit view */
+                // 1) Grab reference to our SpriteKit view
                 guard let skView = self.view as SKView! else {
                     print("Could not get IceMeltingSkview")
                     return
                 }
                 
-                /* 2) Load Game scene */
+                // 2) Load Game scene
                 guard let scene = SKScene(fileNamed:"IceMeltingScene") else {
                     print("Could not make IceMeltingScene")
                     return
                 }
                 
-                /* 3) Ensure correct aspect mode */
+                // 3) Ensure correct aspect mode
                 scene.scaleMode = .aspectFit
                 
-                /* Show debug */
+                // Debug
                 skView.showsPhysics = false
                 skView.showsDrawCount = false
                 skView.showsFPS = false
                 
-                /* 4) Start game scene */
+                // 4) Start game scene
                 skView.presentScene(scene)
             }
             else if randomNumberSecond == 4{
-                /* 1) Grab reference to our SpriteKit view */
+                // 1) Grab reference to our SpriteKit view
                 guard let skView = self.view as SKView! else {
                     print("Could not get DeforestationSkview")
                     return
                 }
                 
-                /* 2) Load Game scene */
+                // 2) Load Game scene
                 guard let scene = SKScene(fileNamed:"DeforestationScene") else {
                     print("Could not make DeforestationScene")
                     return
                 }
                 
-                /* 3) Ensure correct aspect mode */
+                // 3) Ensure correct aspect mode
                 scene.scaleMode = .aspectFit
                 
-                /* Show debug */
+                // Show debug
                 skView.showsPhysics = false
                 skView.showsDrawCount = false
                 skView.showsFPS = false
                 
-                /* 4) Start game scene */
+                // 4) Start game scene
                 skView.presentScene(scene)
             }
             else if randomNumberSecond == 5{
-                /* 1) Grab reference to our SpriteKit view */
+                // 1) Grab reference to our SpriteKit view
                 guard let skView = self.view as SKView! else {
                     print("Could not get AirPollutionSkview")
                     return
                 }
                 
-                /* 2) Load Game scene */
+                // 2) Load Game scene
                 guard let scene = SKScene(fileNamed:"AirPollution") else {
                     print("Could not make AirPollutionScene")
                     return
                 }
                 
-                /* 3) Ensure correct aspect mode */
+                // 3) Ensure correct aspect mode
                 scene.scaleMode = .aspectFit
                 
-                /* Show debug */
+                // Show debug
                 skView.showsPhysics = false
                 skView.showsDrawCount = false
                 skView.showsFPS = false
                 
-                /* 4) Start game scene */
+                // 4) Start game scene
                 skView.presentScene(scene)
             }
             else if randomNumberSecond == 6{
-                /* 1) Grab reference to our SpriteKit view */
+                // 1) Grab reference to our SpriteKit view
                 guard let skView = self.view as SKView! else {
                     print("Could not get OzoneSkview")
                     return
                 }
                 
-                /* 2) Load Game scene */
+                // 2) Load Game scene
                 guard let scene = SKScene(fileNamed:"OzoneScene") else {
                     print("Could not make AirPollutionScene")
                     return
                 }
                 
-                /* 3) Ensure correct aspect mode */
+                // 3) Ensure correct aspect mode
                 scene.scaleMode = .aspectFit
                 
-                /* Show debug */
+                // debug
                 skView.showsPhysics = false
                 skView.showsDrawCount = false
                 skView.showsFPS = false
                 
-                /* 4) Start game scene */
+                // 4) Start game scene
                 skView.presentScene(scene)
             }
         }
@@ -384,27 +384,27 @@ class StartScene: SKScene {
     
     func loadSaveEarth(){
         
-        /* 1) Grab reference to our SpriteKit view */
+        // 1) Grab reference to our SpriteKit view
         guard let skView = self.view as SKView! else {
             print("Could not get Skview")
             return
         }
         
-        /* 2) Load Game scene */
+        // 2) Load Game scene
         guard let scene = SKScene(fileNamed:"SaveEarth") else {
             print("Could not make GameScene, check the name is spelled correctly")
             return
         }
         
-        /* 3) Ensure correct aspect mode */
+        // 3) Ensure correct aspect mode
         scene.scaleMode = .aspectFit
         
-        /* Show debug */
+        // Show debug
         skView.showsPhysics = false
         skView.showsDrawCount = false
         skView.showsFPS = false
         
-        /* 4) Start game scene */
+        // 4) Start game scene 
         skView.presentScene(scene)
     }
     

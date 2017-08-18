@@ -156,20 +156,20 @@ class IceMeltingScene: SKScene, SKPhysicsContactDelegate {
         
         obstacleLayer.position.x -= scrollSpeed * CGFloat(fixedDelta)
         
-        /* Loop through obstacle layer nodes */
+        // Loop through obstacle layer nodes */
         for obstacle in obstacleLayer.children as! [SKReferenceNode] {
             
-            /* Wow bug fixes */
+            // Wow bug fixes */
             obstacle.name = "obstacle"
             
-            /* Get obstacle node position, convert node position to scene space */
+            // Get obstacle node position, convert node position to scene space */
             let obstaclePosition = obstacleLayer.convert(obstacle.position, to: self)
             
-            /* Check if obstacle has left the scene */
-            if obstaclePosition.x <= -50 {
-                // 26 is one half the width of an obstacle
+            // Check if obstacle has left the scene */
+            if obstaclePosition.x <= -200 {
                 
-                /* Remove obstacle node from obstacle layer */
+                
+                // Remove obstacle node from obstacle layer */
                 obstacle.removeFromParent()
             }
             
@@ -235,13 +235,13 @@ class IceMeltingScene: SKScene, SKPhysicsContactDelegate {
         if countChecker < 6 {
             if spawnTimer >= 2.2{
                 
-                /* Create a new obstacle by copying the source obstacle */
+                // Create a new obstacle by copying the source obstacle */
                 let newObstacle = obstacleSource.copy() as! SKNode
                 obstacleLayer.addChild(newObstacle)
                 
                 let randomPosition = CGPoint(x: 310 , y: 25)
                 
-                /* Convert new node position back to obstacle layer space */
+                // Convert new node position back to obstacle layer space */
                 newObstacle.position = self.convert(randomPosition, to: obstacleLayer)
                 
                 // Reset spawn timer
@@ -251,13 +251,13 @@ class IceMeltingScene: SKScene, SKPhysicsContactDelegate {
         else if countChecker >= 6 && countChecker < 9{
             if spawnTimer >= 1.8 {
                 
-                /* Create a new obstacle by copying the source obstacle */
+                // Create a new obstacle by copying the source obstacle */
                 let newObstacle = obstacleSource.copy() as! SKNode
                 obstacleLayer.addChild(newObstacle)
                 
                 let randomPosition = CGPoint(x: 310 , y: 25)
                 
-                /* Convert new node position back to obstacle layer space */
+                // Convert new node position back to obstacle layer space */
                 newObstacle.position = self.convert(randomPosition, to: obstacleLayer)
                 
                 // Reset spawn timer
@@ -267,13 +267,13 @@ class IceMeltingScene: SKScene, SKPhysicsContactDelegate {
         else if countChecker >= 9 && countChecker < 12 {
             if spawnTimer >= 1.5 {
                 
-                /* Create a new obstacle by copying the source obstacle */
+                // Create a new obstacle by copying the source obstacle */
                 let newObstacle = obstacleSource.copy() as! SKNode
                 obstacleLayer.addChild(newObstacle)
                 
                 let randomPosition = CGPoint(x: 310 , y: 25)
                 
-                /* Convert new node position back to obstacle layer space */
+                // Convert new node position back to obstacle layer space */
                 newObstacle.position = self.convert(randomPosition, to: obstacleLayer)
                 
                 // Reset spawn timer
@@ -283,13 +283,13 @@ class IceMeltingScene: SKScene, SKPhysicsContactDelegate {
         else {
             if spawnTimer == 1.2 {
                 
-                /* Create a new obstacle by copying the source obstacle */
+                // Create a new obstacle by copying the source obstacle */
                 let newObstacle = obstacleSource.copy() as! SKNode
                 obstacleLayer.addChild(newObstacle)
                 
                 let randomPosition = CGPoint(x: 310 , y: 25)
                 
-                /* Convert new node position back to obstacle layer space */
+                // Convert new node position back to obstacle layer space */
                 newObstacle.position = self.convert(randomPosition, to: obstacleLayer)
                 
                 // Reset spawn timer
@@ -344,13 +344,13 @@ class IceMeltingScene: SKScene, SKPhysicsContactDelegate {
         audioPlayer.stop()
         UserDefaults.standard.set(true, forKey: "Winorlose")
         UserDefaults.standard.synchronize()
-        print("BirdMiniScene \(UserDefaults().bool(forKey: "Winorlose")) ")
+        print("IceMeltingScene \(UserDefaults().bool(forKey: "Winorlose")) ")
         loadScoreScreen()
     }
     func failedGame(){
         UserDefaults.standard.set(false, forKey: "Winorlose")
         UserDefaults.standard.synchronize()
-        print("BirdMiniScene \(UserDefaults().bool(forKey: "Winorlose")) ")
+        print("IceMeltingScene \(UserDefaults().bool(forKey: "Winorlose")) ")
         UserDefaults.standard.set(UserDefaults().integer(forKey: "Numberoflives") - 1, forKey: "Numberoflives")
         UserDefaults.standard.synchronize()
         print("IceMelting \(UserDefaults().integer(forKey: "Numberoflives")) number of lives" )
@@ -359,27 +359,27 @@ class IceMeltingScene: SKScene, SKPhysicsContactDelegate {
     }
     func loadScoreScreen(){
         
-        /* 1) Grab reference to our SpriteKit view */
+        // 1) Grab reference to our SpriteKit view
         guard let skView = self.view as SKView! else {
             print("Could not get ScoreSkview")
             return
         }
         
-        /* 2) Load Game scene */
+        // 2) Load Game scene
         guard let scene = SKScene(fileNamed:"ScoreScene") else {
             print("Could not make ScoreScene")
             return
         }
         
-        /* 3) Ensure correct aspect mode */
+        // 3) Ensure correct aspect mode
         scene.scaleMode = .aspectFit
         
-        /* Show debug */
+        // Show debug
         skView.showsPhysics = false
         skView.showsDrawCount = false
         skView.showsFPS = false
         
-        /* 4) Start game scene */
+        // 4) Start game scene 
         skView.presentScene(scene)
     }
 }

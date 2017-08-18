@@ -61,14 +61,14 @@ class BirdMiniScene: SKScene, SKPhysicsContactDelegate {
         // Setup your scene here
         bird = self.childNode(withName: "bird") as! SKSpriteNode
         scrollLayer = self.childNode(withName: "scrollLayer")
-        /* Set reference to obstacle Source node */
+        // Set reference to obstacle Source node
         obstacleSource = self.childNode(withName: "obstacle")
-        /* Set reference to obstacle layer node */
+        // Set reference to obstacle layer node
         obstacleLayer = self.childNode(withName: "obstacleLayer")
         timeBar = childNode(withName: "timeBar") as! SKSpriteNode
         birdMiniMainLabel = self.childNode(withName: "birdMiniMainLabel") as! SKLabelNode
         birdMiniLabel = self.childNode(withName: "birdMiniLabel") as! SKLabelNode
-        /* Set physics contact delegate */
+        // Set physics contact delegate
         physicsWorld.contactDelegate = self
         
         bird.physicsBody?.affectedByGravity = false
@@ -131,7 +131,7 @@ class BirdMiniScene: SKScene, SKPhysicsContactDelegate {
             completeGame()
         }
         
-        /* Skip game update if game no longer active */
+        // Skip game update if game no longer active
         //if gameState != .active { return }
         
         // Grab current velocity
@@ -158,7 +158,7 @@ class BirdMiniScene: SKScene, SKPhysicsContactDelegate {
         // Process world scrolling
         scrollWorld()
         
-        /* Process obstacles */
+        // Process obstacles
         updateObstacles()
         
         spawnTimer += fixedDelta
@@ -186,36 +186,36 @@ class BirdMiniScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     func updateObstacles() {
-        /* Update Obstacles */
+        // Update Obstacles
         
         obstacleLayer.position.x -= scrollSpeed * CGFloat(fixedDelta)
         
-        /* Loop through obstacle layer nodes */
+        // Loop through obstacle layer nodes
         for obstacle in obstacleLayer.children as! [SKReferenceNode] {
             
-            /* Get obstacle node position, convert node position to scene space */
+            // Get obstacle node position, convert node position to scene space */
             let obstaclePosition = obstacleLayer.convert(obstacle.position, to: self)
             
-            /* Check if obstacle has left the scene */
-            if obstaclePosition.x <= -26 {
-                // 26 is one half the width of an obstacle
+            // Check if obstacle has left the scene
+            if obstaclePosition.x <= -50 {
                 
-                /* Remove obstacle node from obstacle layer */
+                
+                // Remove obstacle node from obstacle layer
                 obstacle.removeFromParent()
             }
             
         }
-        /* Time to add a new obstacle? */
+        // Time to add a new obstacle?
             if spawnTimer >= 1.7 {
                 
-                /* Create a new obstacle by copying the source obstacle */
+                // Create a new obstacle by copying the source obstacle
                 let newObstacle = obstacleSource.copy() as! SKNode
                 obstacleLayer.addChild(newObstacle)
                 
-                /* Generate new obstacle position, start just outside screen and with a random y value */
+                // Generate new obstacle position, start just outside screen and with a random y value
                 let randomPosition = CGPoint(x: 450, y: CGFloat.random(min: 45, max: 160))
                 
-                /* Convert new node position back to obstacle layer space */
+                // Convert new node position back to obstacle layer space
                 newObstacle.position = self.convert(randomPosition, to: obstacleLayer)
                 
                 // Reset spawn timer
@@ -224,11 +224,11 @@ class BirdMiniScene: SKScene, SKPhysicsContactDelegate {
     }
     func didBegin(_ contact: SKPhysicsContact) {
         
-        /* Get references to bodies involved in collision */
+        // Get references to bodies involved in collision
         let contactA = contact.bodyA
         let contactB = contact.bodyB
         
-        /* Get references to the physics body parent nodes */
+        // Get references to the physics body parent nodes
         let nodeA = contactA.node!
         let nodeB = contactB.node!
         
@@ -236,10 +236,10 @@ class BirdMiniScene: SKScene, SKPhysicsContactDelegate {
             print("BirdMiniScene Surviving")
         }
         
-        /*/* Ensure only called while game running */
-        if gameState != .active { return }
+        /* Ensure only called while game running
+        if gameState != .active { return } */
         
-        /* Change game state to game over */
+        /* Change game state to game over
         gameState = .gameOver */
             
         else {
@@ -261,10 +261,10 @@ class BirdMiniScene: SKScene, SKPhysicsContactDelegate {
             
         bird.physicsBody?.isDynamic = false
             
-        /* Stop any new angular velocity being applied */
+        // Stop any new angular velocity being applied
         bird.physicsBody?.allowsRotation = false
         
-        /* Reset angular velocity */
+        // Reset angular velocity
         bird.physicsBody?.angularVelocity = 0
         
         //failedGame()
@@ -298,27 +298,27 @@ class BirdMiniScene: SKScene, SKPhysicsContactDelegate {
     }
     func loadScoreScreen(){
         
-        /* 1) Grab reference to our SpriteKit view */
+        // 1) Grab reference to our SpriteKit view
         guard let skView = self.view as SKView! else {
             print("Could not get ScoreSkview from BirdMini")
             return
         }
         
-        /* 2) Load Game scene */
+        // 2) Load Game scene
         guard let scene = SKScene(fileNamed:"ScoreScene") else {
             print("Could not make ScoreScene from BirdMini")
             return
         }
         
-        /* 3) Ensure correct aspect mode */
+        // 3) Ensure correct aspect mode
         scene.scaleMode = .aspectFit
         
-        /* Show debug */
+        // Show debug
         skView.showsPhysics = false
         skView.showsDrawCount = false
         skView.showsFPS = false
         
-        /* 4) Start game scene */
+        // 4) Start game scene 
         skView.presentScene(scene)
     }
     
