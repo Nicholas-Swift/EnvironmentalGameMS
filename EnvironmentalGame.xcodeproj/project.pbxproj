@@ -7,105 +7,107 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		EB0DA81C1F154DEF00069543 /* BirdMiniScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = EB0DA81B1F154DEF00069543 /* BirdMiniScene.sks */; };
-		EB0E48381F2166E500792C14 /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0E48371F2166E500792C14 /* GameOverScene.swift */; };
-		EB0E483A1F21673300792C14 /* GameOverScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = EB0E48391F21673300792C14 /* GameOverScene.sks */; };
-		EB15B7071F1436790087DC30 /* CGFloat+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB15B7061F1436790087DC30 /* CGFloat+Extensions.swift */; };
+		65C8D48E1F469900007A8EB6 /* CGFloat+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C8D48D1F469900007A8EB6 /* CGFloat+Extensions.swift */; };
+		65C8D4AF1F469911007A8EB6 /* AirPollution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C8D4901F469911007A8EB6 /* AirPollution.swift */; };
+		65C8D4B01F469911007A8EB6 /* BirdMiniScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C8D4911F469911007A8EB6 /* BirdMiniScene.swift */; };
+		65C8D4B11F469911007A8EB6 /* Credits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C8D4921F469911007A8EB6 /* Credits.swift */; };
+		65C8D4B21F469911007A8EB6 /* DeforestationScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C8D4931F469911007A8EB6 /* DeforestationScene.swift */; };
+		65C8D4B31F469911007A8EB6 /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C8D4941F469911007A8EB6 /* GameOverScene.swift */; };
+		65C8D4B41F469911007A8EB6 /* IceMeltingScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C8D4951F469911007A8EB6 /* IceMeltingScene.swift */; };
+		65C8D4B51F469911007A8EB6 /* OverfishingScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C8D4961F469911007A8EB6 /* OverfishingScene.swift */; };
+		65C8D4B61F469911007A8EB6 /* OzoneScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C8D4971F469911007A8EB6 /* OzoneScene.swift */; };
+		65C8D4B71F469911007A8EB6 /* SaveEarth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C8D4981F469911007A8EB6 /* SaveEarth.swift */; };
+		65C8D4B81F469911007A8EB6 /* ScoreScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C8D4991F469911007A8EB6 /* ScoreScene.swift */; };
+		65C8D4B91F469911007A8EB6 /* StartScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C8D49A1F469911007A8EB6 /* StartScene.swift */; };
+		65C8D4BA1F469911007A8EB6 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 65C8D49C1F469911007A8EB6 /* Actions.sks */; };
+		65C8D4BB1F469911007A8EB6 /* AirPollution.sks in Resources */ = {isa = PBXBuildFile; fileRef = 65C8D49D1F469911007A8EB6 /* AirPollution.sks */; };
+		65C8D4BC1F469911007A8EB6 /* BirdMiniScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 65C8D49E1F469911007A8EB6 /* BirdMiniScene.sks */; };
+		65C8D4BD1F469911007A8EB6 /* Credits.sks in Resources */ = {isa = PBXBuildFile; fileRef = 65C8D49F1F469911007A8EB6 /* Credits.sks */; };
+		65C8D4BE1F469911007A8EB6 /* DeforestationScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 65C8D4A01F469911007A8EB6 /* DeforestationScene.sks */; };
+		65C8D4BF1F469911007A8EB6 /* EarthFire.sks in Resources */ = {isa = PBXBuildFile; fileRef = 65C8D4A11F469911007A8EB6 /* EarthFire.sks */; };
+		65C8D4C01F469911007A8EB6 /* GameOverScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 65C8D4A21F469911007A8EB6 /* GameOverScene.sks */; };
+		65C8D4C11F469911007A8EB6 /* IceMeltingScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 65C8D4A31F469911007A8EB6 /* IceMeltingScene.sks */; };
+		65C8D4C21F469911007A8EB6 /* IceObstacle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 65C8D4A41F469911007A8EB6 /* IceObstacle.sks */; };
+		65C8D4C31F469911007A8EB6 /* OverfishingScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 65C8D4A51F469911007A8EB6 /* OverfishingScene.sks */; };
+		65C8D4C41F469911007A8EB6 /* OzoneScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 65C8D4A61F469911007A8EB6 /* OzoneScene.sks */; };
+		65C8D4C51F469911007A8EB6 /* Rain.sks in Resources */ = {isa = PBXBuildFile; fileRef = 65C8D4A71F469911007A8EB6 /* Rain.sks */; };
+		65C8D4C61F469911007A8EB6 /* SaveEarth.sks in Resources */ = {isa = PBXBuildFile; fileRef = 65C8D4A81F469911007A8EB6 /* SaveEarth.sks */; };
+		65C8D4C71F469911007A8EB6 /* ScoreScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 65C8D4A91F469911007A8EB6 /* ScoreScene.sks */; };
+		65C8D4C81F469911007A8EB6 /* Skyscraper.sks in Resources */ = {isa = PBXBuildFile; fileRef = 65C8D4AA1F469911007A8EB6 /* Skyscraper.sks */; };
+		65C8D4C91F469911007A8EB6 /* SmokeEmitter.sks in Resources */ = {isa = PBXBuildFile; fileRef = 65C8D4AB1F469911007A8EB6 /* SmokeEmitter.sks */; };
+		65C8D4CA1F469911007A8EB6 /* StartScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 65C8D4AC1F469911007A8EB6 /* StartScene.sks */; };
+		65C8D4CB1F469911007A8EB6 /* MSButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C8D4AE1F469911007A8EB6 /* MSButtonNode.swift */; };
 		EB190BDF1F142136005104F4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB190BDE1F142136005104F4 /* AppDelegate.swift */; };
-		EB190BE11F142136005104F4 /* StartScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = EB190BE01F142136005104F4 /* StartScene.sks */; };
-		EB190BE31F142136005104F4 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = EB190BE21F142136005104F4 /* Actions.sks */; };
-		EB190BE51F142136005104F4 /* StartScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB190BE41F142136005104F4 /* StartScene.swift */; };
 		EB190BE71F142136005104F4 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB190BE61F142136005104F4 /* GameViewController.swift */; };
 		EB190BEA1F142136005104F4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB190BE81F142136005104F4 /* Main.storyboard */; };
 		EB190BEC1F142136005104F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB190BEB1F142136005104F4 /* Assets.xcassets */; };
 		EB190BEF1F142136005104F4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB190BED1F142136005104F4 /* LaunchScreen.storyboard */; };
-		EB1988631F21272900B8E34B /* ScoreScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = EB1988621F21272900B8E34B /* ScoreScene.sks */; };
-		EB1988651F21275800B8E34B /* ScoreScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1988641F21275800B8E34B /* ScoreScene.swift */; };
-		EB1C13A71F1D1F2400B521E6 /* DeforestationScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1C13A61F1D1F2400B521E6 /* DeforestationScene.swift */; };
-		EB1C13A91F1D1F4A00B521E6 /* DeforestationScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = EB1C13A81F1D1F4A00B521E6 /* DeforestationScene.sks */; };
 		EB1CC5CC1F368BF20093848C /* Large Bubble-SoundBible.com-1084083477.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EB1CC5CB1F368BF20093848C /* Large Bubble-SoundBible.com-1084083477.mp3 */; };
-		EB1EE8601F30FBEA0005BB03 /* EarthFire.sks in Resources */ = {isa = PBXBuildFile; fileRef = EB1EE85F1F30FBEA0005BB03 /* EarthFire.sks */; };
 		EB2405941F36524700EDF2C3 /* sfx_swipe.caf in Resources */ = {isa = PBXBuildFile; fileRef = EB2405931F36524700EDF2C3 /* sfx_swipe.caf */; };
-		EB526D0F1F17EFE8005279A2 /* IceObstacle.sks in Resources */ = {isa = PBXBuildFile; fileRef = EB526D0E1F17EFE8005279A2 /* IceObstacle.sks */; };
-		EB526D111F181220005279A2 /* IceMeltingScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB526D101F181220005279A2 /* IceMeltingScene.swift */; };
-		EB526D191F181C0D005279A2 /* IceMeltingScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = EB526D181F181C0D005279A2 /* IceMeltingScene.sks */; };
-		EB526D1B1F182F03005279A2 /* SaveEarth.sks in Resources */ = {isa = PBXBuildFile; fileRef = EB526D1A1F182F03005279A2 /* SaveEarth.sks */; };
 		EB644DCA1F37804A00AED941 /* Decapitation Head Fall Off-SoundBible.com-1529852007.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EB644DC91F37804A00AED941 /* Decapitation Head Fall Off-SoundBible.com-1529852007.mp3 */; };
 		EB644DCC1F3788B200AED941 /* Pickup_00.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EB644DCB1F3788B200AED941 /* Pickup_00.mp3 */; };
 		EB644DCE1F37B6FE00AED941 /* Small Fireball-SoundBible.com-1381880822.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EB644DCD1F37B6FE00AED941 /* Small Fireball-SoundBible.com-1381880822.mp3 */; };
 		EB644DD01F38DF1E00AED941 /* happy.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EB644DCF1F38DF1E00AED941 /* happy.mp3 */; };
 		EB644DD21F38F1D200AED941 /* Blop-Mark_DiAngelo-79054334.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EB644DD11F38F1D200AED941 /* Blop-Mark_DiAngelo-79054334.mp3 */; };
-		EB6C26CC1F15777D00A407C8 /* Skyscraper.sks in Resources */ = {isa = PBXBuildFile; fileRef = EB6C26CB1F15777D00A407C8 /* Skyscraper.sks */; };
-		EB6C26D01F16878500A407C8 /* OverfishingScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6C26CF1F16878500A407C8 /* OverfishingScene.swift */; };
-		EB6C26D21F1687C000A407C8 /* OverfishingScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = EB6C26D11F1687C000A407C8 /* OverfishingScene.sks */; };
 		EB6CA2451F454D6900382F09 /* spin_jump-Brandino480-2020916281.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EB6CA2441F454D6900382F09 /* spin_jump-Brandino480-2020916281.mp3 */; };
 		EB6CA2471F454DB700382F09 /* sfx_sounds_impact8.wav in Resources */ = {isa = PBXBuildFile; fileRef = EB6CA2461F454DB700382F09 /* sfx_sounds_impact8.wav */; };
 		EB6CA2491F454E0900382F09 /* Sad_Trombone-Joe_Lamb-665429450.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EB6CA2481F454E0900382F09 /* Sad_Trombone-Joe_Lamb-665429450.mp3 */; };
 		EB6CA24B1F454E0F00382F09 /* Ta Da-SoundBible.com-1884170640 (1).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EB6CA24A1F454E0F00382F09 /* Ta Da-SoundBible.com-1884170640 (1).mp3 */; };
 		EB7CED621F391A4C00A99416 /* Marchofthespoons.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EB7CED611F391A4C00A99416 /* Marchofthespoons.mp3 */; };
-		EB8E8BE01F192DC000F6168E /* MSButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8E8BDF1F192DC000F6168E /* MSButtonNode.swift */; };
 		EB9EC2991F392BD900B4B9AC /* Hustle.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EB9EC2981F392BD900B4B9AC /* Hustle.mp3 */; };
-		EB9EC29D1F3A947D00B4B9AC /* Credits.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9EC29C1F3A947C00B4B9AC /* Credits.swift */; };
-		EB9EC29F1F3A951000B4B9AC /* Credits.sks in Resources */ = {isa = PBXBuildFile; fileRef = EB9EC29E1F3A951000B4B9AC /* Credits.sks */; };
-		EB9EC2A11F3ACFCE00B4B9AC /* OzoneScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9EC2A01F3ACFCD00B4B9AC /* OzoneScene.swift */; };
-		EB9EC2A31F3ACFF400B4B9AC /* OzoneScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = EB9EC2A21F3ACFF400B4B9AC /* OzoneScene.sks */; };
-		EBA86C341F1E787A000006C2 /* AirPollution.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA86C331F1E787A000006C2 /* AirPollution.swift */; };
-		EBA86C361F1E7899000006C2 /* AirPollution.sks in Resources */ = {isa = PBXBuildFile; fileRef = EBA86C351F1E7899000006C2 /* AirPollution.sks */; };
-		EBA86C381F1EA8E3000006C2 /* SmokeEmitter.sks in Resources */ = {isa = PBXBuildFile; fileRef = EBA86C371F1EA8E3000006C2 /* SmokeEmitter.sks */; };
-		EBB2B7E91F33D77400142074 /* SaveEarth.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB2B7E81F33D77400142074 /* SaveEarth.swift */; };
-		EBD01BAD1F142D3A00410CF8 /* BirdMiniScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD01BAC1F142D3A00410CF8 /* BirdMiniScene.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		EB0DA81B1F154DEF00069543 /* BirdMiniScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BirdMiniScene.sks; sourceTree = "<group>"; };
-		EB0E48371F2166E500792C14 /* GameOverScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
-		EB0E48391F21673300792C14 /* GameOverScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameOverScene.sks; sourceTree = "<group>"; };
-		EB15B7061F1436790087DC30 /* CGFloat+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGFloat+Extensions.swift"; sourceTree = "<group>"; };
+		65C8D48D1F469900007A8EB6 /* CGFloat+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGFloat+Extensions.swift"; sourceTree = "<group>"; };
+		65C8D4901F469911007A8EB6 /* AirPollution.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AirPollution.swift; sourceTree = "<group>"; };
+		65C8D4911F469911007A8EB6 /* BirdMiniScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BirdMiniScene.swift; sourceTree = "<group>"; };
+		65C8D4921F469911007A8EB6 /* Credits.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Credits.swift; sourceTree = "<group>"; };
+		65C8D4931F469911007A8EB6 /* DeforestationScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeforestationScene.swift; sourceTree = "<group>"; };
+		65C8D4941F469911007A8EB6 /* GameOverScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
+		65C8D4951F469911007A8EB6 /* IceMeltingScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IceMeltingScene.swift; sourceTree = "<group>"; };
+		65C8D4961F469911007A8EB6 /* OverfishingScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverfishingScene.swift; sourceTree = "<group>"; };
+		65C8D4971F469911007A8EB6 /* OzoneScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OzoneScene.swift; sourceTree = "<group>"; };
+		65C8D4981F469911007A8EB6 /* SaveEarth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveEarth.swift; sourceTree = "<group>"; };
+		65C8D4991F469911007A8EB6 /* ScoreScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreScene.swift; sourceTree = "<group>"; };
+		65C8D49A1F469911007A8EB6 /* StartScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartScene.swift; sourceTree = "<group>"; };
+		65C8D49C1F469911007A8EB6 /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
+		65C8D49D1F469911007A8EB6 /* AirPollution.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = AirPollution.sks; sourceTree = "<group>"; };
+		65C8D49E1F469911007A8EB6 /* BirdMiniScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BirdMiniScene.sks; sourceTree = "<group>"; };
+		65C8D49F1F469911007A8EB6 /* Credits.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Credits.sks; sourceTree = "<group>"; };
+		65C8D4A01F469911007A8EB6 /* DeforestationScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = DeforestationScene.sks; sourceTree = "<group>"; };
+		65C8D4A11F469911007A8EB6 /* EarthFire.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = EarthFire.sks; sourceTree = "<group>"; };
+		65C8D4A21F469911007A8EB6 /* GameOverScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameOverScene.sks; sourceTree = "<group>"; };
+		65C8D4A31F469911007A8EB6 /* IceMeltingScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = IceMeltingScene.sks; sourceTree = "<group>"; };
+		65C8D4A41F469911007A8EB6 /* IceObstacle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = IceObstacle.sks; sourceTree = "<group>"; };
+		65C8D4A51F469911007A8EB6 /* OverfishingScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = OverfishingScene.sks; sourceTree = "<group>"; };
+		65C8D4A61F469911007A8EB6 /* OzoneScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = OzoneScene.sks; sourceTree = "<group>"; };
+		65C8D4A71F469911007A8EB6 /* Rain.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Rain.sks; sourceTree = "<group>"; };
+		65C8D4A81F469911007A8EB6 /* SaveEarth.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SaveEarth.sks; sourceTree = "<group>"; };
+		65C8D4A91F469911007A8EB6 /* ScoreScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ScoreScene.sks; sourceTree = "<group>"; };
+		65C8D4AA1F469911007A8EB6 /* Skyscraper.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Skyscraper.sks; sourceTree = "<group>"; };
+		65C8D4AB1F469911007A8EB6 /* SmokeEmitter.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SmokeEmitter.sks; sourceTree = "<group>"; };
+		65C8D4AC1F469911007A8EB6 /* StartScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = StartScene.sks; sourceTree = "<group>"; };
+		65C8D4AE1F469911007A8EB6 /* MSButtonNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MSButtonNode.swift; sourceTree = "<group>"; };
 		EB190BDB1F142136005104F4 /* EnvironmentalGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EnvironmentalGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB190BDE1F142136005104F4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		EB190BE01F142136005104F4 /* StartScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = StartScene.sks; sourceTree = "<group>"; };
-		EB190BE21F142136005104F4 /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
-		EB190BE41F142136005104F4 /* StartScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScene.swift; sourceTree = "<group>"; tabWidth = 4; };
 		EB190BE61F142136005104F4 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		EB190BE91F142136005104F4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EB190BEB1F142136005104F4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EB190BEE1F142136005104F4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EB190BF01F142136005104F4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EB1988621F21272900B8E34B /* ScoreScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ScoreScene.sks; sourceTree = "<group>"; };
-		EB1988641F21275800B8E34B /* ScoreScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreScene.swift; sourceTree = "<group>"; };
-		EB1C13A61F1D1F2400B521E6 /* DeforestationScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeforestationScene.swift; sourceTree = "<group>"; };
-		EB1C13A81F1D1F4A00B521E6 /* DeforestationScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = DeforestationScene.sks; sourceTree = "<group>"; };
 		EB1CC5CB1F368BF20093848C /* Large Bubble-SoundBible.com-1084083477.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Large Bubble-SoundBible.com-1084083477.mp3"; sourceTree = "<group>"; };
-		EB1EE85F1F30FBEA0005BB03 /* EarthFire.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = EarthFire.sks; sourceTree = "<group>"; };
 		EB2405931F36524700EDF2C3 /* sfx_swipe.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = sfx_swipe.caf; sourceTree = "<group>"; };
-		EB526D0E1F17EFE8005279A2 /* IceObstacle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = IceObstacle.sks; sourceTree = "<group>"; };
-		EB526D101F181220005279A2 /* IceMeltingScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IceMeltingScene.swift; sourceTree = "<group>"; };
-		EB526D181F181C0D005279A2 /* IceMeltingScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = IceMeltingScene.sks; sourceTree = "<group>"; };
-		EB526D1A1F182F03005279A2 /* SaveEarth.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SaveEarth.sks; sourceTree = "<group>"; };
 		EB644DC91F37804A00AED941 /* Decapitation Head Fall Off-SoundBible.com-1529852007.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Decapitation Head Fall Off-SoundBible.com-1529852007.mp3"; sourceTree = "<group>"; };
 		EB644DCB1F3788B200AED941 /* Pickup_00.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Pickup_00.mp3; sourceTree = "<group>"; };
 		EB644DCD1F37B6FE00AED941 /* Small Fireball-SoundBible.com-1381880822.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Small Fireball-SoundBible.com-1381880822.mp3"; sourceTree = "<group>"; };
 		EB644DCF1F38DF1E00AED941 /* happy.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = happy.mp3; sourceTree = "<group>"; };
 		EB644DD11F38F1D200AED941 /* Blop-Mark_DiAngelo-79054334.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Blop-Mark_DiAngelo-79054334.mp3"; sourceTree = "<group>"; };
-		EB6C26CB1F15777D00A407C8 /* Skyscraper.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Skyscraper.sks; sourceTree = "<group>"; };
-		EB6C26CF1F16878500A407C8 /* OverfishingScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverfishingScene.swift; sourceTree = "<group>"; };
-		EB6C26D11F1687C000A407C8 /* OverfishingScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = OverfishingScene.sks; path = ../OverfishingScene.sks; sourceTree = "<group>"; };
 		EB6CA2441F454D6900382F09 /* spin_jump-Brandino480-2020916281.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "spin_jump-Brandino480-2020916281.mp3"; sourceTree = "<group>"; };
 		EB6CA2461F454DB700382F09 /* sfx_sounds_impact8.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sfx_sounds_impact8.wav; sourceTree = "<group>"; };
 		EB6CA2481F454E0900382F09 /* Sad_Trombone-Joe_Lamb-665429450.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Sad_Trombone-Joe_Lamb-665429450.mp3"; sourceTree = "<group>"; };
 		EB6CA24A1F454E0F00382F09 /* Ta Da-SoundBible.com-1884170640 (1).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Ta Da-SoundBible.com-1884170640 (1).mp3"; sourceTree = "<group>"; };
 		EB7CED611F391A4C00A99416 /* Marchofthespoons.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Marchofthespoons.mp3; sourceTree = "<group>"; };
-		EB8E8BDF1F192DC000F6168E /* MSButtonNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MSButtonNode.swift; sourceTree = "<group>"; };
 		EB9EC2981F392BD900B4B9AC /* Hustle.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Hustle.mp3; sourceTree = "<group>"; };
-		EB9EC29C1F3A947C00B4B9AC /* Credits.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Credits.swift; sourceTree = "<group>"; };
-		EB9EC29E1F3A951000B4B9AC /* Credits.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Credits.sks; sourceTree = "<group>"; };
-		EB9EC2A01F3ACFCD00B4B9AC /* OzoneScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OzoneScene.swift; sourceTree = "<group>"; };
-		EB9EC2A21F3ACFF400B4B9AC /* OzoneScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = OzoneScene.sks; sourceTree = "<group>"; };
-		EBA86C331F1E787A000006C2 /* AirPollution.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AirPollution.swift; sourceTree = "<group>"; };
-		EBA86C351F1E7899000006C2 /* AirPollution.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = AirPollution.sks; sourceTree = "<group>"; };
-		EBA86C371F1EA8E3000006C2 /* SmokeEmitter.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SmokeEmitter.sks; sourceTree = "<group>"; };
-		EBB2B7E81F33D77400142074 /* SaveEarth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveEarth.swift; sourceTree = "<group>"; };
-		EBD01BAC1F142D3A00410CF8 /* BirdMiniScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BirdMiniScene.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +121,64 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		65C8D48C1F469900007A8EB6 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				65C8D48D1F469900007A8EB6 /* CGFloat+Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		65C8D48F1F469911007A8EB6 /* SceneControllers */ = {
+			isa = PBXGroup;
+			children = (
+				65C8D4901F469911007A8EB6 /* AirPollution.swift */,
+				65C8D4911F469911007A8EB6 /* BirdMiniScene.swift */,
+				65C8D4921F469911007A8EB6 /* Credits.swift */,
+				65C8D4931F469911007A8EB6 /* DeforestationScene.swift */,
+				65C8D4941F469911007A8EB6 /* GameOverScene.swift */,
+				65C8D4951F469911007A8EB6 /* IceMeltingScene.swift */,
+				65C8D4961F469911007A8EB6 /* OverfishingScene.swift */,
+				65C8D4971F469911007A8EB6 /* OzoneScene.swift */,
+				65C8D4981F469911007A8EB6 /* SaveEarth.swift */,
+				65C8D4991F469911007A8EB6 /* ScoreScene.swift */,
+				65C8D49A1F469911007A8EB6 /* StartScene.swift */,
+			);
+			path = SceneControllers;
+			sourceTree = "<group>";
+		};
+		65C8D49B1F469911007A8EB6 /* SceneViews */ = {
+			isa = PBXGroup;
+			children = (
+				65C8D49C1F469911007A8EB6 /* Actions.sks */,
+				65C8D49D1F469911007A8EB6 /* AirPollution.sks */,
+				65C8D49E1F469911007A8EB6 /* BirdMiniScene.sks */,
+				65C8D49F1F469911007A8EB6 /* Credits.sks */,
+				65C8D4A01F469911007A8EB6 /* DeforestationScene.sks */,
+				65C8D4A11F469911007A8EB6 /* EarthFire.sks */,
+				65C8D4A21F469911007A8EB6 /* GameOverScene.sks */,
+				65C8D4A31F469911007A8EB6 /* IceMeltingScene.sks */,
+				65C8D4A41F469911007A8EB6 /* IceObstacle.sks */,
+				65C8D4A51F469911007A8EB6 /* OverfishingScene.sks */,
+				65C8D4A61F469911007A8EB6 /* OzoneScene.sks */,
+				65C8D4A71F469911007A8EB6 /* Rain.sks */,
+				65C8D4A81F469911007A8EB6 /* SaveEarth.sks */,
+				65C8D4A91F469911007A8EB6 /* ScoreScene.sks */,
+				65C8D4AA1F469911007A8EB6 /* Skyscraper.sks */,
+				65C8D4AB1F469911007A8EB6 /* SmokeEmitter.sks */,
+				65C8D4AC1F469911007A8EB6 /* StartScene.sks */,
+			);
+			path = SceneViews;
+			sourceTree = "<group>";
+		};
+		65C8D4AD1F469911007A8EB6 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				65C8D4AE1F469911007A8EB6 /* MSButtonNode.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
 		EB190BD21F142135005104F4 = {
 			isa = PBXGroup;
 			children = (
@@ -138,41 +198,16 @@
 		EB190BDD1F142136005104F4 /* EnvironmentalGame */ = {
 			isa = PBXGroup;
 			children = (
+				65C8D48F1F469911007A8EB6 /* SceneControllers */,
+				65C8D49B1F469911007A8EB6 /* SceneViews */,
+				65C8D4AD1F469911007A8EB6 /* Utilities */,
+				65C8D48C1F469900007A8EB6 /* Extensions */,
+				EB2405921F36524700EDF2C3 /* SFX */,
 				EB190BDE1F142136005104F4 /* AppDelegate.swift */,
-				EB190BE21F142136005104F4 /* Actions.sks */,
-				EB190BE41F142136005104F4 /* StartScene.swift */,
-				EB190BE01F142136005104F4 /* StartScene.sks */,
-				EB8E8BDF1F192DC000F6168E /* MSButtonNode.swift */,
-				EBD01BAC1F142D3A00410CF8 /* BirdMiniScene.swift */,
-				EB0DA81B1F154DEF00069543 /* BirdMiniScene.sks */,
-				EB6C26CB1F15777D00A407C8 /* Skyscraper.sks */,
-				EB6C26CF1F16878500A407C8 /* OverfishingScene.swift */,
-				EB6C26D11F1687C000A407C8 /* OverfishingScene.sks */,
-				EB526D101F181220005279A2 /* IceMeltingScene.swift */,
-				EB526D181F181C0D005279A2 /* IceMeltingScene.sks */,
-				EB526D0E1F17EFE8005279A2 /* IceObstacle.sks */,
-				EB1C13A61F1D1F2400B521E6 /* DeforestationScene.swift */,
-				EB1C13A81F1D1F4A00B521E6 /* DeforestationScene.sks */,
-				EBA86C331F1E787A000006C2 /* AirPollution.swift */,
-				EBA86C351F1E7899000006C2 /* AirPollution.sks */,
-				EBA86C371F1EA8E3000006C2 /* SmokeEmitter.sks */,
-				EB9EC2A01F3ACFCD00B4B9AC /* OzoneScene.swift */,
-				EB9EC2A21F3ACFF400B4B9AC /* OzoneScene.sks */,
-				EB1988641F21275800B8E34B /* ScoreScene.swift */,
-				EB1988621F21272900B8E34B /* ScoreScene.sks */,
-				EB1EE85F1F30FBEA0005BB03 /* EarthFire.sks */,
-				EBB2B7E81F33D77400142074 /* SaveEarth.swift */,
-				EB526D1A1F182F03005279A2 /* SaveEarth.sks */,
-				EB0E48391F21673300792C14 /* GameOverScene.sks */,
-				EB0E48371F2166E500792C14 /* GameOverScene.swift */,
-				EB9EC29C1F3A947C00B4B9AC /* Credits.swift */,
-				EB9EC29E1F3A951000B4B9AC /* Credits.sks */,
-				EB15B7061F1436790087DC30 /* CGFloat+Extensions.swift */,
 				EB190BE61F142136005104F4 /* GameViewController.swift */,
 				EB190BE81F142136005104F4 /* Main.storyboard */,
-				EB190BEB1F142136005104F4 /* Assets.xcassets */,
-				EB2405921F36524700EDF2C3 /* SFX */,
 				EB190BED1F142136005104F4 /* LaunchScreen.storyboard */,
+				EB190BEB1F142136005104F4 /* Assets.xcassets */,
 				EB190BF01F142136005104F4 /* Info.plist */,
 			);
 			path = EnvironmentalGame;
@@ -258,38 +293,39 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EB1988631F21272900B8E34B /* ScoreScene.sks in Resources */,
-				EB526D1B1F182F03005279A2 /* SaveEarth.sks in Resources */,
-				EB526D0F1F17EFE8005279A2 /* IceObstacle.sks in Resources */,
 				EB644DD01F38DF1E00AED941 /* happy.mp3 in Resources */,
+				65C8D4C11F469911007A8EB6 /* IceMeltingScene.sks in Resources */,
 				EB7CED621F391A4C00A99416 /* Marchofthespoons.mp3 in Resources */,
+				65C8D4BF1F469911007A8EB6 /* EarthFire.sks in Resources */,
 				EB644DD21F38F1D200AED941 /* Blop-Mark_DiAngelo-79054334.mp3 in Resources */,
+				65C8D4C71F469911007A8EB6 /* ScoreScene.sks in Resources */,
 				EB644DCE1F37B6FE00AED941 /* Small Fireball-SoundBible.com-1381880822.mp3 in Resources */,
 				EB6CA2451F454D6900382F09 /* spin_jump-Brandino480-2020916281.mp3 in Resources */,
-				EB0DA81C1F154DEF00069543 /* BirdMiniScene.sks in Resources */,
+				65C8D4C91F469911007A8EB6 /* SmokeEmitter.sks in Resources */,
 				EB644DCC1F3788B200AED941 /* Pickup_00.mp3 in Resources */,
-				EB0E483A1F21673300792C14 /* GameOverScene.sks in Resources */,
-				EB6C26CC1F15777D00A407C8 /* Skyscraper.sks in Resources */,
-				EBA86C361F1E7899000006C2 /* AirPollution.sks in Resources */,
-				EB526D191F181C0D005279A2 /* IceMeltingScene.sks in Resources */,
-				EB9EC2A31F3ACFF400B4B9AC /* OzoneScene.sks in Resources */,
-				EB1C13A91F1D1F4A00B521E6 /* DeforestationScene.sks in Resources */,
-				EBA86C381F1EA8E3000006C2 /* SmokeEmitter.sks in Resources */,
 				EB190BEA1F142136005104F4 /* Main.storyboard in Resources */,
+				65C8D4C51F469911007A8EB6 /* Rain.sks in Resources */,
+				65C8D4C31F469911007A8EB6 /* OverfishingScene.sks in Resources */,
 				EB9EC2991F392BD900B4B9AC /* Hustle.mp3 in Resources */,
+				65C8D4C41F469911007A8EB6 /* OzoneScene.sks in Resources */,
 				EB644DCA1F37804A00AED941 /* Decapitation Head Fall Off-SoundBible.com-1529852007.mp3 in Resources */,
-				EB190BE11F142136005104F4 /* StartScene.sks in Resources */,
+				65C8D4BA1F469911007A8EB6 /* Actions.sks in Resources */,
 				EB190BEC1F142136005104F4 /* Assets.xcassets in Resources */,
 				EB6CA24B1F454E0F00382F09 /* Ta Da-SoundBible.com-1884170640 (1).mp3 in Resources */,
-				EB9EC29F1F3A951000B4B9AC /* Credits.sks in Resources */,
 				EB2405941F36524700EDF2C3 /* sfx_swipe.caf in Resources */,
-				EB6C26D21F1687C000A407C8 /* OverfishingScene.sks in Resources */,
+				65C8D4C01F469911007A8EB6 /* GameOverScene.sks in Resources */,
+				65C8D4BE1F469911007A8EB6 /* DeforestationScene.sks in Resources */,
 				EB190BEF1F142136005104F4 /* LaunchScreen.storyboard in Resources */,
-				EB1EE8601F30FBEA0005BB03 /* EarthFire.sks in Resources */,
-				EB190BE31F142136005104F4 /* Actions.sks in Resources */,
 				EB6CA2471F454DB700382F09 /* sfx_sounds_impact8.wav in Resources */,
+				65C8D4BC1F469911007A8EB6 /* BirdMiniScene.sks in Resources */,
+				65C8D4C21F469911007A8EB6 /* IceObstacle.sks in Resources */,
+				65C8D4C61F469911007A8EB6 /* SaveEarth.sks in Resources */,
+				65C8D4BD1F469911007A8EB6 /* Credits.sks in Resources */,
+				65C8D4C81F469911007A8EB6 /* Skyscraper.sks in Resources */,
 				EB6CA2491F454E0900382F09 /* Sad_Trombone-Joe_Lamb-665429450.mp3 in Resources */,
+				65C8D4CA1F469911007A8EB6 /* StartScene.sks in Resources */,
 				EB1CC5CC1F368BF20093848C /* Large Bubble-SoundBible.com-1084083477.mp3 in Resources */,
+				65C8D4BB1F469911007A8EB6 /* AirPollution.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -300,21 +336,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EB190BE51F142136005104F4 /* StartScene.swift in Sources */,
-				EB6C26D01F16878500A407C8 /* OverfishingScene.swift in Sources */,
-				EB8E8BE01F192DC000F6168E /* MSButtonNode.swift in Sources */,
-				EB15B7071F1436790087DC30 /* CGFloat+Extensions.swift in Sources */,
-				EB9EC2A11F3ACFCE00B4B9AC /* OzoneScene.swift in Sources */,
-				EBA86C341F1E787A000006C2 /* AirPollution.swift in Sources */,
+				65C8D4B01F469911007A8EB6 /* BirdMiniScene.swift in Sources */,
+				65C8D4B91F469911007A8EB6 /* StartScene.swift in Sources */,
+				65C8D4B71F469911007A8EB6 /* SaveEarth.swift in Sources */,
+				65C8D4B51F469911007A8EB6 /* OverfishingScene.swift in Sources */,
 				EB190BE71F142136005104F4 /* GameViewController.swift in Sources */,
-				EBD01BAD1F142D3A00410CF8 /* BirdMiniScene.swift in Sources */,
+				65C8D4B31F469911007A8EB6 /* GameOverScene.swift in Sources */,
+				65C8D4B61F469911007A8EB6 /* OzoneScene.swift in Sources */,
+				65C8D48E1F469900007A8EB6 /* CGFloat+Extensions.swift in Sources */,
 				EB190BDF1F142136005104F4 /* AppDelegate.swift in Sources */,
-				EB1988651F21275800B8E34B /* ScoreScene.swift in Sources */,
-				EBB2B7E91F33D77400142074 /* SaveEarth.swift in Sources */,
-				EB1C13A71F1D1F2400B521E6 /* DeforestationScene.swift in Sources */,
-				EB0E48381F2166E500792C14 /* GameOverScene.swift in Sources */,
-				EB9EC29D1F3A947D00B4B9AC /* Credits.swift in Sources */,
-				EB526D111F181220005279A2 /* IceMeltingScene.swift in Sources */,
+				65C8D4CB1F469911007A8EB6 /* MSButtonNode.swift in Sources */,
+				65C8D4B11F469911007A8EB6 /* Credits.swift in Sources */,
+				65C8D4B41F469911007A8EB6 /* IceMeltingScene.swift in Sources */,
+				65C8D4B81F469911007A8EB6 /* ScoreScene.swift in Sources */,
+				65C8D4B21F469911007A8EB6 /* DeforestationScene.swift in Sources */,
+				65C8D4AF1F469911007A8EB6 /* AirPollution.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
