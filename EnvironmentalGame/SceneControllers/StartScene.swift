@@ -28,18 +28,18 @@ class StartScene: SKScene {
         UserDefaults.standard.synchronize()
       }
     }
-    var currentScore: Int {
-      get {
-        if let storedCurrentScore = UserDefaults.standard.object(forKey: "Currentscore") as? Int {
-          return storedCurrentScore
-        }
-        return 0
-      }
-      set {
-        UserDefaults.standard.set(newValue, forKey: "Currentscore")
-        UserDefaults.standard.synchronize()
-      }
-    }
+//    var currentScore: Int {
+//      get {
+//        if let storedCurrentScore = UserDefaults.standard.object(forKey: "Currentscore") as? Int {
+//          return storedCurrentScore
+//        }
+//        return 0
+//      }
+//      set {
+//        UserDefaults.standard.set(newValue, forKey: "Currentscore")
+//        UserDefaults.standard.synchronize()
+//      }
+//    }
     var countChecker: Int {
       get {
         if let storedCountChecker = UserDefaults.standard.object(forKey: "Countchecker") as? Int {
@@ -127,14 +127,13 @@ class StartScene: SKScene {
             print("Error in loading Start Scene Background music")
         }
         
-        UserDefaults.standard.set(0, forKey: "Currentscore")
-        UserDefaults.standard.synchronize()
+        GameState.currentScore = 0
         UserDefaults.standard.set(3, forKey: "Numberoflives")
         UserDefaults.standard.synchronize()
         UserDefaults.standard.set(0, forKey: "Countchecker")
         UserDefaults.standard.synchronize()
         
-        print("StartScene \(UserDefaults.standard.integer(forKey: "Currentscore")) current score")
+        print("StartScene \(GameState.currentScore) current score")
         print("StartScene \(UserDefaults.standard.integer(forKey: "Numberoflives")) number of lives")
         print("StartScene \(UserDefaults.standard.integer(forKey: "Countchecker")) count checker")
         

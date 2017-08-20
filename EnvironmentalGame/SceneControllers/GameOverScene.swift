@@ -85,18 +85,17 @@ class GameOverScene: SKScene{
             self?.loadCredits()
             self?.audioPlayer.stop()
         }
-        currentScoreGameOver = UserDefaults.standard.integer(forKey: "Currentscore")
+        currentScoreGameOver = GameState.currentScore
         highScoreGameOver = UserDefaults.standard.integer(forKey: "Highscore")
         if currentScoreGameOver > highScoreGameOver {
             UserDefaults.standard.set(currentScoreGameOver, forKey: "Highscore")
             UserDefaults.standard.synchronize()
         }
-        scoreGameOverLabel.text = String(UserDefaults.standard.integer(forKey: "Currentscore"))
+        scoreGameOverLabel.text = String(GameState.currentScore)
         highScoreGameOverLabel.text = String(UserDefaults.standard.integer(forKey: "Highscore"))
         print(currentScoreGameOver)
         print(highScoreGameOver)
-        UserDefaults.standard.set(0, forKey: "Currentscore")
-        UserDefaults.standard.synchronize()
+        GameState.currentScore = 0
         UserDefaults.standard.set(3, forKey: "Numberoflives")
         UserDefaults.standard.synchronize()
         UserDefaults.standard.set(0, forKey: "Countchecker")

@@ -37,6 +37,7 @@
 		65C8D4C91F469911007A8EB6 /* SmokeEmitter.sks in Resources */ = {isa = PBXBuildFile; fileRef = 65C8D4AB1F469911007A8EB6 /* SmokeEmitter.sks */; };
 		65C8D4CA1F469911007A8EB6 /* StartScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 65C8D4AC1F469911007A8EB6 /* StartScene.sks */; };
 		65C8D4CB1F469911007A8EB6 /* MSButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C8D4AE1F469911007A8EB6 /* MSButtonNode.swift */; };
+		65FE86C71F48BE1F00933287 /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FE86C61F48BE1F00933287 /* GameState.swift */; };
 		EB190BDF1F142136005104F4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB190BDE1F142136005104F4 /* AppDelegate.swift */; };
 		EB190BE71F142136005104F4 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB190BE61F142136005104F4 /* GameViewController.swift */; };
 		EB190BEA1F142136005104F4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB190BE81F142136005104F4 /* Main.storyboard */; };
@@ -88,6 +89,7 @@
 		65C8D4AB1F469911007A8EB6 /* SmokeEmitter.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SmokeEmitter.sks; sourceTree = "<group>"; };
 		65C8D4AC1F469911007A8EB6 /* StartScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = StartScene.sks; sourceTree = "<group>"; };
 		65C8D4AE1F469911007A8EB6 /* MSButtonNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MSButtonNode.swift; sourceTree = "<group>"; };
+		65FE86C61F48BE1F00933287 /* GameState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameState.swift; sourceTree = "<group>"; };
 		EB190BDB1F142136005104F4 /* EnvironmentalGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EnvironmentalGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB190BDE1F142136005104F4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EB190BE61F142136005104F4 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				65C8D4AE1F469911007A8EB6 /* MSButtonNode.swift */,
+				65FE86C61F48BE1F00933287 /* GameState.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -341,6 +344,7 @@
 				65C8D4B71F469911007A8EB6 /* SaveEarth.swift in Sources */,
 				65C8D4B51F469911007A8EB6 /* OverfishingScene.swift in Sources */,
 				EB190BE71F142136005104F4 /* GameViewController.swift in Sources */,
+				65FE86C71F48BE1F00933287 /* GameState.swift in Sources */,
 				65C8D4B31F469911007A8EB6 /* GameOverScene.swift in Sources */,
 				65C8D4B61F469911007A8EB6 /* OzoneScene.swift in Sources */,
 				65C8D48E1F469900007A8EB6 /* CGFloat+Extensions.swift in Sources */,

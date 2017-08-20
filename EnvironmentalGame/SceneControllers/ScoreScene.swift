@@ -76,10 +76,10 @@ class ScoreScene: SKScene {
         UserDefaults.standard.set(UserDefaults.standard.integer(forKey: "Countchecker") + 1, forKey: "Countchecker")
         UserDefaults.standard.synchronize()
         print("ScoreScene \(UserDefaults.standard.integer(forKey: "Countchecker")) count checker")
-        currentScoreLabel.text = String(UserDefaults.standard.integer(forKey: "Currentscore"))
+        currentScoreLabel.text = String(GameState.currentScore)
         
         let updateScore = SKAction.run ({
-            self.currentScoreLabel.text = String(UserDefaults.standard.integer(forKey: "Currentscore"))
+            self.currentScoreLabel.text = String(GameState.currentScore)
         })
         let lightEarthOnFire = SKAction.run ({
             if self.livesForEarth == 2 {
@@ -113,23 +113,17 @@ class ScoreScene: SKScene {
         let loadOverSequence = SKAction.sequence([shortWait, lightEarthOnFire, loseSound, updateScore, longWait, loadOver])
 
         if winOrLose == false {
+            GameState.currentScore -= 70
             if livesForEarth <= 0 {
-                UserDefaults.standard.set(UserDefaults().integer(forKey: "Currentscore") - 70, forKey: "Currentscore")
-                UserDefaults.standard.synchronize()
                 self.run(loadOverSequence)
-            }
-            else {
-                UserDefaults.standard.set(UserDefaults().integer(forKey: "Currentscore") - 70, forKey: "Currentscore")
-                UserDefaults.standard.synchronize()
+            } else {
                 self.run(scoreLoseSequence)
             }
         } else {
-            UserDefaults.standard.set(UserDefaults().integer(forKey: "Currentscore") + 120, forKey: "Currentscore")
-            UserDefaults.standard.synchronize()
+            GameState.currentScore += 120
             if livesForEarth == 2 {
                 fire1.isHidden = false
-            }
-            if livesForEarth == 1 {
+            } else if livesForEarth == 1 {
                 fire1.isHidden = false
                 fire2.isHidden = false
             }

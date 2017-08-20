@@ -70,7 +70,7 @@ class IceMeltingScene: SKScene, SKPhysicsContactDelegate {
         timeBar = childNode(withName: "timeBar") as! SKSpriteNode
         iceMainLabel = self.childNode(withName: "iceMainLabel") as! SKLabelNode
         iceLabel = self.childNode(withName: "iceLabel") as! SKLabelNode
-        print("Overfishing \(UserDefaults().integer(forKey: "Currentscore")) current score")
+        print("Overfishing \(GameState.currentScore) current score")
         polarBear.run(polarBearJump)
         print("IceMelting \(countChecker) count checker")
     }
